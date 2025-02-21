@@ -1,135 +1,79 @@
-
+<!DOCTYPE html>
 <html>
 <head>
-    <title>Result</title>
-<link rel="stylesheet" href="csss/result.css" type="text/css">
-<link href="https://fonts.googleapis.com/css?family=Flamenco" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="marksheet.css">
+    <meta charset="utf-8"http-equiv="Refresh" content="1">
 </head>
 <body>
-    <header>
-      <nav>
-        <div class="row clearfix">
-            <ul class="main-nav" animate slideInDown>
-                <li><a href="index.php"><b>HOME</b></a></li>
-                <li><a href="admin/aboutus.php"><b>ABOUT</b></a></li>
-                <li><a href="admin/contactus.php"><b>CONTACT</b></a></li>
-                <li><a href="login.php"><b>ADMIN LOGIN</b></a></li>
-          </ul>
-        </div>
-      </nav>
-      <div class="main-content-header">
-        <form method="post" action="result.php">
-          <table class="table">
-              <img src="dataimg/<?php  echo $data['u_image']; ?>" class="image2" /> 
-              <tr>
-              <th>Name :</th>
-                <td><?php echo $data['u_name'] ?></td>
-              </tr>
-              <tr>
-              <th>Class :</th>
-              <td><?php echo $data2['u_class']; ?></td>
-              </tr>
-              <tr>
-              <th>Roll No :</th>
-              <td><?php echo $data['u_rollno']; ?></td>
-              </tr>
-              <tr>
-              <th>Father Name :</th>
-              <td><?php echo $data['u_father']; ?></td>
-              </tr>
-              <tr>
-              <th>City Name :</th>
-              <td><?php echo $data['u_village']; ?></td>
-              </tr>
-          </table>
-          <table class="table2">
-              <tr>
-               <th>Suject</th><th>Half Yealy Exam (Score) </th><th>Annual Exam (Score)</th><th>Total</th><th>Max. Marks</th>
-              </tr>
-              <tr>
-                  
-              <th>Hindi</th>
-                <th><?php echo $data2['u_hindi1']; ?></th>
-                <th><?php echo $data2['u_hindi2']; ?></th>
-                <th><?php echo $total1=$data2['u_hindi1']+$data2['u_hindi2']; ?> </th>
-                <th>200</th>
-              </tr>
-              <tr>  
-              <th>English</th>
-                <th><?php echo $data2['u_english1']; ?></th>
-                <th><?php echo $data2['u_english2']; ?></th>
-                <th><?php echo $total2=$data2['u_english1']+$data2['u_english2']; ?> </th>
-                <th>200</th>
-              </tr>
-              <tr>
-              <th>Math</th>
-                  <th><?php echo $data2['u_math1']; ?></th>
-                  <th><?php echo $data2['u_math2']; ?></th>
-                  <th><?php echo $total3=$data2['u_math1']+$data2['u_math2']; ?> </th>
-                  <th>200</th>
-              </tr>
-              <tr>
-              <th>Physics</th>
-                  <th><?php echo $data2['u_physics1']; ?></th>
-                  <th><?php echo $data2['u_physics2']; ?></th>
-                  <th><?php echo $total4=$data2['u_physics1']+$data2['u_physics2']; ?></th>
-                  <th>200</th>
-              </tr>
-              <tr>
-              <th>Chemestry</th>
-                  <th><?php echo $data2['u_chemestry1']; ?></th>
-                  <th><?php echo $data2['u_chemestry']; ?></th>
-                  <th><?php echo $total5=$data2['u_chemestry1']+$data2['u_chemestry']; ?></th>
-                  <th>200</th>
-              </tr>
-              <tr>
-              <th>Total</th>
-                  <th>
-                   <?php echo $data2['u_hindi1']+$data2['u_english1']+$data2['u_math1']+$data2['u_physics1']+$data2['u_chemestry1']; ?>
-                  </th>
-                  <th>
-                  <?php echo $data2['u_hindi2']+$data2['u_english2']+$data2['u_math2']+$data2['u_physics2']+$data2['u_chemestry']; ?>
-                  </th>
-                  
-                  <th><span class="colorchange"><?php echo $all=$total1+$total2+$total3+$total3+$total4+$total5; ?></span></th>
-                 
-                  <th>1000</th>
-                  
-              </tr>    
-             
-          </table>
-             <h1>You Are <span class="colorchange1"><?php 
-                        if($all<=500) 
-                        {
-                            echo "Fail";
-                        }
-                       else
-                       {
-                           echo"Pass";
-                       }
-                      ?></span></h1>
-            <marquee scrollamount="5"><p>Your Result is Declared. Kindly check your marks and in case of any discrepany contact the admin. </p>
-                </marquee>
-       </form>
-      </div>
-    </header>
-    
+<div>
+       <table contenteditable=True
+       id="Students">
+           <th contenteditable=False>CNO</th>
+           <th contenteditable=False>STUDENT NAME</th>
+           <th contenteditable=False>SEX</th>
+           <th contenteditable=False>Civ</th>
+           <th contenteditable=False>Hist</th>
+           <th contenteditable=False>Geo</th>
+           <th contenteditable=False>Kisw</th>
+           <th contenteditable=False>Eng</th>
+           <th contenteditable=False>Phy</th>
+           <th contenteditable=False>Chem</th>
+           <th contenteditable=False>Bio</th>
+           <th contenteditable=False>Math</th>
+           <th contenteditable=False>Lit</th>
+                    <tr>
+                        <td contenteditable=False>001</td>
+                        <td contenteditable=False>PHILEMON A. MWASYIKA</td>
+                        <td contenteditable=False>M</td>
+                        <td class="score-input" type="number max=9"></td>
+                        <td class="score-input" type="number max=9"></td>
+                        <td class="score-input" type="number max=9"></td>
+                        <td class="score-input" type="number max=9"></td>
+                        <td class="score-input" type="number max=9"></td>
+                        <td class="score-input" type="number max=9"></td>
+                        <td class="score-input" type="number max=9"></td>
+                        <td class="score-input" type="number max=9"></td>
+                        <td class="score-input" type="number max=9"></td>
+                        <td class="score-input" type="number max=9"></td> 
+                    </tr>
+           </table>
+           <button id="insert" onclick=addrow()>+<button>
+            <button id="del" onclick=delrow()>-<button>
+   </div>
+   <script type="text/javascript">
+       function addrow() {
+    // body...
+    var table=
+    document.getElementById("students");
+    var row = table.insertRow(-1);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+    var cell5 = row.insertCell(4);
+    var cell6 = row.insertCell(5);
+    var cell7 = row.insertCell(6);
+    var cell8 = row.insertCell(7);
+    var cell9 = row.insertCell(8);
+    cell1.innerHTML = "";
+    cell2.innerHTML = "";
+    cell3.innerHTML = "";
+    cell4.innerHTML = "";
+    cell5.innerHTML = "";
+    cell6.innerHTML = "";
+    cell7.innerHTML = "";
+    cell8.innerHTML = "";
+    cell9.innerHTML = "";
+} 
+function delrow()
+{
+    var table=
+    getElementById("students");
+        table.deleteRow(-1)
+}
+   </script>
 </body>
 </html>
-<?php
-}
-else
-{
-?>
-<script>
-alert('Record Not found');
-    window.open('index.php','_self');
-</script>
-<?php
-}
-
-}
-
-?>
