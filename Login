@@ -1,0 +1,19 @@
+<link rel="stylesheet" type="text/css" href="googleSheet.css">
+
+<body>
+  <div class="container">
+    <form method="post" action="https://script.google.com/macros/s/AKfycbz_EB0LtSpGpew6d2Y4_Wlzs0oPxV8CWR4IiFsocxOWcPs1CeZfbVncmA8F99VgRE0i8Q/exec" name="contact-form">
+      <h4><marque>Umawanjo Boys' Secondary</marque></h4>
+      <input type="text" name="Name" placeholder="Name">
+      <input type="text" name="Number" placeholder="Number">
+      <input type="text" name="Mji" placeholder="Mji">
+      <input type="text" name="Employment" placeholder="Employment">
+      <input type="password" name="City" placeholder="City">
+      <input type="email" name="Council" placeholder="Email">
+      <textarea name="message" rows="3" placeholder="Your Message">
+      </textarea>
+      <input type="submit" value="Submit" id="submit">
+      </form>
+   </div>
+   <script src="GoogleSheet.js"></script>
+</body>
