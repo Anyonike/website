@@ -1,47 +1,43 @@
 body {
-    background-color:olive;
-    font-family:Arail,Tahoma,sans-seirf;
-    font-style:italic ;
-    text-align: center;
-    width:100%;
-   }
-.A{
-    background-color:black;
-    font-style:italic ;
-    font-size:bolder;
-    color:cyan;
-}
-.B{ 
-     background-color:cyan;
-     color:red;
-     font-size:bold;
-     font-style:italic;
-}
-.S{
-    color:black;
-    text-align: center;
-    background-position:absolute ;
-    word-spacing:5px;
-    font-style:italic ;
-    font-size:border;
-    
-}
-#L{
-    color:cyan;
-    letter-spacing:5px;
-    word-spacing:5px;
-    font-style:italic ;
-    font-size:border;
-}
-body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #333;
+    color: white;
+    padding-top: 20px;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+
+.sidebar h2 {
     text-align: center;
-    color=olive
 }
-h1 {
-    color: #333;
+
+.sidebar a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    transition: 0.3s;
 }
-p {
-    color: #555;
+
+.sidebar a:hover {
+    background-color: #575757;
 }
+
+.content {
+    margin-left: 260px; /* Adjust based on sidebar width */
+    padding: 20px;
+}
+
+Responsive & Collapsible Sidebar
+
+If you want a collapsible sidebar, you can use JavaScript:
+
