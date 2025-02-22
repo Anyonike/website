@@ -12,7 +12,7 @@ body {
     position: fixed;
     top: 5;
     left: 0;
-    background-color: #333;
+    background-color: #00FFFF;
     overflow-x: hidden;
     transition: 0.3s;
     padding-top: 60px;
