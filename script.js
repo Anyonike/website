@@ -1,7 +1,7 @@
-document.addEventListener("DOMContentLoaded", function() {
-    alert("Welcome to my website!");
+document.getElementById("toggleBtn").addEventListener("click", function() {
+    document.getElementById("sidebar").style.width = "250px";
 });
 
-Then, link it in index.html:
-
-<script src="script.js"></script>
+document.getElementById("closeBtn").addEventListener("click", function() {
+    document.getElementById("sidebar").style.width = "0";
+});
