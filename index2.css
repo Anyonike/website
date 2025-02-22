@@ -2,7 +2,9 @@ body {
     background-color:olivek;
     font-family:Arail,Tahoma,sans-seirf;
     font-style:italic ;
-}
+    text-align: center;
+     color=olive;
+   }
 .A{
     font-style:italic ;
     font-size:bolder;
