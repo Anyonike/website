@@ -2,6 +2,8 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #00FFFF;
+    color: red;
 }
 
 .sidebar {
@@ -20,9 +22,10 @@ body {
     padding: 10px 20px;
     text-decoration: none;
     font-size: 18px;
-    color: white;
+    color: blue;
     display: block;
     transition: 0.2s;
+    background-color: #00FFFF;
 }
 
 .sidebar a:hover {
