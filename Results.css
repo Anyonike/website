@@ -35,7 +35,7 @@ body {
 
 .sidebar a {
     display: block;
-    color: white;
+    color: blue;
     text-decoration: none;
     padding: 10px 20px;
     transition: 0.3s;
