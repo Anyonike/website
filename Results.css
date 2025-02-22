@@ -18,6 +18,7 @@ body {
 }
 .A {
     max-width: 800px;
+    text-align: center;
     margin: auto;
     height: 100vh;
     background-color: #1012;
