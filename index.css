@@ -8,9 +8,9 @@ body {
 
 .sidebar {
     height: 100%;
-    width: 0;
+    width: 10;
     position: fixed;
-    top: 0;
+    top: 5;
     left: 0;
     background-color: #333;
     overflow-x: hidden;
@@ -28,7 +28,7 @@ body {
 }
 
 .sidebar a:hover {
-    background-color: #575757;
+    background-color: #100;
 }
 
 #toggleBtn {
