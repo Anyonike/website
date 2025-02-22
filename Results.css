@@ -15,6 +15,16 @@ body {
     left: 0;
     top: 0;
 }
+.A {
+    width: 100px;
+    height: 100vh;
+    background-color: #1012;
+    color: white;
+    padding-top: 20px;
+    position: fixed;
+    left: 20;
+    top: 0;
+}
 
 .sidebar h2 {
     text-align: center;
