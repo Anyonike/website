@@ -17,15 +17,15 @@ body {
     top: 0;
 }
 .A {
-    max-width: 800px;
+    max-width: 1800px;
     text-align: center;
     margin: auto;
     height: 100vh;
-    background-color: #1012;
-    color: olive;
+    background-color: #333;
+    text-color: #222;
     padding-top: 20px;
     position: fixed;
-    left: 20;
+    left: 40;
     top: 5;
 }
 
