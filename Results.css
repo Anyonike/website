@@ -16,14 +16,14 @@ body {
     top: 0;
 }
 .A {
-    width: 100px;
+    width: 800px;
     height: 100vh;
     background-color: #1012;
-    color: white;
+    color: olive;
     padding-top: 20px;
     position: fixed;
     left: 20;
-    top: 0;
+    top: 5;
 }
 
 .sidebar h2 {
