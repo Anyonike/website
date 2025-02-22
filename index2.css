@@ -1,0 +1,32 @@
+body {
+    background-color:black;
+    font-family:Arail,Tahoma,sans-seirf;
+    font-style:italic ;
+}
+.A{
+    font-style:italic ;
+    font-size:bolder;
+    color:cyan;
+}
+.B{ 
+     color:red;
+     font-size:bold;
+     font-style:italic;
+}
+.S{
+    
+
+    color:pink;
+    background-position:absolute ;
+    word-spacing:5px;
+    font-style:italic ;
+    font-size:border;
+    
+}
+#L{
+    color:cyan;
+    letter-spacing:5px;
+    word-spacing:5px;
+    font-style:italic ;
+    font-size:border;
+}
