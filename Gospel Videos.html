@@ -1,62 +1,293 @@
 <!DOCTYPE html>
-
-<html  lang="en">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Advanced Layout</title>
+    <style>     
+       
+/* Adjustments for mobile screens [font-size: 12px;
+        margin: 5px;]*/
+@media (max-width: 480px) {
+    . dropdown-menu {
+        dislay: block;        
+    }
+}
 
-<table width="100%" bgcolor="CCCCFF" border="0"> <tr> 
-<td>
-<center><h1><marquee>GOSPEL VIDEOS</marquee></h1> 
-</td>  
-</table>
-<hr size="5"  noshade="0"> 
-<body BGCOLOR="999933">
-	<a href="index.html">Home</a>
-<table width="100%" CELLPADDING="20" BGCOLOR="996633"  >
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            max-width: 100%
+            font-family: Arial, sans-serif;
+        }
 
-	<tr>
-	<td> <h2> Artist's biograph </h2><br> 
-	<marquee>Nikurejeshee </marquee><br>
-	<img src="baraka.jpg" height="200" width="320" /> <br>
-	<strong>Israel Mbonyi</strong> (born 2 October 1989),<br> popularly known by his stage name <strong>Baraka</strong> 
-	 <b><marquee>"Israel Mbonyi - Nitaamini"</b>.
+        body.light-mode {
+            background-color: #fff;
+            color: #333;
+        }
 
-	</td> 
-	
-	<td><center> <h2>Song</h2><br> Nikurejeshee<br>
-	<video src="Engil/Israel Mbonyi - Nitaamini(M4A_128K).m4a"
-	   poster="ran3.png"
-	   width="400" height="300"
-	   preload
-	   controls
-	   loop>
-	   </video></center></td>
+        body.dark-mode {
+            background-color: #222;
+            color: white;
+        }
 
-</tr> 
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
 
-<tr>
-<td><b> <marquee>Evelyn Wanjiru</b><br> <IMAGE src="Engil/baraka.jpg" height="200" width="300" /><br>
-<strong>baraka</strong> (born 1986) better known by his stage name Ali Kiba, is a Tanzanian singer, songwriter, 
-recording artist under his label Rockstar4000, actor and ambassador of wildaid. He is best known for his hit songs Mwana.</td>
+        .top-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 1000;
+        }
 
-<td><center></marquee>Mungu Ni Mmoja <br>
-<video src="Engil/JINA LA YESU _ MUNGU ATUKUZWE (Medley) -KAC BAND Live Performance at Kirumba Hymns Festival - S_II(360P).mp4"
-	   poster="Engil/jon.png"
-	   width="400" height="300"
-	   preload
-	   controls
-	   loop>
-	   
-	   </video></center></td>
+        .search-bar {
+            flex: 1;
+            margin: 0 10px;
+        }
 
-</tr>
+        .search-bar input {
+            width: 100%;
+            padding: 5px;
+        }
 
+        .sidebar {
+            width: 250px;
+            background-color: #f4f4f4;
+            padding: 20px;
+            height: 100vh;
+            position: fixed;
+            top: 50px;
+            overflow-y: auto;
+            transition: 0.3s ease-in-out;
+        }
 
+        .sidebar.hidden {
+            width: 0;
+            padding: 0;
+            overflow: hidden;
+        }
 
-    <div><p><hr border="100%" noshade="0" color"#ff0000" size="6"/>
-    <center><b>copyright©2016</b><br>All right reserved<br>@Ngwalo The Don</bottom>
-</p></div>
+        .sidebar-left {
+            left: 0;
+        }
+
+        .sidebar-right {
+            right: 0;
+            background-color: #ddd;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            margin: 50px 250px;
+            transition: 0.3s;
+            background-color: olive;
+        }
+
+        .main-content.full-width {
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: sticky;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .toggle-btn, .theme-btn {
+            background-color: #444;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 5px;
+        }
+
+        .fab {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #f04;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .dropdown {
+            margin-top: 10px;
+        }
+
+        .dropdown button {
+            width: 100%;
+            padding: 10px;
+            background: #ddd;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+        }
+
+        .dropdown-content {
+            display: none;
+            background: #eaeaea;
+            padding: 10px;
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: 5px;
+            text-decoration: none;
+            color: black;
+        }
+
+        .dropdown-content a:hover {
+            background: #ccc;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 0;
+                padding: 0;
+                overflow: unhidden;
+                overflow: visible;
+            }
+            .main-content {
+                margin: 50px 0;
+            }
+        }
+    </style>
+</head>
+<body class="light-mode">
+
+    <div class="wrapper">
+        <div class="top-nav">
+            <button class="toggle-btn" onclick="toggleSidebar('left')">☰ Kushoto</button>
+            <div class="search-bar">
+                <input type="text" placeholder="Search...">
+            </div>
+            <button class="toggle-btn" onclick="toggleSidebar('right')">☰ Kulia</button>
+            <button class="theme-btn" onclick="toggleTheme()">🌙</button>
+        </div>
+
+        <div class="sidebar sidebar-left hidden" id="sidebar-left">
+            <h3>Menu</h3>
+            <div class="dropdown">
+                <button onclick="toggleDropdown()">Different Resources ▼</button>
+                <div class="dropdown-content" id="dropdownContent">
+                    <a href="index.html">Back Home</a>
+                    <a href="Login.html">Academic Videos</a> 
+                    <a href="Results.html">Different Questions</a>
+                    <a href="index.html">Form One</a>
+                    <a href="index.html">Form Two</a>
+                    <a href="index.html">Form Three</a>
+                    <a href="index.html">Form Four</a>
+                    <a href="index.html">PDFs Document</a>
+                    <a href="index.html">Time Table</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar sidebar-right hidden" id="sidebar-right">
+            <a href="index.html">Form One Business Notes</a>
+            <a href="https://www.dw.com/sw/sauti-zetu/s-64046540">Matangazo Dw</a>
+           <a href="https://www.w3schools.com/css/default.asp">Professional Interface</a>
+            <a href="index.html">Form One Business Notes</a>
+            <a href="index.html">Form One Business Notes</a>
+            <a href="index.html">Form One Business Notes</a>
+            <a href="index.html">Form One Business Notes</a>
+            <a href="index.html">Form One Business Notes</a>
+            <a href="index.html">Form One Business Notes</a>
+            <a href="index.html">Form One Business Notes</a>
+            <a href="index.html">Form One Business Notes</a>
+            <a href="index.html">Form One Business Notes</a>
+            <a href="index.html">Form One Business Notes</a>
+        </div>
+
+        <div class="main-content full-width" id="mainContent">
+            <center><h2>Main Content</h2></center>
+            <video src="Engil/Israel Mbonyi - Nitaamini(M4A_128K).m4a"
+               poster="ran3.png"
+               width="800" height="400"
+               preload
+               controls
+               loop>
+            </video>
+        </div>
+
+        <div class="footer">
+            Haki zote zimehifadhiwa. Imeandaliwa na @Pmwasyika (Umawanjo Boys' Secondary)
+        </div>
+
+        <div class="fab" onclick="alert('Lengo lako nini?!')">+</div>
+    </div>
+
+    <script>
+        function toggleSidebar(side) {
+            const sidebar = document.getElementById(`sidebar-${side}`);
+            const mainContent = document.getElementById('mainContent');
+
+            if (sidebar.classList.contains('hidden')) {
+                sidebar.classList.remove('hidden');
+            } else {
+                sidebar.classList.add('hidden');
+            }
+
+            adjustMainContent();
+        }
+
+        function adjustMainContent() {
+            const leftSidebar = document.getElementById('sidebar-left');
+            const rightSidebar = document.getElementById('sidebar-right');
+            const mainContent = document.getElementById('mainContent');
+
+            let leftWidth = leftSidebar.classList.contains('hidden') ? 0 : 250;
+            let rightWidth = rightSidebar.classList.contains('hidden') ? 0 : 250;
+
+            mainContent.style.marginLeft = `${leftWidth}px`;
+            mainContent.style.marginRight = `${rightWidth}px`;
+        }
+
+        function toggleDropdown() {
+            const dropdownContent = document.getElementById('dropdownContent');
+            dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function toggleTheme() {
+            const body = document.body;
+            if (body.classList.contains('light-mode')) {
+                body.classList.remove('light-mode');
+                body.classList.add('dark-mode');
+            } else {
+                body.classList.remove('dark-mode');
+                body.classList.add('light-mode');
+            }
+        }
+    </script>
+
 </body>
-
-
 </html>
