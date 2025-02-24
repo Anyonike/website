@@ -22,6 +22,16 @@ body {
     }
 }
 
+
+/* Adjustments for mobile screens [.dropdown-content a]*/
+@media (max-width: 480px) {
+    .dropdown-content a {
+         display: block;
+    }
+}
+        
+
+        
 /* Adjustments for mobile screens [.dropdown-content a]*/
 @media (max-width: 480px) {
     body {
@@ -208,11 +218,11 @@ body {
 
     <div class="wrapper">
         <div class="top-nav">
-            <button class="toggle-btn" onclick="toggleSidebar('left')">☰ Left</button>
+            <button class="toggle-btn" onclick="toggleSidebar('Kushoto')">☰ Left</button>
             <div class="search-bar">
                 <input type="text" placeholder="Search...">
             </div>
-            <button class="toggle-btn" onclick="toggleSidebar('right')">☰ Right</button>
+            <button class="toggle-btn" onclick="toggleSidebar('right')">☰ Kulia</button>
             <button class="theme-btn" onclick="toggleTheme()">🌙</button>
         </div>
 
