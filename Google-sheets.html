@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Sheets Data</title>
+</head>
+<body>
+
+    <h2>Google Sheets Data</h2>
+    <table border="1">
+        <thead id="table-head"></thead>
+        <tbody id="table-body"></tbody>
+    </table>
+
+    <script>
+        const sheetId = "YOUR_SHEET_ID";  // Replace with your Google Sheet ID
+        const apiKey = "YOUR_GOOGLE_API_KEY";  // Replace with your API key
+        const range = "Sheet1!A1:Z100";  // Adjust based on your sheet
+
+        const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`;
+
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                const values = data.values;
+                if (!values) {
+                    console.log("No data found");
+                    return;
+                }
+
+                const tableHead = document.getElementById("table-head");
+                const tableBody = document.getElementById("table-body");
+
+                // Add table headers
+                let headerRow = "<tr>";
+                values[0].forEach(header => {
+                    headerRow += `<th>${header}</th>`;
+                });
+                headerRow += "</tr>";
+                tableHead.innerHTML = headerRow;
+
+                // Add table data
+                for (let i = 1; i < values.length; i++) {
+                    let row = "<tr>";
+                    values[i].forEach(cell => {
+                        row += `<td>${cell}</td>`;
+                    });
+                    row += "</tr>";
+                    tableBody.innerHTML += row;
+                }
+            })
+            .catch(error => console.error("Error fetching data:", error));
+    </script>
+
+</body>
+</html>
