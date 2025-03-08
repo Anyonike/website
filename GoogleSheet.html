@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Sheets Data</title>
+</head>
+<body>
+    <h2>Google Sheets Data</h2>
+    <div id="data"></div>
+
+    <script>
+        const sheetID = "1AbCDEFGHIJ1234567890xyz"; // Replace with your Sheet ID
+        const apiKey = "YOUR_API_KEY"; // Replace with your API Key
+        const sheetName = "Sheet1"; // Change if your sheet has a different name
+        const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetID}/values/${sheetName}?key=${apiKey}`;
+
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                let values = data.values;
+                let output = "<table border='1'>";
+                values.forEach(row => {
+                    output += "<tr>";
+                    row.forEach(cell => {
+                        output += `<td>${cell}</td>`;
+                    });
+                    output += "</tr>";
+                });
+                output += "</table>";
+                document.getElementById("data").innerHTML = output;
+            })
+            .catch(error => console.error("Error fetching data:", error));
+    </script>
+</body>
+</html>
