@@ -3,228 +3,182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced Web Page</title>
+    <title>HTML Tutorial</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-        /* General Styles */
         body {
-            font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            background: var(--bg-color, #ffffff);
+            color: var(--text-color, #000000);
             transition: background 0.3s, color 0.3s;
         }
-
-        /* Themes */
-        body.dark-mode { background: #121212; color: #ffffff; }
-        body.blue-theme { background: #e3f2fd; color: #000; }
-        body.green-theme { background: #e8f5e9; color: #000; }
-        body.red-theme { background: #ffebee; color: #000; }
-
-        /* Header */
-        header {
-            background: #333; color: white; padding: 15px;
-            text-align: center; position: sticky; top: 0; z-index: 1000;
-        }
-
-        /* Sidebar */
         .sidebar {
-            width: 250px; background: #222; color: white;
-            position: fixed; height: 100%; left: -250px; top: 0;
-            transition: 0.4s ease-in-out; padding-top: 60px;
+            height: 100vh;
+            width: 250px;
+            background: var(--sidebar-bg, #f1f1f1);
+            padding: 20px;
+            position: fixed;
+            overflow-y: auto;
+            transition: 0.3s;
         }
-
         .sidebar a {
-            display: block; padding: 15px; color: white;
-            text-decoration: none; transition: 0.3s;
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: var(--link-color, #333);
+            transition: background 0.3s;
         }
-
-        .sidebar a:hover { background: #444; }
-
-        /* Sidebar Toggle */
-        .sidebar-toggle {
-            position: absolute; left: 15px; top: 15px;
-            background: #333; color: white; padding: 10px;
-            border: none; cursor: pointer;
+        .sidebar a:hover {
+            background: var(--hover-bg, #ddd);
         }
-
-         /* matokeo */
-        .matokeo {
-        position: absolute; left: 20px; top: 20px;
-            background: #333; color: white; padding: 30px;
-            padding-heght: 30px;
-            border: none; cursor: pointer;    
+        .submenu {
+            display: none;
+            padding-left: 15px;
         }
-
-        /* Main Content */
-        main { padding: 20px; transition: margin-left 0.4s; }
-
-        /* Dropdown Menu */
-        .dropdown-content { display: none; background: #555; padding: 5px; }
-        .dropdown:hover .dropdown-content { display: block; }
-
-        /* Multi-Level Dropdown */
-        .submenu { display: none; padding-left: 15px; }
-        .submenu a { background: olive; display: block; }
-        .dropdown-content:hover .submenu { display: block; }
-
-        /* Floating Action Button */
-        .fab {
-            position: fixed; bottom: 20px; right: 20px;
-            background: #ff5722; color: white; padding: 15px;
-            border-radius: 50%; cursor: pointer; font-size: 18px;
+        .submenu a {
+            font-size: 14px;
         }
-
-        /* Theme Buttons */
-        .theme-btn {
-            background: #222; color: white; border: none;
-            padding: 10px; margin: 5px; cursor: pointer;
+        .main-content {
+            margin-left: 260px;
+            padding: 20px;
+            flex: 1;
+            transition: margin-left 0.3s;
         }
-
-        /* Notification */
-        .notification {
-            background: #4CAF50; color: white;
-            padding: 10px; text-align: center;
-            position: fixed; top: 10px; left: 50%;
-            transform: translateX(-50%); display: none;
+        .top-nav {
+            position: fixed;
+            width: 100%;
+            background: #4CAF50;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            top: 0;
+            left: 0;
         }
-
-        /* Login Modal */
-        .login-modal {
-            display: none; position: fixed; top: 50%; left: 50%;
-            transform: translate(-50%, -50%); background: white;
-            padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        .toggle-btn {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: white;
         }
-
-        .login-modal input { display: block; margin: 10px 0; padding: 8px; }
-        .login-modal button { padding: 8px; cursor: pointer; }
-
-        /* Footer */
-        footer { background: #222; color: white; text-align: center; padding: 10px; position: sticky; bottom: 0; width: 100%; }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .sidebar { width: 100%; left: -100%; }
+        .dark-mode-toggle {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: white;
+        }
+        .theme-selector {
+            margin-top: 10px;
+        }
+        .hidden {
+            width: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        .footer {
+            text-align: center;
+            padding: 10px;
+            background: var(--sidebar-bg, #f1f1f1);
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .search-bar {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
         }
     </style>
 </head>
 <body>
-
-    <!-- Sidebar Toggle -->
-    <button class="sidebar-toggle" onclick="toggleSidebar()">☰ Menu</button>
-
-    <!-- Dark Mode Toggle -->
-    <button class="theme-btn" onclick="toggleDarkMode()">🌙 Dark Mode</button>
-    <button class="theme-btn" onclick="setTheme('blue')">🔵 Blue</button>
-    <button class="theme-btn" onclick="setTheme('green')">🟢 Green</button>
-    <button class="theme-btn" onclick="setTheme('red')">🔴 Red</button>
-
-    <!-- Sidebar -->
+    <div class="top-nav">
+        <button class="toggle-btn" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+        <h2>HTML Tutorial</h2>
+        <button class="dark-mode-toggle" onclick="toggleDarkMode()"><i class="fas fa-moon"></i></button>
+        <select class="theme-selector" onchange="changeTheme(this.value)">
+            <option value="default">Default</option>
+            <option value="blue">Blue</option>
+            <option value="green">Green</option>
+            <option value="red">Red</option>
+        </select>
+    </div>
     <div class="sidebar" id="sidebar">
-        <a href="Google-sheets.html">Form One</a>
-        <a href="new.html">Profile</a>
-        <a href="#">Settings</a>
-        <a href="#">Dashboard</a>
-        <a href="#">Profile</a>
-        <a href="#">Settings</a>
-        <a href="#">Dashboard</a>
-        <a href="#">Profile</a>
-        <a href="#">Settings</a>
-        <a href="#">Dashboard</a>
-        <a href="#">Profile</a>
-        <a href="#">Settings</a>
-        <a href="#" onclick="showLogin()">Login</a>
-        <a href="#" onclick="showNotification()">Show Notification</a>
+        <h3>Navigation</h3>
+        <input type="text" class="search-bar" placeholder="Search..." onkeyup="searchMenu()">
+        <a href="#">Introduction</a>
+        <a href="#">HTML Basics</a>
+        <a href="#" onclick="toggleSubmenu(event, 'elements')">HTML Elements <i class="fas fa-caret-down"></i></a>
+        <div id="elements" class="submenu">
+            <a href="#">Headings</a>
+            <a href="#">Paragraphs</a>
+            <a href="#">Lists</a>
+        </div>
+        <a href="#">HTML Attributes</a>
+        <a href="#">HTML Forms</a>
     </div>
-
-    <!-- Header -->
-    <header><h1>UMAWANJO BOYS' SECONDARY SCHOOL</h1></header>
-
-    <!-- Navigation -->
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li class="dropdown">
-                <a href="#">Services ▼</a>
-                <div class="dropdown-content">
-                    <div class="matokeo" id="matokeo">
-                        <h1>MATOKEO YOTE HAYA HAPA</h1>
-                    </div>
-                    Form F2.pdf
-                    <div class="submenu">
-                        <a href="Time Table 2025.pdf">Time Table 2025</a>
-                        <a href="Form F2.pdf">Form Two Results</a>
-                        <a href="Google-sheets.html">Form Three Results</a>
-                        <a href="Form - F4.pdf">Form Four Results</a>
-                        <a href=" GoogleSheet.html">Google-Sheets</a>
-                       
-                        
-                    </div>
-                </div>
-            </li>
-                                      <br>
-            <li><a href="new.html">Nenda Ukurasa ufuatao Baada kusoma maelekezo haya hapa chini, baada ya kichwa " KARIBU UMAWANJO "</a></li>
-                                    <br>
-            <li><a href="new.html">Au bofya hapa</a></li>
-        </ul>
-    </nav>
-
-    <!-- Notification Box -->
-    <div class="notification" id="notification">This is a notification!</div>
-
-    <!-- Login Modal -->
-    <div class="login-modal" id="loginModal">
-        <h2>Login</h2>
-        <input type="text" placeholder="Username">
-        <input type="password" placeholder="Password">
-        <button onclick="closeLogin()">Close</button>
+    <div class="main-content" id="content">
+        <h2>Welcome to the HTML Tutorial</h2>
+        <p>This tutorial will guide you through the basics of HTML.</p>
+        <textarea id="code-editor" style="width:100%;height:100px;"></textarea>
+        <button onclick="runCode()">Run Code</button>
+        <iframe id="output" style="width:100%;height:200px;border:1px solid #ddd;"></iframe>
     </div>
-
-    <!-- Main Content -->
-    <main id="main-content">
-        <section>
-            <h2>Karibuni Umawanjo</h2>
-            <p>Namna ya kutumia mfumo wetu</p>
-            <p>Now with themes, notifications, and more interactive elements!</p>
-            <p>Now with themes, notifications, and more interactive elements!</p>
-            <p>Now with themes, notifications, and more interactive elements!</p>
-            <p>Now with themes, notifications, and more interactive elements!</p>
-        </section>
-
-        <!-- Floating Action Button -->
-        <button class="fab" onclick="showNotification()">⚡</button>
-    </main>
-
-    <!-- Footer -->
-    <footer><p>&copy; 2025 Pmwayika. Haki zote zimehifadhiwa. Desgned by PAMwasyika (Umawanjo Secondary School)</p></footer>
-
-    <!-- JavaScript -->
+    <div class="footer">
+        <p>&copy; 2025 HTML Tutorial. All rights reserved.</p>
+    </div>
     <script>
         function toggleSidebar() {
             let sidebar = document.getElementById("sidebar");
-            sidebar.style.left = (sidebar.style.left === "0px") ? "-250px" : "0px";
+            let content = document.getElementById("content");
+            if (sidebar.classList.contains("hidden")) {
+                sidebar.classList.remove("hidden");
+                content.style.marginLeft = "260px";
+            } else {
+                sidebar.classList.add("hidden");
+                content.style.marginLeft = "0";
+            }
         }
-
         function toggleDarkMode() {
-            document.body.classList.toggle("dark-mode");
+            let isDark = document.body.classList.toggle("dark-mode");
+            document.documentElement.style.setProperty('--bg-color', isDark ? '#1e1e1e' : '#ffffff');
+            document.documentElement.style.setProperty('--text-color', isDark ? '#ffffff' : '#000000');
         }
-
-        function setTheme(color) {
-            document.body.className = color + "-theme";
+        function changeTheme(theme) {
+            document.documentElement.style.setProperty('--sidebar-bg', theme === 'blue' ? '#007BFF' : theme === 'green' ? '#28A745' : theme === 'red' ? '#DC3545' : '#f1f1f1');
+            document.documentElement.style.setProperty('--link-color', theme === 'blue' ? '#fff' : '#333');
         }
-
-        function showNotification() {
-            let notification = document.getElementById("notification");
-            notification.style.display = "block";
-            setTimeout(() => { notification.style.display = "none"; }, 3000);
+        function searchMenu() {
+            let input = document.querySelector(".search-bar").value.toLowerCase();
+            let links = document.querySelectorAll(".sidebar a");
+            links.forEach(link => {
+                if (link.innerText.toLowerCase().includes(input)) {
+                    link.style.display = "block";
+                } else {
+                    link.style.display = "none";
+                }
+            });
         }
-
-        function showLogin() {
-            document.getElementById("loginModal").style.display = "block";
+        function toggleSubmenu(event, id) {
+            event.preventDefault();
+            let submenu = document.getElementById(id);
+            submenu.style.display = submenu.style.display === "block" ? "none" : "block";
         }
-
-        function closeLogin() {
-            document.getElementById("loginModal").style.display = "none";
+        function runCode() {
+            let code = document.getElementById("code-editor").value;
+            let outputFrame = document.getElementById("output").contentWindow.document;
+            outputFrame.open();
+            outputFrame.write(code);
+            outputFrame.close();
         }
     </script>
-
 </body>
 </html>
