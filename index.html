@@ -356,6 +356,50 @@
     </div>
   </div>
 
+
+
+
+  
+<body>
+
+    <div class="clock-container">
+        <div class="date" id="currentDate">Monday, January 1, 2025</div>
+        <div class="clock" id="digitalClock">12:00:00 AM</div>
+    </div>
+
+    <script>
+        function updateClock() {
+            let now = new Date();
+            
+            // Time
+            let hours = now.getHours();
+            let minutes = now.getMinutes().toString().padStart(2, '0');
+            let seconds = now.getSeconds().toString().padStart(2, '0');
+            let amPm = hours >= 12 ? "PM" : "AM";
+            hours = hours % 12 || 12; // Convert to 12-hour format
+            let timeString = `${hours.toString().padStart(2, '0')}:${minutes}:${seconds} ${amPm}`;
+            
+            // Date
+            let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            let dateString = now.toLocaleDateString('en-US', options);
+
+            // Update UI
+            document.getElementById("digitalClock").textContent = timeString;
+            document.getElementById("currentDate").textContent = dateString;
+        }
+
+        setInterval(updateClock, 1000); // Update every second
+        updateClock(); // Initialize immediately
+    </script>
+
+</body>
+</html>
+
+  
+
+
+  
+
   <script>
     // Form Validation
     document.getElementById('contact-form').addEventListener('submit', function(event) {
