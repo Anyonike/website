@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Desktop - Styled Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #4A90E2;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 50%;
+            display: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100">
+    <header class="bg-gray-800 shadow-md py-4 px-6 flex justify-between items-center fixed top-0 w-full z-50">
+        <h1 class="text-2xl font-bold text-white">GitHub Desktop</h1>
+        <button id="menu-toggle" class="md:hidden text-white">☰</button>
+        <nav class="hidden md:flex space-x-4">
+            <a href="#features" class="text-blue-400 hover:text-blue-300">Features</a>
+            <a href="#download" class="text-blue-400 hover:text-blue-300">Download</a>
+            <a href="#docs" class="text-blue-400 hover:text-blue-300">Docs</a>
+        </nav>
+    </header>
+    
+    <section id="download" class="text-center py-20 bg-gradient-to-r from-blue-500 to-purple-600 mt-16 animate-fadeIn">
+        <h2 class="text-4xl font-bold text-white">Focus on what matters instead of fighting with Git.</h2>
+        <p class="mt-4 text-lg text-gray-200">GitHub Desktop simplifies version control for developers.</p>
+        <a href="#" class="mt-6 inline-block bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-200 transition duration-300">Download for Windows</a>
+    </section>
+    
+    <section id="features" class="py-12 px-6 max-w-4xl mx-auto">
+        <h3 class="text-2xl font-bold text-center">Why GitHub Desktop?</h3>
+        <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-gray-800 p-6 rounded-lg shadow-lg transform transition duration-300 hover:scale-105 relative group">
+                <img src="https://via.placeholder.com/100" class="mx-auto mb-4" alt="Workflow Icon">
+                <h4 class="text-lg font-semibold text-white">Seamless Workflow</h4>
+                <p class="mt-2 text-gray-400">Quickly commit, push, and pull changes with an intuitive UI.</p>
+                <div class="absolute top-2 right-2 bg-gray-700 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition">Workflow Info</div>
+            </div>
+            <div class="bg-gray-800 p-6 rounded-lg shadow-lg transform transition duration-300 hover:scale-105 relative group">
+                <img src="https://via.placeholder.com/100" class="mx-auto mb-4" alt="Collaboration Icon">
+                <h4 class="text-lg font-semibold text-white">Powerful Collaboration</h4>
+                <p class="mt-2 text-gray-400">Work with your team on repositories effortlessly.</p>
+                <div class="absolute top-2 right-2 bg-gray-700 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition">Collaboration Info</div>
+            </div>
+            <div class="bg-gray-800 p-6 rounded-lg shadow-lg transform transition duration-300 hover:scale-105 relative group">
+                <img src="https://via.placeholder.com/100" class="mx-auto mb-4" alt="Branch Icon">
+                <h4 class="text-lg font-semibold text-white">Branch Management</h4>
+                <p class="mt-2 text-gray-400">Switch, create, and manage branches without hassle.</p>
+                <div class="absolute top-2 right-2 bg-gray-700 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition">Branching Info</div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="py-12 bg-gray-800 text-center">
+        <h3 class="text-2xl font-bold text-white">See It in Action</h3>
+        <video class="mt-6 mx-auto w-full md:w-3/4 rounded-lg shadow-lg" controls>
+            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </section>
+    
+    <footer id="docs" class="text-center py-6 bg-gray-700 mt-12 text-gray-300">
+        <p>&copy; 2025 GitHub, Inc. All rights reserved.</p>
+    </footer>
+    
+    <button id="back-to-top" class="back-to-top">↑</button>
+    
+    <script>
+        // Back to top button
+        const backToTop = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.style.display = 'block';
+            } else {
+                backToTop.style.display = 'none';
+            }
+        });
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const nav = document.querySelector('nav');
+        menuToggle.addEventListener('click', () => {
+            nav.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
