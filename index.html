@@ -316,23 +316,9 @@
         setInterval(updateClock, 1000); // Update every second
         updateClock(); // Initialize immediately
     
-     // Form Validation
-    document.getElementById('contact-form').addEventListener('submit', function(event) {
-      event.preventDefault();
-      var name = document.getElementById('name').value;
-      var email = document.getElementById('email').value;
-      var phone = document.getElementById('phone').value;
-      var message = document.getElementById('message').value;
-
-      // Check if any field is empty
-      if (name === '' || email === '' || phone === '' || message === '') {
-        document.getElementById('alert-box').style.display = 'block';
-      } else {
-        alert('Form submitted successfully!');
-        document.getElementById('alert-box').style.display = 'none';
-      }
-    });
-  </script>
+     
+      
+ </script>
 </body>
 </html>
 
@@ -473,9 +459,11 @@
         <li>About</li>
         <li>Services
             <ul>
-                <li>Web Design</li>
-                <li>Programming</li>
-                <li>Database</li>
+                <li><a href="Form Four.html">FOUR</a></li>
+                <li><a href="Form Four.html">Scripts</a></li>
+                <li><a href="Form Four.html">php</a></li>
+                <li><a href="Form Four.html">Html</a></li>
+                <li><a href="Form Four.html">Database</a></li>
             </ul>
         </li>
         <li>Contact</li>
@@ -486,33 +474,35 @@
 <div class="container">
     <!-- Left Menu -->
     <div class="menu">
-        <b>Main Menu</b><br />
-        HTML<br />
-        PHP<br />
-        PERL<br />
-        JavaScript<br />
-        Python
+        <b><h1>Left Menu</h1></b><br />
+        <a href="Form One.html">HTML</a><br />
+        <a href="Form One.html">PHP</a><br />
+        <a href="Form One.html">PERL</a><br />
+        <a href="Form One.html">MySQL</a><br />
+        <a href="Form One.html">Networking</a><br />
+        <a href="Form Four.html">FOUR</a>
     </div>
 
     <!-- Center Content -->
     <div class="content">
-        Technical and Managerial Tutorials
+        <h1>Technical and Managerial Tutorials</h1>
     </div>
 
     <!-- Right Menu -->
     <div class="menu">
-        <b>Right Menu</b><br />
-        HTML<br />
-        PHP<br />
-        PERL<br />
-        MySQL<br />
-        Networking
+        <b><h1>Right Menu</h1></b><br />
+        <a href="Form One.html">HTML</a><br />
+        <a href="Form One.html">PHP</a><br />
+        <a href="Form One.html">PERL</a><br />
+        <a href="Form One.html">MySQL</a><br />
+        <a href="Form One.html">Networking</a><br />
+        <a href="Form Four.html">FOUR</a>
     </div>
 </div>
 
 <!-- Footer with Copyright -->
 <footer>
-    &copy; 2025 Your Website Name. All Rights Reserved.
+    &copy; 2025 Umawanjo Boys' Secondary School. All Rights Reserved.
 </footer>
 
 </body>
