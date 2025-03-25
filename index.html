@@ -342,7 +342,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Navigation with Dropdown and Footer</title>
+    <title>Responsive Navigation with Left and Right Menus</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -397,27 +397,33 @@
         }
         .container {
             display: flex;
+            justify-content: space-between;
+            align-items: stretch;
             flex-wrap: wrap;
             margin-top: 10px;
             padding: 10px;
-        }
-        .menu, .content {
             box-sizing: border-box;
-            padding: 15px;
-            margin-bottom: 10px;
         }
         .menu {
             background-color: #FFCCFF;
             width: 20%;
             min-width: 150px;
+            padding: 15px;
+            box-sizing: border-box;
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            overflow-y: auto;
         }
         .content {
             background-color: #eeeeee;
-            width: 60%;
+            width: 56%;
             min-width: 250px;
+            padding: 20px;
             text-align: center;
-            font-size: 18px;
-            padding-top: 50px;
+            box-sizing: border-box;
+            margin: 0 10px;
+            flex-grow: 1;
         }
         footer {
             background-color: #333;
@@ -430,25 +436,25 @@
         /* Responsive Styling */
         @media screen and (max-width: 768px) {
             .container {
-                flex-direction: column;
-                align-items: center;
+                flex-wrap: nowrap;
             }
-            .menu, .content {
-                width: 90%;
-                text-align: center;
+            .menu {
+                width: 15%;
+                min-width: 100px;
+            }
+            .content {
+                width: 70%;
             }
         }
 
         @media screen and (max-width: 480px) {
-            nav ul {
-                flex-direction: column;
-            }
-            nav ul li {
-                text-align: left;
-                padding: 10px;
+            .menu {
+                width: 20%;
+                min-width: 80px;
+                font-size: 14px;
             }
             .content {
-                padding-top: 20px;
+                width: 60%;
                 font-size: 16px;
             }
             footer {
