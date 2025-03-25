@@ -390,23 +390,23 @@
         }
         nav ul li ul li {
             padding: 8px;
-            width: 100%;
             color: white;
         }
         nav ul li ul li:hover {
             background-color: #45a049;
         }
-        table {
-            width: 100%;
-            border-spacing: 0;
+        .container {
+            display: flex;
+            flex-wrap: wrap;
             margin-top: 10px;
+            padding: 10px;
         }
-        td {
-            padding: 15px;
-            vertical-align: top;
+        .menu, .content {
             box-sizing: border-box;
+            padding: 15px;
+            margin-bottom: 10px;
         }
-        .main-menu, .right-menu {
+        .menu {
             background-color: #FFCCFF;
             width: 20%;
             min-width: 150px;
@@ -414,12 +414,10 @@
         .content {
             background-color: #eeeeee;
             width: 60%;
-            height: 200px;
+            min-width: 250px;
             text-align: center;
-            padding-top: 70px;
             font-size: 18px;
-            min-width: 200px;
-            box-sizing: border-box;
+            padding-top: 50px;
         }
         footer {
             background-color: #333;
@@ -431,17 +429,17 @@
 
         /* Responsive Styling */
         @media screen and (max-width: 768px) {
-            table {
-                display: block;
-            }
-            tr {
-                display: flex;
+            .container {
                 flex-direction: column;
+                align-items: center;
             }
-            td {
-                width: 100%;
-                margin-bottom: 10px;
+            .menu, .content {
+                width: 90%;
+                text-align: center;
             }
+        }
+
+        @media screen and (max-width: 480px) {
             nav ul {
                 flex-direction: column;
             }
@@ -449,28 +447,9 @@
                 text-align: left;
                 padding: 10px;
             }
-        }
-
-        @media screen and (max-width: 480px) {
-            table {
-                display: flex;
-                flex-direction: column;
-            }
-            .main-menu, .right-menu, .content {
-                width: 100%;
-                margin-bottom: 10px;
-            }
-            .main-menu {
-                order: 1;
-            }
             .content {
-                order: 2;
-                height: auto;
                 padding-top: 20px;
                 font-size: 16px;
-            }
-            .right-menu {
-                order: 3;
             }
             footer {
                 font-size: 14px;
@@ -497,30 +476,33 @@
     </ul>
 </nav>
 
-<!-- Responsive Table Layout -->
-<table border="0">
-    <tr valign="top">
-        <td class="main-menu">
-            <b>Main Menu</b><br />
-            HTML<br />
-            PHP<br />
-            PERL<br />
-            JavaScript<br />
-            Python
-        </td>
-        <td class="content">
-            Technical and Managerial Tutorials
-        </td>
-        <td class="right-menu">
-            <b>Right Menu</b><br />
-            HTML<br />
-            PHP<br />
-            PERL<br />
-            MySQL<br />
-            Networking
-        </td>
-    </tr>
-</table>
+<!-- Main Content Area -->
+<div class="container">
+    <!-- Left Menu -->
+    <div class="menu">
+        <b>Main Menu</b><br />
+        HTML<br />
+        PHP<br />
+        PERL<br />
+        JavaScript<br />
+        Python
+    </div>
+
+    <!-- Center Content -->
+    <div class="content">
+        Technical and Managerial Tutorials
+    </div>
+
+    <!-- Right Menu -->
+    <div class="menu">
+        <b>Right Menu</b><br />
+        HTML<br />
+        PHP<br />
+        PERL<br />
+        MySQL<br />
+        Networking
+    </div>
+</div>
 
 <!-- Footer with Copyright -->
 <footer>
