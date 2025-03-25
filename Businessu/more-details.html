@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Navigation with Dropdown and Footer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        nav {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        nav ul li {
+            position: relative;
+            padding: 10px 20px;
+            cursor: pointer;
+            color: white;
+        }
+        nav ul li:hover {
+            background-color: #45a049;
+        }
+        nav ul li ul {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #4CAF50;
+            padding: 10px;
+            list-style-type: none;
+            margin: 0;
+            width: 150px;
+            z-index: 1;
+        }
+        nav ul li:hover ul {
+            display: block;
+        }
+        nav ul li ul li {
+            padding: 8px;
+            width: 100%;
+            color: white;
+        }
+        nav ul li ul li:hover {
+            background-color: #45a049;
+        }
+        table {
+            width: 100%;
+            border-spacing: 0;
+            margin-top: 10px;
+        }
+        td {
+            padding: 15px;
+            vertical-align: top;
+            box-sizing: border-box;
+        }
+        .main-menu, .right-menu {
+            background-color: #FFCCFF;
+            width: 20%;
+            min-width: 150px;
+        }
+        .content {
+            background-color: #eeeeee;
+            width: 60%;
+            height: 200px;
+            text-align: center;
+            padding-top: 70px;
+            font-size: 18px;
+            min-width: 200px;
+            box-sizing: border-box;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        /* Responsive Styling */
+        @media screen and (max-width: 768px) {
+            table {
+                display: block;
+            }
+            tr {
+                display: flex;
+                flex-direction: column;
+            }
+            td {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+            nav ul {
+                flex-direction: column;
+            }
+            nav ul li {
+                text-align: left;
+                padding: 10px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .content {
+                height: auto;
+                padding-top: 20px;
+                font-size: 16px;
+            }
+            footer {
+                font-size: 14px;
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation with Option Menu -->
+<nav>
+    <ul>
+        <li>Home</li>
+        <li>About</li>
+        <li>Services
+            <ul>
+                <li>Web Design</li>
+                <li>Programming</li>
+                <li>Database</li>
+            </ul>
+        </li>
+        <li>Contact</li>
+    </ul>
+</nav>
+
+<!-- Responsive Table Layout -->
+<table border="0">
+    <tr valign="top">
+        <td class="main-menu">
+            <b>Main Menu</b><br />
+            HTML<br />
+            PHP<br />
+            PERL<br />
+            JavaScript<br />
+            Python
+        </td>
+        <td class="content">
+            Technical and Managerial Tutorials
+        </td>
+        <td class="right-menu">
+            <b>Right Menu</b><br />
+            HTML<br />
+            PHP<br />
+            PERL<br />
+            MySQL<br />
+            Networking
+        </td>
+    </tr>
+</table>
+
+<!-- Footer with Copyright -->
+<footer>
+    &copy; 2025 Your Website Name. All Rights Reserved.
+</footer>
+
+</body>
+</html>
