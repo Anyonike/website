@@ -6,12 +6,12 @@
     <title>Responsive Sidebar Layout</title>
     <style>
         body {
-            display: flex;
-            flex-direction: column;
             margin: 0;
             font-family: Arial, sans-serif;
-            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
         header {
@@ -21,23 +21,23 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.5);
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             z-index: 10;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.5);
         }
 
         .toggle-btn {
             display: none;
             background-color: #333;
             color: #fff;
-            border: none;
             padding: 8px;
+            border: none;
             cursor: pointer;
-            margin-right: 10px;
             border-radius: 4px;
+            margin-right: 10px;
         }
 
         nav ul {
@@ -54,21 +54,20 @@
         }
 
         .sidebar, .right-sidebar {
-            width: 250px;
             background-color: #333;
             color: #fff;
+            width: 250px;
             height: calc(100vh - 100px);
             padding-top: 60px;
-            box-shadow: 2px 0 5px rgba(0,0,0,0.5);
             position: fixed;
-            top: 60px;
             overflow-y: auto;
             transition: transform 0.3s;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.5);
         }
 
         .right-sidebar {
-            background-color: #444;
             right: 0;
+            background-color: #444;
             box-shadow: -2px 0 5px rgba(0,0,0,0.5);
         }
 
@@ -79,9 +78,9 @@
 
         .sidebar ul li, .right-sidebar ul li {
             padding: 15px;
+            margin-bottom: 5px;
             cursor: pointer;
             transition: background-color 0.3s;
-            margin-bottom: 5px;
         }
 
         .sidebar ul li:hover, .right-sidebar ul li:hover {
@@ -93,8 +92,8 @@
             margin-left: 250px;
             margin-right: 250px;
             padding: 20px;
-            flex-grow: 1;
             background-color: #f4f4f9;
+            flex-grow: 1;
             transition: margin 0.3s;
         }
 
@@ -102,12 +101,12 @@
             background-color: #222;
             color: #fff;
             text-align: center;
-            padding: 15px 20px;
-            box-shadow: 0 -2px 5px rgba(0,0,0,0.5);
+            padding: 15px;
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.5);
         }
 
         /* Responsive Design */
@@ -116,14 +115,18 @@
                 display: block;
             }
 
+            nav ul {
+                display: none;
+            }
+
             .sidebar, .right-sidebar {
-                width: 220px;
-                transform: translateX(-260px);
+                width: 200px;
+                transform: translateX(-220px);
                 z-index: 10;
             }
 
             .right-sidebar {
-                transform: translateX(260px);
+                transform: translateX(220px);
             }
 
             .sidebar.active {
@@ -138,9 +141,9 @@
                 margin: 60px 10px 80px 10px;
             }
 
-            nav ul {
-                flex-direction: column;
-                gap: 10px;
+            footer {
+                padding: 10px;
+                font-size: 0.9em;
             }
         }
     </style>
@@ -148,56 +151,56 @@
 <body>
     <!-- Header -->
     <header>
-        <button class="toggle-btn" onclick="toggleSidebar('left')">☰ Left Sidebar</button>
+        <button class="toggle-btn" onclick="toggleSidebar('left')">☰ Left</button>
         <div class="logo">My Web App</div>
         <nav>
             <ul>
                 <li>Home</li>
                 <li>About</li>
-                <li>Services</li>
                 <li>Contact</li>
             </ul>
         </nav>
-        <button class="toggle-btn" onclick="toggleSidebar('right')">☰ Right Sidebar</button>
+        <button class="toggle-btn" onclick="toggleSidebar('right')">☰ Right</button>
     </header>
 
     <!-- Left Sidebar -->
     <div class="sidebar" id="leftSidebar">
         <ul>
-            <li onclick="displayContent('Option 1')">Option 1</li>
-            <li onclick="displayContent('Option 2')">Option 2</li>
-            <li onclick="displayContent('Option 3')">Option 3</li>
-            <li onclick="displayContent('Option 4')">Option 4</li>
+            <li onclick="displayContent('Dashboard')">Dashboard</li>
+            <li onclick="displayContent('Profile')">Profile</li>
+            <li onclick="displayContent('Messages')">Messages</li>
+            <li onclick="displayContent('Settings')">Settings</li>
         </ul>
     </div>
 
     <!-- Main Content Area -->
     <div class="content" id="contentArea">
-        <h2>Selected Option</h2>
-        <p>Click an option from the left sidebar to display its content here.</p>
+        <h2>Welcome!</h2>
+        <p>Select an option from the sidebars to explore the content.</p>
     </div>
 
     <!-- Right Sidebar -->
     <div class="right-sidebar" id="rightSidebar">
         <h3>Customization</h3>
-        <label for="bgColor">Background Color:</label>
-        <input type="color" id="bgColor" onchange="customize('bgColor', this.value)">
-        <label for="textColor">Text Color:</label>
-        <input type="color" id="textColor" onchange="customize('textColor', this.value)">
-        <label for="fontSize">Font Size:</label>
-        <select id="fontSize" onchange="customize('fontSize', this.value)">
-            <option value="16px">16px</option>
-            <option value="18px">18px</option>
-            <option value="20px">20px</option>
-        </select>
+        <div>
+            <label for="themeColor">Theme Color:</label>
+            <input type="color" id="themeColor" onchange="document.body.style.backgroundColor = this.value;">
+        </div>
+        <div>
+            <label for="fontSize">Font Size:</label>
+            <select id="fontSize" onchange="document.body.style.fontSize = this.value;">
+                <option value="14px">14px</option>
+                <option value="16px">16px</option>
+                <option value="18px">18px</option>
+            </select>
+        </div>
     </div>
 
     <!-- Footer -->
     <footer>
-        &copy; 2025 My Web App. All Rights Reserved.
+        &copy; 2025 My Web App. All rights reserved.
     </footer>
 
-    <!-- JavaScript for Sidebar Toggle -->
     <script>
         function toggleSidebar(side) {
             const sidebar = side === 'left' ? document.getElementById('leftSidebar') : document.getElementById('rightSidebar');
@@ -206,14 +209,7 @@
 
         function displayContent(option) {
             const content = document.getElementById('contentArea');
-            content.innerHTML = `<h2>${option}</h2><p>Content for ${option} is displayed here.</p>`;
-        }
-
-        function customize(property, value) {
-            const content = document.getElementById('contentArea');
-            if (property === 'bgColor') content.style.backgroundColor = value;
-            if (property === 'textColor') content.style.color = value;
-            if (property === 'fontSize') content.style.fontSize = value;
+            content.innerHTML = `<h2>${option}</h2><p>Content for ${option} displayed here.</p>`;
         }
     </script>
 </body>
