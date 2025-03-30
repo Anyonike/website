@@ -35,13 +35,28 @@
             gap: 20px;
         }
         .block {
-            background: white;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             text-align: center;
             font-size: 1.2em;
             width: 22%; /* Ensures equal spacing among blocks */
+        }
+        .block:nth-child(odd) {
+            background: #ffcccb; /* Light red for blocks 1 and 3 */
+        }
+        .block:nth-child(even) {
+            background: #add8e6; /* Light blue for blocks 2 and 4 */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
         }
         @media (max-width: 768px) {
             .container {
@@ -59,10 +74,70 @@
         <h1>My Web Page</h1>
     </header>
     <div class="container">
-        <div class="block">Block 1</div>
-        <div class="block">Block 2</div>
-        <div class="block">Block 3</div>
-        <div class="block">Block 4</div>
+        <div class="block">Block 1
+            <table>
+                <tbody>
+                    <tr><td>Row 1</td></tr>
+                    <tr><td>Row 2</td></tr>
+                    <tr><td>Row 3</td></tr>
+                    <tr><td>Row 4</td></tr>
+                    <tr><td>Row 5</td></tr>
+                    <tr><td>Row 6</td></tr>
+                    <tr><td>Row 7</td></tr>
+                    <tr><td>Row 8</td></tr>
+                    <tr><td>Row 9</td></tr>
+                    <tr><td>Row 10</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="block">Block 2
+            <table>
+                <tbody>
+                    <tr><td>Row 1</td></tr>
+                    <tr><td>Row 2</td></tr>
+                    <tr><td>Row 3</td></tr>
+                    <tr><td>Row 4</td></tr>
+                    <tr><td>Row 5</td></tr>
+                    <tr><td>Row 6</td></tr>
+                    <tr><td>Row 7</td></tr>
+                    <tr><td>Row 8</td></tr>
+                    <tr><td>Row 9</td></tr>
+                    <tr><td>Row 10</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="block">Block 3
+            <table>
+                <tbody>
+                    <tr><td>Row 1</td></tr>
+                    <tr><td>Row 2</td></tr>
+                    <tr><td>Row 3</td></tr>
+                    <tr><td>Row 4</td></tr>
+                    <tr><td>Row 5</td></tr>
+                    <tr><td>Row 6</td></tr>
+                    <tr><td>Row 7</td></tr>
+                    <tr><td>Row 8</td></tr>
+                    <tr><td>Row 9</td></tr>
+                    <tr><td>Row 10</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="block">Block 4
+            <table>
+                <tbody>
+                    <tr><td>Row 1</td></tr>
+                    <tr><td>Row 2</td></tr>
+                    <tr><td>Row 3</td></tr>
+                    <tr><td>Row 4</td></tr>
+                    <tr><td>Row 5</td></tr>
+                    <tr><td>Row 6</td></tr>
+                    <tr><td>Row 7</td></tr>
+                    <tr><td>Row 8</td></tr>
+                    <tr><td>Row 9</td></tr>
+                    <tr><td>Row 10</td></tr>
+                </tbody>
+            </table>
+        </div>
     </div>
     <footer>
         <p>&copy; 2025 My Website</p>
