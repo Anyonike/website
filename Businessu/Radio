@@ -1,0 +1,52 @@
+<!-- Created by `ᴴᵗᵗየ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Header with Table Example</title>
+    <style>
+    body{
+        background-color=olive;
+    }
+        table {
+            width: 50%; /* Adjust table width as needed */
+            border-collapse: collapse;
+            margin: 20px 0; /* Add some space above and below the table */
+        }
+        th, td {
+            border: 1px solid #333; /* Border for table cells */
+            padding: 10px; /* Padding inside cells */
+            text-align: center; /* Center align text */
+        }
+        th {
+            background-color: #f4f4f4; /* Background color for header cells */
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1><marquee behaviour="alternate">Welcome to My Webpage</marquee></h1>
+    <table>
+        <tr>
+            <th>Header 1</th>
+            <th>Header 2</th>
+            <th>Header 3</th>
+        </tr>
+        <tr>
+            <td>Row 1, Col 1</td>
+            <td>Row 1, Col 2</td>
+            <td>Row 1, Col 3</td>
+        </tr>
+        <tr>
+            <td>Row 2, Col 1</td>
+            <td>Row 2, Col 2</td>
+            <td>Row 2, Col 3</td>
+        </tr>
+    </table>
+</header>
+
+</body>
+</html>
