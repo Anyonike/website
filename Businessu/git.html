@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GitHub Features Clone</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #ffffff;
+      color: #24292f;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      background-color: white;
+      z-index: 1000;
+      border-bottom: 1px solid #e1e4e8;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .navbar .logo {
+      font-weight: bold;
+      font-size: 1.5rem;
+      color: #0366d6;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .nav-item {
+      position: relative;
+    }
+
+    .nav-item > a {
+      text-decoration: none;
+      color: #24292f;
+      font-weight: 500;
+      padding: 0.5rem;
+    }
+
+    .nav-item:hover > .dropdown {
+      display: block;
+      opacity: 1;
+      transform: translateY(0px);
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: white;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.08);
+      min-width: 200px;
+      padding: 0.5rem 0;
+      border-radius: 0.25rem;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+
+    .dropdown a {
+      display: block;
+      padding: 0.75rem 1rem;
+      text-decoration: none;
+      color: #24292f;
+      white-space: nowrap;
+    }
+
+    .dropdown a:hover {
+      background-color: #f6f8fa;
+    }
+
+    .cta {
+      background-color: #2ea44f;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+
+    .cta:hover {
+      background-color: #22863a;
+    }
+
+    .hero {
+      padding: 5rem 2rem;
+      max-width: 900px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+      color: #586069;
+    }
+
+    .hero a {
+      font-size: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav class="navbar">
+      <a href="#" class="logo">GitHub</a>
+      <div class="nav-links">
+        <div class="nav-item">
+          <a href="#">Product</a>
+          <div class="dropdown">
+            <a href="#">Features</a>
+            <a href="#">Security</a>
+            <a href="#">Enterprise</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="#">Solutions</a>
+          <div class="dropdown">
+            <a href="#">For Developers</a>
+            <a href="#">For Teams</a>
+            <a href="#">For Startups</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="#">Resources</a>
+          <div class="dropdown">
+            <a href="#">Docs</a>
+            <a href="#">API</a>
+            <a href="#">Community</a>
+          </div>
+        </div>
+        <a href="#" class="cta">Sign up</a>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Where the world builds software</h1>
+    <p>Millions of developers and companies build, ship, and maintain their software on GitHub — the largest and most advanced development platform in the world.</p>
+    <a href="#" class="cta">Start for free</a>
+  </section>
+
+</body>
+</html>
