@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GitHub UI Clone</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #24292f;
+      --nav-bg: #f6f8fa;
+      --highlight: #0366d6;
+    }
+    [data-theme="dark"] {
+      --bg: #0d1117;
+      --text: #c9d1d9;
+      --nav-bg: #161b22;
+      --highlight: #58a6ff;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      transition: all 0.3s ease;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      background: var(--nav-bg);
+      border-bottom: 1px solid #ccc;
+      z-index: 1000;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 1.5rem;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--highlight);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .nav-item {
+      position: relative;
+    }
+
+    .nav-item > a {
+      text-decoration: none;
+      color: var(--text);
+      padding: 0.5rem;
+      font-weight: 500;
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: var(--bg);
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      min-width: 160px;
+      border-radius: 6px;
+    }
+
+    .dropdown a {
+      display: block;
+      padding: 0.75rem 1rem;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .nav-item:hover .dropdown {
+      display: block;
+    }
+
+    .search-bar {
+      padding: 0.4rem 0.8rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      outline: none;
+      width: 200px;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .dark-toggle {
+      margin-left: 1rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 1.2rem;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding: 1rem;
+      background: var(--nav-bg);
+    }
+
+    .notification {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #28a745;
+      color: white;
+      padding: 0.75rem 1.2rem;
+      border-radius: 6px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      display: none;
+      z-index: 2000;
+    }
+
+    .fab {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: var(--highlight);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 56px;
+      height: 56px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+      transition: transform 0.3s ease;
+    }
+
+    .fab:hover {
+      transform: scale(1.1);
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      .hamburger {
+        display: block;
+      }
+      .mobile-menu.active {
+        display: flex;
+      }
+    }
+  </style>
+</head>
+<body data-theme="light">
+
+  <header>
+    <nav class="navbar">
+      <a href="#" class="logo">GitHub</a>
+      <div class="nav-links">
+        <div class="nav-item">
+          <a href="#">Product</a>
+          <div class="dropdown">
+            <a href="#">Features</a>
+            <a href="#">Security</a>
+            <a href="#">Enterprise</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="#">Solutions</a>
+          <div class="dropdown">
+            <a href="#">For Teams</a>
+            <a href="#">For Startups</a>
+          </div>
+        </div>
+        <input type="text" class="search-bar" placeholder="Search..."/>
+        <button class="dark-toggle" onclick="toggleTheme()">🌙</button>
+      </div>
+      <div class="hamburger" onclick="toggleMobileMenu()">☰</div>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#">Product</a>
+      <a href="#">Solutions</a>
+      <a href="#">Search</a>
+    </div>
+  </header>
+
+  <main style="padding: 4rem 2rem; text-align: center;">
+    <h1>Welcome to GitHub UI</h1>
+    <p>This is a clone with dark mode, dropdowns, floating action button, and more!</p>
+    <button onclick="showNotification()">Show Notification</button>
+  </main>
+
+  <div class="notification" id="notification">✅ Action completed!</div>
+
+  <button class="fab" onclick="showNotification()">+</button>
+
+  <script>
+    function toggleTheme() {
+      const body = document.body;
+      const current = body.getAttribute("data-theme");
+      body.setAttribute("data-theme", current === "light" ? "dark" : "light");
+    }
+
+    function toggleMobileMenu() {
+      const menu = document.getElementById("mobileMenu");
+      menu.classList.toggle("active");
+    }
+
+    function showNotification() {
+      const notif = document.getElementById("notification");
+      notif.style.display = "block";
+      setTimeout(() => {
+        notif.style.display = "none";
+      }, 3000);
+    }
+  </script>
+
+</body>
+</html>
