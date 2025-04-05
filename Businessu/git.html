@@ -120,11 +120,29 @@
       display: flex;
     }
 
-    .mobile-menu a {
-      margin: 0.5rem 0;
+    .mobile-menu .mobile-dropdown-toggle {
+      font-weight: 600;
+      margin-top: 0.75rem;
+      cursor: pointer;
+      padding: 0.5rem;
+      background: none;
+      border: none;
+      width: 100%;
+      text-align: left;
+    }
+
+    .mobile-dropdown {
+      display: none;
+      padding-left: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .mobile-dropdown a {
+      display: block;
+      padding: 0.4rem 0;
+      color: #24292f;
       text-decoration: none;
       font-weight: 500;
-      color: #24292f;
     }
 
     .hero {
@@ -196,10 +214,28 @@
     </nav>
 
     <div class="mobile-menu" id="mobileMenu">
-      <a href="#">Product</a>
-      <a href="#">Solutions</a>
-      <a href="#">Resources</a>
-      <a href="#" class="cta">Sign up</a>
+      <button class="mobile-dropdown-toggle" onclick="toggleDropdown('product')">Product</button>
+      <div class="mobile-dropdown" id="product">
+        <a href="#">Features</a>
+        <a href="#">Security</a>
+        <a href="#">Enterprise</a>
+      </div>
+
+      <button class="mobile-dropdown-toggle" onclick="toggleDropdown('solutions')">Solutions</button>
+      <div class="mobile-dropdown" id="solutions">
+        <a href="#">For Developers</a>
+        <a href="#">For Teams</a>
+        <a href="#">For Startups</a>
+      </div>
+
+      <button class="mobile-dropdown-toggle" onclick="toggleDropdown('resources')">Resources</button>
+      <div class="mobile-dropdown" id="resources">
+        <a href="#">Docs</a>
+        <a href="#">API</a>
+        <a href="#">Community</a>
+      </div>
+
+      <a href="#" class="cta" style="margin-top: 1rem;">Sign up</a>
     </div>
   </header>
 
@@ -213,6 +249,11 @@
     function toggleMobileMenu() {
       const menu = document.getElementById('mobileMenu');
       menu.classList.toggle('active');
+    }
+
+    function toggleDropdown(id) {
+      const dropdown = document.getElementById(id);
+      dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
     }
   </script>
 
