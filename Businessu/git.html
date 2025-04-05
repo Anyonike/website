@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>GitHub Features Clone</title>
   <style>
     body {
@@ -24,12 +24,12 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0.75rem 2rem;
+      padding: 0.75rem 1.5rem;
       max-width: 1200px;
       margin: 0 auto;
     }
 
-    .navbar .logo {
+    .logo {
       font-weight: bold;
       font-size: 1.5rem;
       color: #0366d6;
@@ -101,6 +101,32 @@
       background-color: #22863a;
     }
 
+    .hamburger {
+      display: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background: white;
+      padding: 1rem 1.5rem;
+    }
+
+    .mobile-menu.active {
+      display: flex;
+    }
+
+    .mobile-menu a {
+      margin: 0.5rem 0;
+      text-decoration: none;
+      font-weight: 500;
+      color: #24292f;
+    }
+
     .hero {
       padding: 5rem 2rem;
       max-width: 900px;
@@ -126,6 +152,10 @@
     @media (max-width: 768px) {
       .nav-links {
         display: none;
+      }
+
+      .hamburger {
+        display: block;
       }
     }
   </style>
@@ -162,7 +192,15 @@
         </div>
         <a href="#" class="cta">Sign up</a>
       </div>
+      <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
     </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#">Product</a>
+      <a href="#">Solutions</a>
+      <a href="#">Resources</a>
+      <a href="#" class="cta">Sign up</a>
+    </div>
   </header>
 
   <section class="hero">
@@ -170,6 +208,13 @@
     <p>Millions of developers and companies build, ship, and maintain their software on GitHub — the largest and most advanced development platform in the world.</p>
     <a href="#" class="cta">Start for free</a>
   </section>
+
+  <script>
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('active');
+    }
+  </script>
 
 </body>
 </html>
