@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Slow Scroll Example</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            height: 150vh; /* Make the container scrollable */
+            overflow-y: auto;
+            scroll-behavior: smooth; /* Enable smooth scrolling for manual interactions */
+        }
+
+        .content {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .content h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .content p {
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="section1" class="content" style="background-color: #e0f7fa;">
+            <h2>Section 1</h2>
+            <p>This is the content of the first section. <b>Njooni tujifunze kwa pamoja.</b></p>
+            <p>More content for the first section to make it longer.</p>
+            <p>Even more text to ensure there's enough to scroll.</p>
+        </div>
+
+        <div id="section2" class="content" style="background-color: #fce4ec;">
+            <h2>Section 2</h2>
+            <p>Content for the second section goes here. <b>Umawanjo Boys' Secondary, ni jumuia yetu sisi sote.</b></p>
+            <p>Adding more text to make the section longer.</p>
+            <p>And some more to facilitate scrolling.</p>
+        </div>
+
+        <div id="section3" class="content" style="background-color: #fffde7;">
+            <h2>Section 3</h2>
+            <p>This is the third section with its specific content. Elaborate on the subject matter.</p>
+            <p>More filler text to increase the scrollable area.</p>
+            <p>Just a bit more for good measure.</p>
+        </div>
+        <div id="section3" class="content" style="background-color: #fffde7;">
+            <h2>Section 4</h2>
+            <p>This is the third section with its specific content. Elaborate on the subject matter.</p>
+            <p>More filler text to increase the scrollable area.</p>
+            <p>Just a bit more for good measure.</p>
+        </div>
+
+        <div id="section4" class="content" style="background-color: #f1f8e9;">
+            <h2>Section 4</h2>
+            <p>The final section of the content. Summarize or provide concluding remarks.</p>
+            <p>Adding extra text to make scrolling apparent.</p>
+            <p>The end of the content.</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.querySelector('.container');
+            let scrollAmount = 0;
+            const scrollSpeed = 1; // Adjust for faster/slower scroll
+            const scrollInterval = 30; // Milliseconds between scroll steps
+
+            function autoSlowScroll() {
+                scrollAmount += scrollSpeed;
+                container.scrollTop = scrollAmount;
+
+
+                // Stop scrolling when the bottom is reached
+                if (scrollAmount >= container.scrollHeight - container.clientHeight) {
+                    clearInterval(scrollTimer);
+                }
+            }
+
+
+function autoSlowScroll() {
+    scrollAmount += scrollSpeed;
+    container.scrollTop = scrollAmount;
+
+    if (scrollAmount >= container.scrollHeight - container.clientHeight) {
+        scrollAmount = 0; // reset to top
+    }
+}
+
+        const scrollTimer = setInterval(autoSlowScroll, scrollInterval);
+
+            // Optional: Stop auto-scroll on user interaction (mouse wheel, touch)
+            container.addEventListener('wheel', stopAutoScroll);
+            container.addEventListener('touchstart', stopAutoScroll);
+
+            function stopAutoScroll() {
+                clearInterval(scrollTimer);
+            }
+        });
+    </script>
+</body>
+</html>
