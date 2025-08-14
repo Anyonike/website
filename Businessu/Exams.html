@@ -2,15 +2,44 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>PDF Viewer Layout</title>
+<title>PDF Viewer Layout with Navigation</title>
 <style>
     body {
         margin: 0;
         font-family: Arial, sans-serif;
         display: flex;
+        flex-direction: column;
         height: 100vh;
     }
-    /* Left menu */
+
+    /* Top navigation */
+    .topnav {
+        background: #333;
+        color: white;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .topnav .menu {
+        display: flex;
+        gap: 15px;
+    }
+    .topnav .menu a {
+        color: white;
+        text-decoration: none;
+    }
+    .topnav .menu a:hover {
+        text-decoration: underline;
+    }
+
+    /* Main layout area */
+    .main {
+        flex: 1;
+        display: flex;
+    }
+
+    /* Left sidebar */
     .sidebar {
         width: 200px;
         background: #f4f4f4;
@@ -32,7 +61,8 @@
     .sidebar li:hover {
         background: #ddd;
     }
-    /* Right content area */
+
+    /* Center content */
     .content {
         flex: 1;
         display: flex;
@@ -42,29 +72,82 @@
         flex: 1;
         border: none;
     }
+
+    /* Right sidebar */
+    .right-sidebar {
+        width: 200px;
+        background: #f9f9f9;
+        border-left: 1px solid #ccc;
+        padding: 10px;
+    }
+
+    /* Footer */
+    footer {
+        background: #333;
+        color: white;
+        text-align: center;
+        padding: 8px;
+    }
 </style>
 </head>
 <body>
 
-<div class="sidebar">
-    <ul>
-        <li onclick="displayContent('https://example.com/test1.pdf')">TEST 1</li>
-        <li onclick="displayContent('files/test2.pdf')">TEST 2</li>
-        <li onclick="displayContent('files/test3.pdf')">TEST 3</li>
-        <li onclick="displayContent('files/test4.pdf')">TEST 4</li>
-        <li onclick="displayContent('files/test5.pdf')">TEST 5</li>
-        <li onclick="displayContent('files/test6.pdf')">TEST 6</li>
-    </ul>
+<!-- Top Navigation -->
+<div class="topnav">
+    <div class="logo">📄 PDF Viewer</div>
+    <div class="menu">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+        <a href="#">Help</a>
+    </div>
 </div>
 
-<div class="content">
-    <iframe id="pdfViewer" src=""></iframe>
+<!-- Main area with 3 columns -->
+<div class="main">
+    <!-- Left Sidebar -->
+    <div class="sidebar">
+        <ul>
+            <li onclick="displayContent('files/test1.pdf')">TEST 1</li>
+            <li onclick="displayContent('files/test2.pdf')">TEST 2</li>
+            <li onclick="displayContent('files/test3.pdf')">TEST 3</li>
+            <li onclick="displayContent('files/test4.pdf')">TEST 4</li>
+            <li onclick="displayContent('files/test5.pdf')">TEST 5</li>
+            <li onclick="displayContent('files/test6.pdf')">TEST 6</li>
+        </ul>
+    </div>
+
+    <!-- Center Content -->
+    <div class="content">
+        <iframe id="pdfViewer" src=""></iframe>
+    </div>
+
+    <!-- Right Sidebar -->
+    <div class="right-sidebar">
+        <h3>Options</h3>
+        <ul>
+            <li><a href="#">Download PDF</a></li>
+            <li><a href="#">Share</a></li>
+            <li><a href="#">Print</a></li>
+            <li><a href="#">Settings</a></li>
+        </ul>
+    </div>
 </div>
+
+<!-- Footer -->
+<footer>
+    &copy; 2025 PDF Viewer Application. All rights reserved.
+</footer>
 
 <script>
 function displayContent(pdfPath) {
     document.getElementById('pdfViewer').src = pdfPath;
 }
+
+// Optional: Load first PDF automatically
+window.onload = function() {
+    displayContent('files/test1.pdf');
+};
 </script>
 
 </body>
