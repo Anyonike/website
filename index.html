@@ -267,6 +267,176 @@
         }
 
 
+
+
+        .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      font-weight: bold;
+      font-size: 1.5rem;
+      color: #0366d6;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .nav-item {
+      position: relative;
+    }
+
+    .nav-item > a {
+      text-decoration: none;
+      color: #24292f;
+      font-weight: 500;
+      padding: 0.5rem;
+    }
+
+    .nav-item:hover > .dropdown {
+      display: block;
+      opacity: 1;
+      transform: translateY(0px);
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: white;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.08);
+      min-width: 200px;
+      padding: 0.5rem 0;
+      border-radius: 0.25rem;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+
+    .dropdown a {
+      display: block;
+      padding: 0.75rem 1rem;
+      text-decoration: none;
+      color: #24292f;
+      white-space: nowrap;
+    }
+
+    .dropdown a:hover {
+      background-color: #f6f8fa;
+    }
+
+    .cta {
+      background-color: #2ea44f;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+
+    .cta:hover {
+      background-color: #22863a;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background: white;
+      padding: 1rem 1.5rem;
+    }
+
+    .mobile-menu.active {
+      display: flex;
+    }
+
+    .mobile-menu .mobile-dropdown-toggle {
+      font-weight: 600;
+      margin-top: 0.75rem;
+      cursor: pointer;
+      padding: 0.5rem;
+      background: none;
+      border: none;
+      width: 100%;
+      text-align: left;
+    }
+
+    .mobile-dropdown {
+      display: none;
+      padding-left: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .mobile-dropdown a {
+      display: block;
+      padding: 0.4rem 0;
+      color: #24292f;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .hero {
+      padding: 5rem 2rem;
+      max-width: 900px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+      color: #586069;
+    }
+
+    .hero a {
+      font-size: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hamburger {
+        display: block;
+      }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
   </style>
 </head>
 <body>
@@ -447,58 +617,91 @@
 </head>
 <body>
 
-<!-- Navigation with Option Menu -->
-<nav>
-    <ul>
-        <li><a href="https://docs.google.com/spreadsheets/d/1n_tt-9zq9jZixChBG39pML41THDOlkZYolG98Ln6wss/edit?gid=709244726#gid=709244726">OUTPUT RESULTS</a></li>
-        <li><a href="Mitihani/April_2025_F2.pdf">About</a></li>
-        <li>Services
-            <ul>
-                <li><Businessu/scrollFile.htm">Scrow</a></li>
-                <li><a href="https://github.com/Anyonike/website/tree/main/Mitihani">Scripts</a></li>
-                <li><a href="Form Four.html">php</a></li>
-                <li><a href="Businessu/zuma.html">Details</a></li>
-                <li><a href="https://www.dw.com/sw/sauti-zetu/s-64046540">DW-Radio</a></li>
-            </ul>
-        </li>
-        <li>Contact</li>
-    </ul>
-</nav>
+    <header>
+    <nav class="navbar">
+      <center><a href="https://anyonike.github.io/website/" class="logo">Home</a></center>
+      <div class="nav-links">
+        <div class="nav-item">
+          <a href="#">MIKEKA</a>
+          <div class="dropdown">
+            <a href="https://docs.google.com/spreadsheets/d/1C46mGq0UQQShZzxPSoByNIy6LjXByRJ0pkWFAemsAag/edit?gid=997394599#gid=997394599">MIKEKA</a>
+           <a href="#">Enterprise</a>
+            <a href="#">Trade</a>
+            <a href="#">Invetories</a>
+            <a href="#">One</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="#">Solutions</a>
+          <div class="dropdown">
+            <a href="#">For Developers</a>
+            <a href="#">For Teams</a>
+            <a href="#">For Startups</a>
+            <a href="#">Two</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="#">Resources</a>
+          <div class="dropdown">
+            <a href="#">Docs</a>
+            <a href="#">API</a>
+            <a href="#">Community</a>
+            <a href="#">Three</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="#">Solutions</a>
+          <div class="dropdown">
+            <a href="#">For Developers</a>
+            <a href="#">For Teams</a>
+            <a href="https://web.whatsapp.com/">WHATSAPP</a>
+            <a href="#">Two</a>
+          </div>
+        </div>
+        <a href="#" class="cta">Sign up</a>
+      </div>
+      <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
+    </nav>
 
-<!-- Main Content Area -->
-<div class="container">
-    <!-- Left Menu -->
-    <div class="menu">
-        <b><h1>Left Menu</h1></b><br />
-        <a href="https://www.dw.com/sw/matangazo-ya-moja-kwa-moja-saa-1200-asubuhi-saa-0700-mchana-saa-1200-jioni-afrika-mashariki/audio-65662945">DW RadioL</a><br />
-        <a href="Form One.html">PHP</a><br />
-        <a href="Form One.html">PERL</a><br />
-        <a href="Form One.html">MySQL</a><br />
-        <a href="Form One.html">Networking</a><br />
-        <a href="Form Four.html">FOUR</a>
+    <div class="mobile-menu" id="mobileMenu">
+      <button class="mobile-dropdown-toggle" onclick="toggleDropdown('product')"><a href="https://docs.google.com/spreadsheets/d/1C46mGq0UQQShZzxPSoByNIy6LjXByRJ0pkWFAemsAag/edit?gid=997394599#gid=997394599">MIKEKA</a></button>
+      <div class="mobile-dropdown" id="product">
+        <a href="#">Features</a>
+        <a href="#">Security</a>
+        <a href="https://web.whatsapp.com/">WHATSAPP</a>
+      </div>
+
+      <button class="mobile-dropdown-toggle" onclick="toggleDropdown('solutions')">Solutions</button>
+      <div class="mobile-dropdown" id="solutions">
+        <a href="#">For Developers</a>
+        <a href="#">For Teams</a>
+        <a href="#">For Startups</a>
+      </div>
+
+      <button class="mobile-dropdown-toggle" onclick="toggleDropdown('resources')">Resources</button>
+      <div class="mobile-dropdown" id="resources">
+        <a href="#">Docs</a>
+        <a href="#">API</a>
+        <a href="#">Community</a>
+      </div>
+
+      <a href="#" class="cta" style="margin-top: 1rem;">Sign up</a>
     </div>
+  </header>
 
-    <!-- Center Content -->
-    <div class="content">
-        <h1>Technical and Managerial Tutorials</h1>
-    </div>
+  
 
-    <!-- Right Menu -->
-    <div class="menu">
-        <b><h1>Right Menu</h1></b><br />
-        <a href="Form One.html">HTML</a><br />
-        <a href="Form One.html">PHP</a><br />
-        <a href="Form One.html">PERL</a><br />
-        <a href="Form One.html">MySQL</a><br />
-        <a href="Form One.html">Networking</a><br />
-        <a href="Form Four.html">FOUR</a>
-    </div>
-</div>
+  <script>
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('active');
+    }
 
-<!-- Footer with Copyright -->
-<footer>
-    &copy; 2025 Umawanjo Boys' Secondary School. All Rights Reserved.
-</footer>
+    function toggleDropdown(id) {
+      const dropdown = document.getElementById(id);
+      dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    }
+  </script>
 
 </body>
 </html>
