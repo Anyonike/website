@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced Interface Example</title>
+  <style>
+    /* General reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      line-height: 1.6;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    /* Navigation Bar */
+    nav {
+      background-color: #2c3e50;
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 25px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #3498db;
+    }
+
+    /* Header Section */
+    header {
+      background: #2980b9;
+      color: white;
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 3.5em;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 1.1em;
+    }
+
+    /* Main Content Section */
+    .content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      margin: 40px 20px;
+    }
+
+    .content .section {
+      background: white;
+      width: 30%;
+      margin: 20px;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .content .section h2 {
+      color: #333;
+    }
+
+    .content .section p {
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    /* Form Section */
+    .form-section {
+      background: white;
+      padding: 30px;
+      margin: 20px 0;
+      border-radius: 8px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-section h2 {
+      margin-bottom: 15px;
+      font-size: 1.8em;
+      color: #2c3e50;
+    }
+
+    .form-section input[type="text"],
+    .form-section input[type="email"],
+    .form-section input[type="tel"],
+    .form-section select,
+    .form-section textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 12px 0;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-sizing: border-box;
+      font-size: 1em;
+    }
+
+    .form-section button {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1.1em;
+      transition: background-color 0.3s;
+    }
+
+    .form-section button:hover {
+      background-color: #2980b9;
+    }
+
+    /* FAQ Section */
+    .faq-section {
+      background: #f4f4f4;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 8px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .faq-section h2 {
+      font-size: 1.8em;
+      margin-bottom: 15px;
+      color: #2c3e50;
+    }
+
+    .faq-item {
+      padding: 12px;
+      margin: 8px 0;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background-color: #fff;
+      transition: background-color 0.3s;
+    }
+
+    .faq-item:hover {
+      background-color: #ecf0f1;
+    }
+
+    /* Testimonials Section */
+    .testimonials-section {
+      background: #ecf0f1;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 8px;
+    }
+
+    .testimonial {
+      background: white;
+      padding: 20px;
+      margin: 15px 0;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .testimonial p {
+      font-style: italic;
+      margin-bottom: 10px;
+    }
+
+    .testimonial h3 {
+      color: #2c3e50;
+    }
+
+    /* Pricing Section */
+    .pricing-section {
+      display: flex;
+      justify-content: space-around;
+      margin: 40px 0;
+    }
+
+    .pricing-card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      width: 30%;
+      padding: 30px;
+      text-align: center;
+      margin: 20px;
+    }
+
+    .pricing-card h3 {
+      color: #2980b9;
+      margin-bottom: 15px;
+    }
+
+    .pricing-card p {
+      color: #777;
+      margin-bottom: 20px;
+    }
+
+    .pricing-card button {
+      background-color: #2c3e50;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1.1em;
+      transition: background-color 0.3s;
+    }
+
+    .pricing-card button:hover {
+      background-color: #3498db;
+    }
+
+    /* Alert Box */
+    .alert {
+      padding: 15px;
+      background-color: #e74c3c;
+      color: white;
+      margin-top: 20px;
+      display: none;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .content .section {
+        width: 45%;
+      }
+
+      .pricing-card {
+        width: 45%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .content .section {
+        width: 100%;
+      }
+
+      .pricing-card {
+        width: 100%;
+      }
+    }
+
+        .clock-container {
+            background: #0B0;
+            padding: 1.1px;
+            border-radius: 10px;
+            display: inline-block;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        .clock {
+            font-size: 48px;
+            font-weight: bold;
+        }
+        .date {
+            font-size: 24px;
+            margin-top: 10px;
+        }
+
+
+  </style>
+</head>
+<body>
+  <nav>
+     <a href="Form One.html">ONE</a>
+    <a href="Form Two.html">TWO</a>
+    <a href="Form Three.html">THREE</a>
+    <a href="Form Four.html">FOUR</a>
+                    
+    </nav>
+  <header>
+    <h2><span style="padding: 1.3px;">Karibuni Sana Umawanjo Boys' Sekondary</span></h2>
+    <div class="clock-container">
+        <div class="date" id="currentDate">Monday, January 1, 2025</div>
+        <div class="clock" id="digitalClock">12:00:00 AM</div>
+    </div>
+
+    <p><marquee><h2><span style="background-color: #ffffff; color: #3A3B3C ; padding: 0 3px;">Umawanjo Boys' Sekondary</span></h2>
+    <div class="clock-container"></h4></marquee></p>
+  </header>
+
+  <div class="content">
+        <div class="section">
+      <h2> <h2><a href="Businessu/Advanced.html">Another Page</a></h2>
+      <p>Tembelea Ukurasa huu pia.</p>
+        </div>
+    <div class="section">
+      <h2><a href="https://www.dw.com/sw/sauti-zetu/s-64046540">Radio DW-Live</a></h2>
+      <p>Sikiliza Dw mbashara hapa kwa lugha ya Kiswahili (Saa 12:00 asubuhi, Saa 7:00 Mchana na Saa 12:00 jioni)</p>
+      </div>
+    
+    <div class="section">
+    <h2><a href="Businessu/Github.html">Tembelea Ukrasa huu pia</a></h2>
+    <p>Karibuni kwa ushauri ndugu zangu kwa ajili ya maboresho zaidi!</p>
+    </div>
+    <div class="section">
+    <p>Karibuni kwa ushauri ndugu zangu kwa ajili ya maboresho zaidi.</p>
+    </div>
+  
+
+  <div class="pricing-section">
+    <div class="pricing-card">
+      <h3>Mipango Mbalimbali</h3>
+      <p>Sema Chochote</p>
+      <button><h4>Welcome to <span style="background-color: #914c53; color: #ffffff; padding: 0 3px;">
+      <a href="https://script.google.com/macros/s/AKfycbwQRx3vIupMpWtOF2Ybc2zXfF2_wnokmUnuOJOA5n6ArRnCcPSfKcUBeWj0JMilRMhQ/exec">Form One</a></span></h4></button> 
+    
+    </div>
+    
+    <div class="pricing-card">
+      <h3>Mipango Mbalimbali</h3>
+      <p>Sema Chochote</p>
+      <button><h4>Welcome to <span style="background-color: #914c53; color: #ffffff; padding: 0 3px;">
+      <a href="https://script.google.com/macros/s/AKfycbyQ_jyGOLjVPI3trsby1DK3DEItKfSxIHNZUaCUQ8kWMizsitz9-0kPImRevUY5S-7b/exec">Form Two</a></span></h4></button> 
+    </div>
+
+    <div class="pricing-card">
+      <h3>Mipango Mbalimbali</h3>
+      <p>Sema Chochote</p>
+      <button><h4>Welcome to <span style="background-color: #914c53; color: #ffffff; padding: 0 3px;">
+      <a href="https://script.google.com/macros/s/AKfycbxbm6QydAHN4rmc2SV-yKxaDmkE3S0FlChOGP4FpVXGdw8mae_F0ZFWMO7PFQJzHgnr/exec">Form Three</a></span></h4></button> 
+    </div>
+  </div>
+
+  <div class="pricing-card">
+      <h3>Mipango Mbalimbali</h3>
+      <p>Sema Chochote</p>
+      <button><h4>Welcome to <span style="background-color: #914c53; color: #ffffff; padding: 0 3px;">
+      <a href="https://script.google.com/macros/s/AKfycbyCJybO61VzlUM3j14v5dYNhJNXpBYraRNtoEPXEiq5P4MuMkZmM99k9yEjt6PqqksA/exec">Form Four</a></span></h4></button> 
+    <h1></h1>
+    </div>
+  </div>
+  
+  <div class="pricing-card">
+      <h3>Use the Advanced Coding Editor</h3>
+      <button>Coding Editor</button>
+    <h1><a href="Businessu/editor.html">Coding Editor Here</a></h1>
+    </div>
+  </div>
+
+   <div class="pricing-card">
+    <button>Report</button>
+    <h1><a href="script.py">Python</a></h1>
+    </div>
+  </div>
+
+
+  <div class="form-section">
+    <h2>Contact Us</h2>
+    <form id="contact-form">
+     <nav>
+            <input type="text" id="name" placeholder="Your Name" required>
+            <input type="email" id="email" placeholder="Your Email" required>
+            <input type="tel" id="phone" placeholder="Your Phone" required>
+            <select id="contact-method" required>
+              <option value="">Preferred Contact Method</option>
+              <option value="Email">Email</option>
+              <option value="Phone">Phone</option>
+            </select>
+      </nav>
+      <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit">Submit</button>
+    </form>
+    <div class="alert" id="alert-box">
+      Please fill out all fields before submitting!
+    </div>
+  </div>
+
+  <div class="faq-section">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <h4>What is your return policy?</h4>
+      <p>Our return policy is 30 days from the date of purchase.</p>
+    </div>
+    <div class="faq-item">
+      <h4>How do I contact customer support?</h4>
+      <p>You can reach us via email or phone as provided in our contact section.</p>
+    </div>
+  </div>
+
+  <div class="testimonials-section">
+    <h2>What Our Clients Say</h2>
+    <div class="testimonial">
+      <p>"This service has been amazing! I would highly recommend it to anyone."</p>
+      <h3>- Mtitu Aja</h3>
+    </div>
+    <div class="testimonial">
+      <p>"A fantastic experience! Fast, reliable, and very user-friendly."</p>
+      <h3>- Mtweve Kamtituz</h3>
+    </div>
+  </div>
+
+
+  
+    
+    <script>
+        function updateClock() {
+            let now = new Date();
+            
+            // Time
+            let hours = now.getHours();
+            let minutes = now.getMinutes().toString().padStart(2, '0');
+            let seconds = now.getSeconds().toString().padStart(2, '0');
+            let amPm = hours >= 12 ? "PM" : "AM";
+            hours = hours % 12 || 12; // Convert to 12-hour format
+            let timeString = `${hours.toString().padStart(2, '0')}:${minutes}:${seconds} ${amPm}`;
+            
+            // Date
+            let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            let dateString = now.toLocaleDateString('en-US', options);
+
+            // Update UI
+            document.getElementById("digitalClock").textContent = timeString;
+            document.getElementById("currentDate").textContent = dateString;
+        }
+
+        setInterval(updateClock, 1000); // Update every second
+        updateClock(); // Initialize immediately
+    
+     // Form Validation
+    document.getElementById('contact-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      var name = document.getElementById('name').value;
+      var email = document.getElementById('email').value;
+      var phone = document.getElementById('phone').value;
+      var message = document.getElementById('message').value;
+
+      // Check if any field is empty
+      if (name === '' || email === '' || phone === '' || message === '') {
+        document.getElementById('alert-box').style.display = 'block';
+      } else {
+        alert('Form submitted successfully!');
+        document.getElementById('alert-box').style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
