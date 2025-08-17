@@ -1,207 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ludewa</title>
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        /* General Styles */
-        body{
-          background-color: olive;
-        }
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ludewa</title>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-        /* Navbar Styles */
-        nav {
-            background-color: #333;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+    body { background-color: olive; }
 
-        .logo {
-            color: white;
-            font-size: 22px;
-            font-weight: bold;
-        }
+    /* Fixed Header with two rows */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
 
-        .nav-links {
-            list-style: none;
-            display: flex;
-        }
+    .nav-top {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 12px 20px;
+      font-size: 22px;
+      font-weight: bold;
+    }
 
-        .nav-links li {
-            position: relative;
-        }
+    .nav-bottom {
+      background-color: #2b2b2b;
+      display: flex;
+      justify-content: center;
+      padding: 6px 10px;
+      border-top: 1px solid #444;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 4px;
+      flex-wrap: wrap;
+    }
+    .nav-links > li { position: relative; }
+    .nav-links > li > a {
+      text-decoration: none;
+      color: #fff;
+      padding: 10px 14px;
+      display: block;
+      border-radius: 6px;
+      transition: background 0.25s;
+    }
+    .nav-links > li > a:hover { background-color: #4a4a4a; }
 
-        .nav-links li a {
-            text-decoration: none;
-            color: white;
-            padding: 12px 15px;
-            display: flex;
-            align-items: center;
-            transition: 0.3s;
-        }
+    /* Dropdown */
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 100%; left: 0;
+      background-color: #444;
+      min-width: 180px;
+      padding: 6px 0;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+      border-radius: 8px;
+    }
+    .dropdown li { list-style: none; }
+    .dropdown li a {
+      display: block;
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 6px;
+    }
+    .dropdown li a:hover { background-color: #555; }
+    .nav-links li:hover .dropdown { display: block; }
 
-        .nav-links li a:hover {
-            background-color: #555;
-            border-radius: 5px;
-        }
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      top: 120px; /* below header */
+      left: 0;
+      width: 220px;
+      height: calc(100vh - 160px); /* minus header + footer */
+      background: #222;
+      padding-top: 20px;
+      overflow-y: auto;
+    }
+    .sidebar ul { list-style: none; }
+    .sidebar ul li a {
+      display: block;
+      padding: 12px 18px;
+      color: #fff;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+    .sidebar ul li a:hover { background: #444; }
 
-        /* Dropdown */
-        .dropdown {
-            display: none;
-            position: absolute;
-            background-color: #444;
-            min-width: 150px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-            border-radius: 5px;
-        }
+    /* Main content */
+    main {
+      margin-top: 120px;  /* push below header */
+      margin-left: 220px; /* push beside sidebar */
+      margin-bottom: 40px; /* avoid footer overlap */
+      padding: 20px;
+      color: #fff;
+    }
 
-        .dropdown li {
-            display: block;
-        }
+    /* Footer */
+    footer {
+      position: fixed;
+      bottom: 0; left: 0;
+      width: 100%;
+      background: #333;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+      font-size: 14px;
+    }
 
-        .dropdown li a {
-            padding: 10px 15px;
-            display: block;
-        }
-
-        .nav-links li:hover .dropdown {
-            display: block;
-        }
-
-        /* Search Bar */
-        .search-bar {
-            padding: 8px;
-            border-radius: 5px;
-            border: none;
-            outline: none;
-        }
-
-        /* Profile Dropdown */
-        .profile-dropdown {
-            position: relative;
-        }
-
-        .profile-menu {
-            display: none;
-            position: absolute;
-            right: 0;
-            background-color: #444;
-            border-radius: 5px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-        }
-
-        .profile-dropdown:hover .profile-menu {
-            display: block;
-        }
-
-        /* Notifications */
-        .notifications {
-            position: relative;
-        }
-
-        .notifications .badge {
-            background-color: red;
-            color: white;
-            font-size: 12px;
-            border-radius: 50%;
-            padding: 3px 6px;
-            position: absolute;
-            top: 0;
-            right: 0;
-        }
-
-        /* Sidebar Toggle */
-        .sidebar {
-            position: fixed;
-            left: -250px;
-            width: 250px;
-            height: 100vh;
-            background: #222;
-            transition: left 0.3s;
-        }
-
-        .sidebar.active {
-            left: 0;
-        }
-
-        /* Scroll Progress Bar */
-        .progress-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 5px;
-            background: red;
-            width: 0;
-        }
-    </style>
+    /* Scroll Progress Bar */
+    .progress-bar {
+      position: fixed;
+      top: 0; left: 0;
+      height: 5px;
+      background: red;
+      width: 0;
+      z-index: 2000;
+    }
+  </style>
 </head>
 <body>
-    <div class="progress-bar" id="progressBar"></div>
+  <div class="progress-bar" id="progressBar"></div>
 
-    <nav>
-        <div class="logo">LUDEWA DISTRICT COUNCIL</div>
-        <ul class="nav-links">
-            <li><a href="https://anyonike.github.io/website/">Home</a></li>
-            <li>
-                <a href="#">MOCK JULY 2025 ▾</a>
-                <ul class="dropdown">
-                   <li><a href="https://anyonike.github.io/website/Businessu/Examsf1.html">Form Two</a></li>
-                    <li><a href="https://anyonike.github.io/website/Businessu/Examsf4.html">Form Four</a></li>                   
-                </ul>
-            </li>
-            <li>
-                <a href="#">TOP TEN 2025 ▾</a>
-                <ul class="dropdown">
-                    <li><a href="https://anyonike.github.io/website/Businessu/Examsf1.html">Form Two</a></li>
-                    <li><a href="https://anyonike.github.io/website/Businessu/Examsf4.html">Form Four</a></li>                  
-                </ul>
-            </li>
-            <li>
-                <a href="#">REPORT JULY 2025 ▾</a>
-                <ul class="dropdown">
-                    <li><a href="https://anyonike.github.io/website/Businessu/Examsf1.html">Form Two</a></li>
-                    <li><a href="https://anyonike.github.io/website/Businessu/Examsf4.html">Form Four</a></li>                   
-                </ul>
-            </li>
-            <li>
-                <a href="#">SUBJEC PERFOMANCE ANALYSIS ▾</a>
-                <ul class="dropdown">
-                  <li><a href="https://anyonike.github.io/website/Businessu/Examsf1.html">Form Two</a></li>
-                  <li><a href="https://anyonike.github.io/website/Businessu/Examsf4.html">Form Four</a></li>                   
-                </ul>
-            </li>
-            
+  <!-- Header -->
+  <header>
+    <div class="nav-top">LUDEWA DISTRICT COUNCIL</div>
+    <nav class="nav-bottom">
+      <ul class="nav-links">
+        <li><a href="https://anyonike.github.io/website/">Home</a></li>
+        <li>
+          <a href="#">MOCK JULY 2025 ▾</a>
+          <ul class="dropdown">
+            <li><a href="https://anyonike.github.io/website/Businessu/Examsf1.html">Form Two</a></li>
+            <li><a href="https://anyonike.github.io/website/Businessu/Examsf4.html">Form Four</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">TOP TEN 2025 ▾</a>
+          <ul class="dropdown">
+            <li><a href="https://anyonike.github.io/website/Businessu/Examsf1.html">Form Two</a></li>
+            <li><a href="https://anyonike.github.io/website/Businessu/Examsf4.html">Form Four</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">REPORT JULY 2025 ▾</a>
+          <ul class="dropdown">
+            <li><a href="https://anyonike.github.io/website/Businessu/Examsf1.html">Form Two</a></li>
+            <li><a href="https://anyonike.github.io/website/Businessu/Examsf4.html">Form Four</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">SUBJECT PERFORMANCE ANALYSIS ▾</a>
+          <ul class="dropdown">
+            <li><a href="https://anyonike.github.io/website/Businessu/Examsf1.html">Form Two</a></li>
+            <li><a href="https://anyonike.github.io/website/Businessu/Examsf4.html">Form Four</a></li>
+          </ul>
+        </li>
+      </ul>
     </nav>
+  </header>
 
-    <script>
-        // Sidebar Toggle
-        function toggleSidebar() {
-            document.querySelector(".sidebar").classList.toggle("active");
-        }
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <ul>
+      <li><a href="#">Dashboard</a></li>
+      <li><a href="#">Announcements</a></li>
+      <li><a href="#">Exams</a></li>
+      <li><a href="#">Reports</a></li>
+      <li><a href="#">Students</a></li>
+      <li><a href="#">Settings</a></li>
+    </ul>
+  </aside>
 
-        // Scroll Progress Bar
-        window.onscroll = function() {
-            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            var scrolled = (winScroll / height) * 100;
-            document.getElementById("progressBar").style.width = scrolled + "%";
-        };
-    </script>
+  <!-- Main content -->
+  <main>
+    <h2>Welcome to Ludewa District Council Portal</h2>
+    <p>
+      
+    </p>
+    <p style="margin-top:800px;">Scroll more to test the progress bar.</p>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 Ludewa District Council | All Rights Reserved
+  </footer>
+
+  <script>
+    // Scroll Progress Bar
+    window.addEventListener('scroll', function () {
+      var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      var scrolled = (winScroll / height) * 100;
+      document.getElementById("progressBar").style.width = scrolled + "%";
+    });
+  </script>
 </body>
 </html>
