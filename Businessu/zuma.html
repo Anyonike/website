@@ -208,20 +208,26 @@
         &copy; 2025 My Web App. All rights reserved.
     </footer>
 
-    <script>
-        function toggleSidebar(side) {
-            const sidebar = side === 'left' ? document.getElementById('leftSidebar') : document.getElementById('rightSidebar');
-            sidebar.classList.toggle('active');
-        }
+  <script>
+function displayContent(content) {
+    const rightSection = document.getElementById("right-section");
 
-        function displayContent(option) {
-            const content = document.getElementById('contentArea');
-            content.innerHTML = `<h2>${option}</h2><p>Content for ${option} displayed here.</p>`;
-        }
-
-       }
+    // If it's a URL (http/https), load it in an iframe
+    if (content.startsWith("http")) {
+        rightSection.innerHTML = `<iframe src="${content}" width="100%" height="600px" style="border:none;"></iframe>`;
+    } else {
+        // Otherwise just display plain text or HTML
+        rightSection.innerHTML = content;
+    }
 }
-        
-    </script>
+</script>
+And in your HTML you need a right section container:
+
+html
+Copy
+Edit
+<div id="right-section" style="width: 70%; float: right; border: 1px solid #ccc; padding: 10px;">
+   <!-- Content will load here -->
+</div>
 </body>
 </html>
