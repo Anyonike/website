@@ -168,7 +168,7 @@
         <ul>
             <li onclick="displayContent('WELCOME!')"><a href="https://anyonike.github.io/website/"><h1>HOME</h1></a></li>
             <li onclick="displayContent('WELCOME!')"><a href="https://anyonike.github.io/website/Businessu/Examsf1.html"><h1>T567</h1></a></li>
-            <li onclick="displayContent('https://anyonike.github.io/website/Businessu/Examsf1.html')">Form IV</li>
+            <li onclick="displayContent('https://anyonike.github.io/website/Businessu/Examsf1.html')">Form 4</li>
             <li onclick="displayContent('Test 2')">TEST 2</li>
             <li onclick="displayContent('Test 3')">TEST 3</li>
             <li onclick="displayContent('Test 4')">TEST 4</li>
@@ -208,19 +208,25 @@
         &copy; 2025 My Web App. All rights reserved.
     </footer>
 
-  <script>
-function displayContent(content) {
+  function displayContent(content) {
     const rightSection = document.getElementById("right-section");
 
-    // If it's a URL (http/https), load it in an iframe
     if (content.startsWith("http")) {
-        rightSection.innerHTML = `<iframe src="${content}" width="100%" height="600px" style="border:none;"></iframe>`;
+        rightSection.innerHTML = `
+            <iframe src="${content}" 
+                    id="dynamicFrame"
+                    style="width:100%; border:none;"></iframe>`;
+
+        // Auto-adjust height after loading
+        const frame = document.getElementById("dynamicFrame");
+        frame.onload = function() {
+            frame.style.height = frame.contentWindow.document.body.scrollHeight + "px";
+        };
     } else {
-        // Otherwise just display plain text or HTML
         rightSection.innerHTML = content;
     }
 }
-</script>
+
 And in your HTML you need a right section container:
 
 html
