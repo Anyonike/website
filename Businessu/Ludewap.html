@@ -75,7 +75,7 @@
     .dropdown li a:hover { background-color: #555; }
     .nav-links li:hover .dropdown { display: block; }
 
-    /* Sidebar */
+    /* Left Sidebar */
     .sidebar {
       position: fixed;
       top: 120px; /* below header */
@@ -96,10 +96,33 @@
     }
     .sidebar ul li a:hover { background: #444; }
 
+    /* Right Sidebar */
+    .right-sidebar {
+      position: fixed;
+      top: 120px; /* below header */
+      right: 0;
+      width: 220px;
+      height: calc(100vh - 160px);
+      background: #111;
+      padding-top: 20px;
+      overflow-y: auto;
+      border-left: 2px solid #333;
+    }
+    .right-sidebar ul { list-style: none; }
+    .right-sidebar ul li a {
+      display: block;
+      padding: 12px 18px;
+      color: #fff;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+    .right-sidebar ul li a:hover { background: #333; }
+
     /* Main content */
     main {
       margin-top: 120px;  /* push below header */
-      margin-left: 220px; /* push beside sidebar */
+      margin-left: 220px; /* beside left sidebar */
+      margin-right: 220px; /* beside right sidebar */
       margin-bottom: 40px; /* avoid footer overlap */
       padding: 20px;
       color: #fff;
@@ -147,32 +170,32 @@
         <li>
           <a href="#">Ten Best ▾</a>
           <ul class="dropdown">
-            <li><a href="https://anyonike.github.io/website/Businessu/Examsf1.html">Form Two</a></li>
-            <li><a href="https://anyonike.github.io/website/Businessu/Examsf4.html">Form Four</a></li>
+            <li><a href="#">Form Two</a></li>
+            <li><a href="#">Form Four</a></li>
           </ul>
         </li>
         <li>
           <a href="#">Report ▾</a>
           <ul class="dropdown">
-            <li><a href="https://anyonike.github.io/website/Businessu/Examsf1.html">Form Two</a></li>
-            <li><a href="https://anyonike.github.io/website/Businessu/Examsf4.html">Form Four</a></li>
+            <li><a href="#">Form Two</a></li>
+            <li><a href="#">Form Four</a></li>
           </ul>
         </li>
         <li>
           <a href="#">Subject Performance ▾</a>
           <ul class="dropdown">
-            <li><a href="https://anyonike.github.io/website/Businessu/Examsf1.html">Form Two</a></li>
-            <li><a href="https://anyonike.github.io/website/Businessu/Examsf4.html">Form Four</a></li>
+            <li><a href="#">Form Two</a></li>
+            <li><a href="#">Form Four</a></li>
           </ul>
         </li>
       </ul>
     </nav>
   </header>
 
-  <!-- Sidebar -->
+  <!-- Left Sidebar -->
   <aside class="sidebar">
     <ul>
-      <li><a href="https://ludewadistrictresults.com.free/">Page Of Ludewa</a></li>
+      <li><a href="#"><b><h2>Visit Ludewa</h2></b></a></li>
       <li><a href="#">Announcements</a></li>
       <li><a href="#">Exams</a></li>
       <li><a href="#">Reports</a></li>
@@ -181,12 +204,21 @@
     </ul>
   </aside>
 
+  <!-- Right Sidebar -->
+  <aside class="right-sidebar">
+    <ul>
+      <li><a href="#">Downloads</a></li>
+      <li><a href="#">Share</a></li>
+      <li><a href="#">Print</a></li>
+      <li><a href="#">Help</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </aside>
+
   <!-- Main content -->
   <main>
     <h2>Welcome to Ludewa District Council Portal</h2>
-    <p>
-      
-    </p>
+    <p><b>Karibuni sana tuendeleze wilaya yetu</b></p>
     <p style="margin-top:800px;">Scroll more to test the progress bar.</p>
   </main>
 
