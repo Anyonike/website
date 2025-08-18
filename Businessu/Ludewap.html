@@ -11,21 +11,19 @@
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
     body { background-color: olive; }
 
-    /* Fixed Header with two rows */
+    /* Fixed Header */
     header {
       position: fixed;
-      top: 0;
-      left: 0;
+      top: 0; left: 0;
       width: 100%;
       z-index: 1000;
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
-
     .nav-top {
       background-color: #333;
       color: #fff;
       text-align: center;
-      padding: 4px 20px;
+      padding: 6px 20px;
       font-size: 22px;
       font-weight: bold;
     }
@@ -34,14 +32,17 @@
       background-color: #4863A0;
       display: flex;
       justify-content: center;
+      align-items: center;
       padding: 6px 10px;
       border-top: 1px solid #444;
+      position: relative;
     }
+
+    /* Default nav */
     .nav-links {
       list-style: none;
       display: flex;
-      gap: 4px;
-      flex-wrap: wrap;
+      gap: 6px;
     }
     .nav-links > li { position: relative; }
     .nav-links > li > a {
@@ -64,6 +65,7 @@
       padding: 6px 0;
       box-shadow: 0 4px 10px rgba(0,0,0,0.25);
       border-radius: 8px;
+      z-index: 999;
     }
     .dropdown li { list-style: none; }
     .dropdown li a {
@@ -75,13 +77,22 @@
     .dropdown li a:hover { background-color: #555; }
     .nav-links li:hover .dropdown { display: block; }
 
-    /* Left Sidebar */
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      font-size: 22px;
+      color: #fff;
+      cursor: pointer;
+      margin-left: auto;
+    }
+
+    /* Sidebar styles remain unchanged */
     .sidebar {
       position: fixed;
-      top: 150px; /* below header */
+      top: 150px;
       left: 0;
       width: 150px;
-      height: calc(100vh - 160px); /* minus header + footer */
+      height: calc(100vh - 160px);
       background: #222;
       padding-top: 20px;
       overflow-y: auto;
@@ -89,17 +100,15 @@
     .sidebar ul { list-style: none; }
     .sidebar ul li a {
       display: block;
-      padding: 2px 12px;
+      padding: 6px 12px;
       color: #fff;
       text-decoration: none;
-      transition: background 0.3s;
     }
     .sidebar ul li a:hover { background: #444; }
 
-    /* Right Sidebar */
     .right-sidebar {
       position: fixed;
-      top: 150px; /* below header */
+      top: 150px;
       right: 0;
       width: 150px;
       height: calc(100vh - 160px);
@@ -114,16 +123,15 @@
       padding: 12px 18px;
       color: #fff;
       text-decoration: none;
-      transition: background 0.3s;
     }
     .right-sidebar ul li a:hover { background: #333; }
 
-    /* Main content */
+    /* Main */
     main {
-      margin-top: 120px;  /* push below header */
-      margin-left: 220px; /* beside left sidebar */
-      margin-right: 220px; /* beside right sidebar */
-      margin-bottom: 40px; /* avoid footer overlap */
+      margin-top: 120px;
+      margin-left: 160px;
+      margin-right: 160px;
+      margin-bottom: 40px;
       padding: 20px;
       color: #fff;
     }
@@ -140,7 +148,7 @@
       font-size: 14px;
     }
 
-    /* Scroll Progress Bar */
+    /* Scroll bar */
     .progress-bar {
       position: fixed;
       top: 0; left: 0;
@@ -149,6 +157,28 @@
       width: 0;
       z-index: 2000;
     }
+
+    /* 🔹 Responsive Fix */
+    @media (max-width: 768px) {
+      .hamburger { display: block; }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background: #4863A0;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+      }
+      .nav-links.active { display: flex; }
+      .nav-links > li { width: 100%; }
+      .nav-links li a { padding: 12px; }
+      .dropdown {
+        position: static;
+        box-shadow: none;
+        border-radius: 0;
+      }
+    }
   </style>
 </head>
 <body>
@@ -156,25 +186,20 @@
 
   <!-- Header -->
   <header>
-    <div class="nav-top"><a href="https://anyonike.github.io/website/">Home</a> LUDEWA DISTRICT COUNCIL</div>
+    <div class="nav-top">LUDEWA DISTRICT COUNCIL</div>
     <nav class="nav-bottom">
-      <ul class="nav-links">
+      <div class="hamburger" onclick="toggleMenu()">☰</div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="https://anyonike.github.io/website/">Home</a></li>
         <li>
           <a href="#">Results ▾</a>
-          <ul class="dropdown">
-            <li><a href="https://anyonike.github.io/website/LUDEWA/Resultsf2.html">Form Two</a></li>
-            <li><a href="https://anyonike.github.io/website/LUDEWA/Resultsf4.html">Form Four</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="#">Best Ten ▾</a>
           <ul class="dropdown">
             <li><a href="#">Form Two</a></li>
             <li><a href="#">Form Four</a></li>
           </ul>
         </li>
         <li>
-          <a href="#">Subject Ranking ▾</a>
+          <a href="#">Ten Best ▾</a>
           <ul class="dropdown">
             <li><a href="#">Form Two</a></li>
             <li><a href="#">Form Four</a></li>
@@ -184,6 +209,13 @@
           <a href="#">Report ▾</a>
           <ul class="dropdown">
             <li><a href="#">Form Two</a></li>
+            <li><a href="https://anyonike.github.io/website/LUDEWA/Resultsf4.html">Form Four</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">Subject Performance ▾</a>
+          <ul class="dropdown">
+            <li><a href="#">Form Two</a></li>
             <li><a href="#">Form Four</a></li>
           </ul>
         </li>
@@ -191,7 +223,7 @@
     </nav>
   </header>
 
-  <!-- Left Sidebar -->
+  <!-- Sidebars -->
   <aside class="sidebar">
     <ul>
       <li><a href="https://ludewadistrictresults.com.free/media/form-four-mock-results-july-2025/847486"><b><h2>Visit Ludewa</h2></b></a></li>
@@ -203,7 +235,6 @@
     </ul>
   </aside>
 
-  <!-- Right Sidebar -->
   <aside class="right-sidebar">
     <ul>
       <li><a href="#">Downloads</a></li>
@@ -214,7 +245,7 @@
     </ul>
   </aside>
 
-  <!-- Main content -->
+  <!-- Main -->
   <main>
     <h2>Welcome to Ludewa District Council Portal</h2>
     <p><b>Karibuni sana tuendeleze wilaya yetu</b></p>
@@ -234,6 +265,11 @@
       var scrolled = (winScroll / height) * 100;
       document.getElementById("progressBar").style.width = scrolled + "%";
     });
+
+    // Hamburger menu toggle
+    function toggleMenu() {
+      document.getElementById("navLinks").classList.toggle("active");
+    }
   </script>
 </body>
 </html>
