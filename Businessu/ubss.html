@@ -53,6 +53,7 @@
       padding: 0.5rem;
     }
 
+    /* Desktop dropdown */
     .nav-item:hover > .dropdown {
       display: block;
       opacity: 1;
@@ -109,11 +110,13 @@
       border: none;
     }
 
+    /* Mobile menu */
     .mobile-menu {
       display: none;
       flex-direction: column;
       background: white;
       padding: 1rem 1.5rem;
+      border-top: 1px solid #ddd;
     }
 
     .mobile-menu.active {
@@ -160,13 +163,14 @@
     .hero p {
       font-size: 1.25rem;
       margin-bottom: 2rem;
-      color: #586069;
+      color: #f0f0f0;
     }
 
     .hero a {
       font-size: 1rem;
     }
 
+    /* Responsive */
     @media (max-width: 768px) {
       .nav-links {
         display: none;
@@ -180,111 +184,69 @@
 </head>
 <body>
 
-  <header>
-    <nav class="navbar">
-      <center><a href="https://anyonike.github.io/website/" class="logo">Home</a></center>
-      <div class="nav-links">
-        <div class="nav-item">
-          <a href="#">LUDEWA</a>
-          <div class="dropdown">
-            <a href="https://instawebeustorage01.blob.core.windows.net/websites-co-in-users-files/files/2368610/media/847435/ludewa-district-council_1755397344DDelwW.pdf">CHIEFKIDULILE S.S</a>
-           <a href="https://instawebeustorage01.blob.core.windows.net/websites-co-in-users-files/files/2368610/media/847438/ludewa-district-council_1755397687onW8mt.pdf">IKOVO</a>
-            <a href="https://instawebeustorage01.blob.core.windows.net/websites-co-in-users-files/files/2368610/media/847440/ludewa-district-council_1755397726sfZchI.pdf">ILININDA</a>
-            <a href="#">JUMBEMUNGOLI S.S</a>
-            <a href="#">KAYAO S.S</a>
-            <a href="#">KETEWAKA S.S</a>
-            <a href="#">LUANA S.S</a>
-            <a href="#">LUDEWA S.S</a>
-            <a href="#">LUGARAWA S.S</a>
-            <a href="#">MADILU S.S</a>
-            <a href="#">IKOVO</a>
-            <a href="#">IKOVO</a>
-            <a href="#">IKOVO</a>
-            <a href="#">IKOVO</a>
-            <a href="#">IKOVO</a>
-            <a href="#">IKOVO</a>
-            <a href="#">IKOVO</a>
-            <a href="#">IKOVO</a>
-            <a href="#">IKOVO</a>
-            <a href="https://instawebeustorage01.blob.core.windows.net/websites-co-in-users-files/files/2368610/media/847467/ludewa-district-council_1755399255uf1oxP.pdf">UMAWANJO S.S</a>
-          </div>
+<header>
+  <nav class="navbar">
+    <a href="https://anyonike.github.io/website/" class="logo">Home</a>
+    <div class="nav-links">
+      <div class="nav-item">
+        <a href="#">LUDEWA</a>
+        <div class="dropdown">
+          <a href="#">CHIEFKIDULILE</a>
+          <a href="#">IKOVO</a>
+          <a href="#">ILININDA</a>
+          <a href="#">UMAWANJO</a>
         </div>
-        <div class="nav-item">
-          <a href="#">Solutions</a>
-          <div class="dropdown">
-            <a href="#">For Developers</a>
-            <a href="#">For Teams</a>
-            <a href="#">For Startups</a>
-            <a href="#">Two</a>
-          </div>
+      </div>
+      <div class="nav-item">
+        <a href="#">Solutions</a>
+        <div class="dropdown">
+          <a href="#">For Developers</a>
+          <a href="#">For Teams</a>
         </div>
-        <div class="nav-item">
-          <a href="#">Resources</a>
-          <div class="dropdown">
-            <a href="#">Docs</a>
-            <a href="#">API</a>
-            <a href="#">Community</a>
-            <a href="#">Three</a>
-          </div>
-        </div>
-        <div class="nav-item">
-          <a href="#">Solutions</a>
-          <div class="dropdown">
-            <a href="#">For Developers</a>
-            <a href="#">For Teams</a>
-            <a href="https://web.whatsapp.com/">WHATSAPP</a>
-            <a href="#">Two</a>
-          </div>
-        </div>
-        <a href="#" class="cta">Sign up</a>
       </div>
-      <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
-    </nav>
-
-    <div class="mobile-menu" id="mobileMenu">
-      <button class="mobile-dropdown-toggle" onclick="toggleDropdown('product')"><a href="https://docs.google.com/spreadsheets/d/1C46mGq0UQQShZzxPSoByNIy6LjXByRJ0pkWFAemsAag/edit?gid=997394599#gid=997394599">MIKEKA</a></button>
-      <div class="mobile-dropdown" id="product">
-        <a href="#">Features</a>
-        <a href="#">Security</a>
-        <a href="https://web.whatsapp.com/">WHATSAPP</a>
-      </div>
-
-      <button class="mobile-dropdown-toggle" onclick="toggleDropdown('solutions')">Solutions</button>
-      <div class="mobile-dropdown" id="solutions">
-        <a href="#">For Developers</a>
-        <a href="#">For Teams</a>
-        <a href="#">For Startups</a>
-      </div>
-
-      <button class="mobile-dropdown-toggle" onclick="toggleDropdown('resources')">Resources</button>
-      <div class="mobile-dropdown" id="resources">
-        <a href="#">Docs</a>
-        <a href="#">API</a>
-        <a href="#">Community</a>
-      </div>
-
-      <a href="#" class="cta" style="margin-top: 1rem;">Sign up</a>
+      <a href="#" class="cta">Sign up</a>
     </div>
-  </header>
+    <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
+  </nav>
 
-  <section class="hero">
-    <h1>Umawanjo Boys' ni shule moja bora sana katika mkoa wa Njombe</h1>
-    <p>Hundreds of Candidates get division One. Currently it is our Culture</p>
-    <p><h3>Mlete mwanao apate elimu na malezi bora</h3></p>
-    <a href="#" class="cta">Start for free</a>
-  </section>
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-dropdown-toggle" onclick="toggleDropdown('m-ludewa')">LUDEWA ▾</button>
+    <div class="mobile-dropdown" id="m-ludewa">
+      <a href="#">CHIEFKIDULILE</a>
+      <a href="#">IKOVO</a>
+      <a href="#">ILININDA</a>
+      <a href="#">UMAWANJO</a>
+    </div>
 
-  <script>
-    function toggleMobileMenu() {
-      const menu = document.getElementById('mobileMenu');
-      menu.classList.toggle('active');
-    }
+    <button class="mobile-dropdown-toggle" onclick="toggleDropdown('m-solutions')">Solutions ▾</button>
+    <div class="mobile-dropdown" id="m-solutions">
+      <a href="#">For Developers</a>
+      <a href="#">For Teams</a>
+    </div>
 
-    function toggleDropdown(id) {
-      const dropdown = document.getElementById(id);
-      dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-    }
-  </script>
+    <a href="#" class="cta" style="margin-top: 1rem;">Sign up</a>
+  </div>
+</header>
+
+<section class="hero">
+  <h1>Umawanjo Boys' ni shule moja bora sana katika mkoa wa Njombe</h1>
+  <p>Hundreds of Candidates get division One. Currently it is our Culture</p>
+  <h3>Mlete mwanao apate elimu na malezi bora</h3>
+  <a href="#" class="cta">Start for free</a>
+</section>
+
+<script>
+  function toggleMobileMenu() {
+    const menu = document.getElementById('mobileMenu');
+    menu.classList.toggle('active');
+  }
+
+  function toggleDropdown(id) {
+    const dropdown = document.getElementById(id);
+    dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+  }
+</script>
 
 </body>
 </html>
