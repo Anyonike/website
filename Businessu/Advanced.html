@@ -1,199 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ubss1</title>
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        /* General Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ubss1</title>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    /* General Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
 
-        /* Navbar Styles */
-        nav {
-            background-color: #333;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
+    /* Navbar Styles */
+    nav {
+      background-color: #333;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
 
-        .logo {
-            color: white;
-            font-size: 22px;
-            font-weight: bold;
-        }
+    .logo {
+      color: white;
+      font-size: 22px;
+      font-weight: bold;
+    }
 
-        .nav-links {
-            list-style: none;
-            display: flex;
-        }
+    .nav-links {
+      list-style: none;
+      display: flex;
+    }
 
-        .nav-links li {
-            position: relative;
-        }
+    .nav-links li {
+      position: relative;
+    }
 
-        .nav-links li a {
-            text-decoration: none;
-            color: white;
-            padding: 12px 15px;
-            display: flex;
-            align-items: center;
-            transition: 0.3s;
-        }
+    .nav-links li a {
+      text-decoration: none;
+      color: white;
+      padding: 12px 15px;
+      display: flex;
+      align-items: center;
+      transition: 0.3s;
+    }
 
-        .nav-links li a:hover {
-            background-color: #555;
-            border-radius: 5px;
-        }
+    .nav-links li a:hover {
+      background-color: #555;
+      border-radius: 5px;
+    }
 
-        /* Dropdown */
-        .dropdown {
-            display: none;
-            position: absolute;
-            background-color: #444;
-            min-width: 150px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-            border-radius: 5px;
-        }
+    /* Dropdown */
+    .dropdown {
+      display: none;
+      position: absolute;
+      background-color: #444;
+      min-width: 150px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      border-radius: 5px;
+    }
 
-        .dropdown li {
-            display: block;
-        }
+    .dropdown li {
+      display: block;
+    }
 
-        .dropdown li a {
-            padding: 10px 15px;
-            display: block;
-        }
+    .dropdown li a {
+      padding: 10px 15px;
+      display: block;
+    }
 
-        .nav-links li:hover .dropdown {
-            display: block;
-        }
+    .nav-links li:hover .dropdown {
+      display: block;
+    }
 
-        /* Search Bar */
-        .search-bar {
-            padding: 8px;
-            border-radius: 5px;
-            border: none;
-            outline: none;
-        }
+    /* Profile Dropdown */
+    .profile-dropdown {
+      position: relative;
+    }
 
-        /* Profile Dropdown */
-        .profile-dropdown {
-            position: relative;
-        }
+    .profile-menu {
+      display: none;
+      position: absolute;
+      right: 0;
+      background-color: #444;
+      border-radius: 5px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
 
-        .profile-menu {
-            display: none;
-            position: absolute;
-            right: 0;
-            background-color: #444;
-            border-radius: 5px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-        }
+    .profile-dropdown:hover .profile-menu {
+      display: block;
+    }
 
-        .profile-dropdown:hover .profile-menu {
-            display: block;
-        }
+    /* Notifications */
+    .notifications {
+      position: relative;
+    }
 
-        /* Notifications */
-        .notifications {
-            position: relative;
-        }
+    .notifications .badge {
+      background-color: red;
+      color: white;
+      font-size: 12px;
+      border-radius: 50%;
+      padding: 3px 6px;
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
 
-        .notifications .badge {
-            background-color: red;
-            color: white;
-            font-size: 12px;
-            border-radius: 50%;
-            padding: 3px 6px;
-            position: absolute;
-            top: 0;
-            right: 0;
-        }
+    /* Hamburger menu */
+    .hamburger {
+      display: none;
+      font-size: 24px;
+      color: white;
+      cursor: pointer;
+    }
 
-        /* Sidebar Toggle */
-        .sidebar {
-            position: fixed;
-            left: -250px;
-            width: 250px;
-            height: 100vh;
-            background: #222;
-            transition: left 0.3s;
-        }
+    /* Mobile view */
+    @media (max-width: 768px) {
+      .nav-links {
+        position: fixed;
+        top: 60px;
+        right: -100%;
+        background: #333;
+        height: 100vh;
+        width: 220px;
+        flex-direction: column;
+        align-items: flex-start;
+        padding-top: 20px;
+        transition: 0.3s ease;
+      }
 
-        .sidebar.active {
-            left: 0;
-        }
+      .nav-links li {
+        width: 100%;
+      }
 
-        /* Scroll Progress Bar */
-        .progress-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 5px;
-            background: red;
-            width: 0;
-        }
-    </style>
+      .nav-links li a {
+        width: 100%;
+        padding: 15px;
+      }
+
+      .nav-links.active {
+        right: 0;
+      }
+
+      .hamburger {
+        display: block;
+      }
+    }
+
+    /* Scroll Progress Bar */
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 5px;
+      background: red;
+      width: 0;
+    }
+  </style>
 </head>
 <body>
-    <div class="progress-bar" id="progressBar"></div>
+  <div class="progress-bar" id="progressBar"></div>
 
-    <nav>
-        <div class="logo">UBSS</div>
-        <ul class="nav-links">
-            <li><a href="https://anyonike.github.io/website/">Home</a></li>
-            <li><a href=" https://www.computerhope.com/htmcolor.htm">HTML COLORS</a></li>
-            <li>
-                <a href="#">Results ▾</a>
-                <ul class="dropdown">
-                    <li><a href="https://anyonike.github.io/website/Businessu/Examsf1.html">Form One</a></li>
-                    <li><a href="https://anyonike.github.io/website/Businessu/Examsf2.html">Form Two</a></li>
-                    <li><a href="https://anyonike.github.io/website/Businessu/Examsf3.html">Form Three</a></li>
-                    <li><a href="https://anyonike.github.io/website/Businessu/Examsf4.html">Form Four</a></li>                   
-                </ul>
-            </li>
-            <li class="notifications">
-                <a href="">🔔 <span class="badge">3</span></a>
-            </li>
-            <li class="profile-dropdown">
-                <a href="https://anyonike.github.io/website/Businessu/ubss.html">👤 Profile</a>
-                <ul class="profile-menu">
-                     <li><a href="Time Table 2025.pdf">Time Table</a></li>
-                     <li><a href="#">Setting</a></li>
-                     <li><a href=" https://maktaba.tetea.org/resources/form-1-2/#math">Mitihani</a></li>
-                     <li><a href="#">Download</a></li>
-                     <li><a href="#">Logout</a></li>
-                </ul>
-            </li>
+  <nav>
+    <div class="logo">UBSS</div>
+    <i class="fas fa-bars hamburger" onclick="toggleMenu()"></i>
+    <ul class="nav-links">
+      <li><a href="https://anyonike.github.io/website/">Home</a></li>
+      <li><a href="https://www.computerhope.com/htmcolor.htm">HTML COLORS</a></li>
+      <li>
+        <a href="#">Results ▾</a>
+        <ul class="dropdown">
+          <li><a href="https://anyonike.github.io/website/Businessu/Examsf1.html">Form One</a></li>
+          <li><a href="https://anyonike.github.io/website/Businessu/Examsf2.html">Form Two</a></li>
+          <li><a href="https://anyonike.github.io/website/Businessu/Examsf3.html">Form Three</a></li>
+          <li><a href="https://anyonike.github.io/website/Businessu/Examsf4.html">Form Four</a></li>
         </ul>
-    </nav>
+      </li>
+      <li class="notifications">
+        <a href="">🔔 <span class="badge">3</span></a>
+      </li>
+      <li class="profile-dropdown">
+        <a href="https://anyonike.github.io/website/Businessu/ubss.html">👤 Profile</a>
+        <ul class="profile-menu">
+          <li><a href="Time Table 2025.pdf">Time Table</a></li>
+          <li><a href="#">Setting</a></li>
+          <li><a href="https://maktaba.tetea.org/resources/form-1-2/#math">Mitihani</a></li>
+          <li><a href="#">Download</a></li>
+          <li><a href="#">Logout</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
 
-    <script>
-        // Sidebar Toggle
-        function toggleSidebar() {
-            document.querySelector(".sidebar").classList.toggle("active");
-        }
+  <script>
+    function toggleMenu() {
+      document.querySelector(".nav-links").classList.toggle("active");
+    }
 
-        // Scroll Progress Bar
-        window.onscroll = function() {
-            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            var scrolled = (winScroll / height) * 100;
-            document.getElementById("progressBar").style.width = scrolled + "%";
-        };
-    </script>
+    // Scroll Progress Bar
+    window.onscroll = function () {
+      var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      var scrolled = (winScroll / height) * 100;
+      document.getElementById("progressBar").style.width = scrolled + "%";
+    };
+  </script>
 </body>
 </html>
