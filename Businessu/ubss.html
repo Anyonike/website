@@ -8,7 +8,7 @@
     body {
       margin: 0;
       font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      background-color: olive;
+      background-color: #fccc;
       color: #24292f;
     }
 
@@ -53,7 +53,6 @@
       padding: 0.5rem;
     }
 
-    /* Desktop dropdown */
     .nav-item:hover > .dropdown {
       display: block;
       opacity: 1;
@@ -110,13 +109,11 @@
       border: none;
     }
 
-    /* Mobile menu */
     .mobile-menu {
       display: none;
       flex-direction: column;
       background: white;
       padding: 1rem 1.5rem;
-      border-top: 1px solid #ddd;
     }
 
     .mobile-menu.active {
@@ -163,14 +160,13 @@
     .hero p {
       font-size: 1.25rem;
       margin-bottom: 2rem;
-      color: #f0f0f0;
+      color: #586069;
     }
 
     .hero a {
       font-size: 1rem;
     }
 
-    /* Responsive */
     @media (max-width: 768px) {
       .nav-links {
         display: none;
@@ -184,69 +180,104 @@
 </head>
 <body>
 
-<header>
-  <nav class="navbar">
-    <a href="https://anyonike.github.io/website/" class="logo">Home</a>
-    <div class="nav-links">
-      <div class="nav-item">
-        <a href="#">LUDEWA</a>
-        <div class="dropdown">
-          <a href="#">CHIEFKIDULILE</a>
-          <a href="#">IKOVO</a>
-          <a href="#">ILININDA</a>
-          <a href="#">UMAWANJO</a>
+  <header>
+    <nav class="navbar">
+      <center><a href="https://anyonike.github.io/website/" class="logo">Home</a></center>
+      <div class="nav-links">
+        <div class="nav-item">
+          <a href="#">MIKEKA</a>
+          <div class="dropdown">
+            <a href="https://docs.google.com/spreadsheets/d/1C46mGq0UQQShZzxPSoByNIy6LjXByRJ0pkWFAemsAag/edit?gid=997394599#gid=997394599">MIKEKA</a>
+           <a href="#">Enterprise</a>
+            <a href="#">Trade</a>
+            <a href="#">Invetories</a>
+            <a href="#">Trade</a>
+            <a href="#">Invetories</a>
+            <a href="#">One</a>
+          </div>
         </div>
-      </div>
-      <div class="nav-item">
-        <a href="#">Solutions</a>
-        <div class="dropdown">
-          <a href="#">For Developers</a>
-          <a href="#">For Teams</a>
+        <div class="nav-item">
+          <a href="#">Solutions</a>
+          <div class="dropdown">
+            <a href="#">For Developers</a>
+            <a href="#">For Teams</a>
+            <a href="#">For Startups</a>
+            <a href="#">Trade</a>
+            <a href="#">Invetories</a>
+            <a href="#">Two</a>
+          </div>
         </div>
+        <div class="nav-item">
+          <a href="#">Resources</a>
+          <div class="dropdown">
+            <a href="#">Docs</a>
+            <a href="#">API</a>
+            <a href="#">Community</a>
+            <a href="#">Trade</a>
+            <a href="#">Invetories</a>
+            <a href="#">Three</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="#">Solutions</a>
+          <div class="dropdown">
+            <a href="#">For Developers</a>
+            <a href="#">For Teams</a>
+            <a href="https://web.whatsapp.com/">WHATSAPP</a>
+            <a href="#">Trade</a>
+            <a href="#">Invetories</a>
+            <a href="#">Two</a>
+          </div>
+        </div>
+        <a href="#" class="cta">Sign up</a>
       </div>
-      <a href="#" class="cta">Sign up</a>
+      <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <button class="mobile-dropdown-toggle" onclick="toggleDropdown('product')"><a href="https://docs.google.com/spreadsheets/d/1C46mGq0UQQShZzxPSoByNIy6LjXByRJ0pkWFAemsAag/edit?gid=997394599#gid=997394599">MIKEKA</a></button>
+      <div class="mobile-dropdown" id="product">
+        <a href="#">Features</a>
+        <a href="#">Security</a>
+        <a href="https://web.whatsapp.com/">WHATSAPP</a>
+      </div>
+
+      <button class="mobile-dropdown-toggle" onclick="toggleDropdown('solutions')">Solutions</button>
+      <div class="mobile-dropdown" id="solutions">
+        <a href="#">For Developers</a>
+        <a href="#">For Teams</a>
+        <a href="#">For Startups</a>
+      </div>
+
+      <button class="mobile-dropdown-toggle" onclick="toggleDropdown('resources')">Resources</button>
+      <div class="mobile-dropdown" id="resources">
+        <a href="#">Docs</a>
+        <a href="#">API</a>
+        <a href="#">Community</a>
+      </div>
+
+      <a href="#" class="cta" style="margin-top: 1rem;">Sign up</a>
     </div>
-    <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
-  </nav>
+  </header>
 
-  <!-- Mobile menu -->
-  <div class="mobile-menu" id="mobileMenu">
-    <button class="mobile-dropdown-toggle" onclick="toggleDropdown('m-ludewa')">LUDEWA ▾</button>
-    <div class="mobile-dropdown" id="m-ludewa">
-      <a href="#">CHIEFKIDULILE</a>
-      <a href="#">IKOVO</a>
-      <a href="#">ILININDA</a>
-      <a href="#">UMAWANJO</a>
-    </div>
+  <section class="hero">
+    <h1>Umawanjo Boys' ni shule moja bora sana katika mkoa wa Njombe</h1>
+    <p>Hundreds of Candidates get division One. Currently it is our Culture</p>
+    <p><h3>Mlete mwanao kwa apate elimu na malezi bora</h3></p>
+    <a href="#" class="cta">Start for free</a>
+  </section>
 
-    <button class="mobile-dropdown-toggle" onclick="toggleDropdown('m-solutions')">Solutions ▾</button>
-    <div class="mobile-dropdown" id="m-solutions">
-      <a href="#">For Developers</a>
-      <a href="#">For Teams</a>
-    </div>
+  <script>
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('active');
+    }
 
-    <a href="#" class="cta" style="margin-top: 1rem;">Sign up</a>
-  </div>
-</header>
-
-<section class="hero">
-  <h1>Umawanjo Boys' ni shule moja bora sana katika mkoa wa Njombe</h1>
-  <p>Hundreds of Candidates get division One. Currently it is our Culture</p>
-  <h3>Mlete mwanao apate elimu na malezi bora</h3>
-  <a href="#" class="cta">Start for free</a>
-</section>
-
-<script>
-  function toggleMobileMenu() {
-    const menu = document.getElementById('mobileMenu');
-    menu.classList.toggle('active');
-  }
-
-  function toggleDropdown(id) {
-    const dropdown = document.getElementById(id);
-    dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-  }
-</script>
+    function toggleDropdown(id) {
+      const dropdown = document.getElementById(id);
+      dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    }
+  </script>
 
 </body>
 </html>
