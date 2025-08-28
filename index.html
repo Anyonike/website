@@ -16,14 +16,16 @@
       const dropdown = document.getElementById(id);
       const button = document.getElementById(buttonId);
 
-      // Desktop hover
+      // Desktop hover (instant open)
       button.addEventListener("mouseenter", () => {
         if (window.innerWidth >= 768) dropdown.classList.remove("hidden");
       });
       button.addEventListener("mouseleave", () => {
-        setTimeout(() => {
-          if (!dropdown.matches(":hover")) dropdown.classList.add("hidden");
-        }, 200);
+        if (window.innerWidth >= 768) {
+          setTimeout(() => {
+            if (!dropdown.matches(":hover")) dropdown.classList.add("hidden");
+          }, 100); // faster than before
+        }
       });
       dropdown.addEventListener("mouseleave", () => {
         if (window.innerWidth >= 768) dropdown.classList.add("hidden");
@@ -31,7 +33,7 @@
 
       // Mobile click
       button.addEventListener("click", (e) => {
-        if (window.innerWidth < 768) { // only mobile
+        if (window.innerWidth < 768) {
           e.preventDefault();
           dropdown.classList.toggle("hidden");
         }
@@ -54,10 +56,10 @@
     });
   </script>
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans">
+<body class="bg-gray-100 text-gray-800 font-sans">
 
   <!-- TOP HEADER -->
-  <header class="bg-white border-b">
+  <header class="bg-white border-b shadow-sm">
     <div class="max-w-7xl mx-auto flex justify-between items-center px-4 py-3">
       <!-- Logo -->
       <div class="flex items-center gap-3">
@@ -89,7 +91,7 @@
   </header>
 
   <!-- MAIN NAVBAR -->
-  <nav class="bg-blue-800 text-white">
+  <nav class="bg-blue-900 text-white shadow-md">
     <div class="max-w-7xl mx-auto flex justify-between px-4">
       <div class="hidden md:flex space-x-2">
         <a href="#" class="px-3 py-3 hover:bg-blue-700">Home</a>
@@ -142,7 +144,7 @@
   </nav>
 
   <!-- MOBILE MENU -->
-  <div id="mobileMenu" class="md:hidden hidden bg-blue-700 text-white px-4 py-2 space-y-2">
+  <div id="mobileMenu" class="md:hidden hidden bg-blue-800 text-white px-4 py-2 space-y-2">
     <a href="#" class="block">Home</a>
     <a href="#" class="block">Examinations</a>
     <a href="#" class="block">Results</a>
@@ -204,6 +206,10 @@
       <div class="text-sm flex items-end justify-end">
         <p>&copy; 2025 UBSS. All rights reserved.</p>
       </div>
+    </div>
+    <!-- Green branding strip -->
+    <div class="bg-green-600 text-center text-white py-2 text-sm">
+      Powered by UBSS | Inspired by NECTA Design
     </div>
   </footer>
 
