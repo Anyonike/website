@@ -2,238 +2,210 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Spotlight Clone with Navigation and Sidebars</title>
-  <style>
-    body, html {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      height: 100%;
-      overflow: hidden;
-    }
-    
-    .background {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-size: cover;
-      background-position: center;
-      transition: background-image 1s ease-in-out;
-    }
-    
-    .overlay {
-      position: absolute;
-      bottom: 60px;
-      left: 40px;
-      color: #fff;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.7);
-      max-width: 40%;
-    }
-
-    .overlay h1 {
-      font-size: 2.5rem;
-      margin: 0 0 10px;
-    }
-    
-    .overlay p {
-      font-size: 1.2rem;
-      margin: 0;
-    }
-
-    .top-nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 60px;
-      background: olive;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 20px;
-      z-index: 1000;
-    }
-
-    .top-nav .logo {
-      font-weight: bold;
-      font-size: 1.2rem;
-    }
-
-    .top-nav nav a {
-      color: white;
-      margin: 0 10px;
-      text-decoration: none;
-    }
-
-    .sidebar {
-      position: fixed;
-      top: 60px;
-      bottom: 40px;
-      width: 200px;
-      background: rgba(0,0,0,0.7);
-      color: white;
-      padding: 20px;
-      overflow-y: auto;
-      transition: transform 0.3s ease;
-      z-index: 900;
-    }
-
-    .sidebar.left { left: 0; transform: translateX(-100%); }
-    .sidebar.right { right: 0; transform: translateX(100%); }
-    .sidebar.open { transform: translateX(0); }
-
-    .toggle-btn {
-      position: fixed;
-      top: 70px;
-      background: rgba(0,0,0,0.5);
-      color: white;
-      border: none;
-      padding: 10px;
-      cursor: pointer;
-      z-index: 950;
-    }
-
-    .toggle-btn.left { left: 10px; }
-    .toggle-btn.right { right: 10px; }
-
-    .controls, .dots {
-      position: absolute;
-      bottom: 20px;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 15px;
-    }
-
-    .dots span {
-      display: block;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.6);
-      cursor: pointer;
-    }
-
-    .dots span.active { background: white; }
-
-    .footer {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 40px;
-      background: #222;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.9rem;
-      z-index: 1000;
-    }
-  </style>
-</head>
-<body>
-  <div class="background" id="background"></div>
-
-  <div class="top-nav">
-    <div class="logo">Spotlight Clone</div>
-    <nav>
-      <a href="https://anyonike.github.io/website/">Home</a>
-      <a href="#">Explore</a>
-      <a href="#">Gallery</a>
-      <a href="#">About</a>
-    </nav>
-    <input type="text" placeholder="Search..." />
-  </div>
-
-  <button class="toggle-btn left" onclick="toggleSidebar('left')">☰</button>
-  <button class="toggle-btn right" onclick="toggleSidebar('right')">☰</button>
-
-  <div class="sidebar left" id="leftSidebar">
-    <h3>Navigation</h3>
-    <ul>
-      <li><a href="https://anyonike.github.io/website/">Home</a></li>
-      <li><a href="Login.html">Destinations</a></li>
-      <li><a href="#">Nature</a></li>
-      <li><a href="#">History</a></li>
-    </ul>
-  </div>
-
-  <div class="sidebar right" id="rightSidebar">
-    <h3>Information</h3>
-    <p>Widgets, profile, or additional info can go here.</p>
-  </div>
-
-  <div class="overlay" id="overlay">
-    <h1 id="title">The Amphitheatre</h1>
-    <p id="subtitle">Royal Natal National Park</p>
-  </div>
-
-  <div class="controls">
-    <div class="dots" id="dots"></div>
-  </div>
-
-  <div class="footer">
-    &copy; 2025 Spotlight Clone. All rights reserved.
-  </div>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ludewa</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    const slides = [
-      {
-        image: "https://th.bing.com/th/id/R.52f354e1f2e01edda4f5080ab0e06237?rik=7PajYk&pid=ImgRaw&r=0",
-        title: "The Amphitheatre",
-        subtitle: "Royal Natal National Park"
-      },
-      {
-        image: "https://th.bing.com/th/id/R.c83c7b3af8fc6f1b18c77f6b1ea6764d?rik=w9&pid=ImgRaw&r=0",
-        title: "Mountainscape",
-        subtitle: "A breathtaking view"
-      },
-      {
-        image: "https://th.bing.com/th/id/OIP.4dYtdQJ_RghYzleKf&pid=ImgRaw&r=0",
-        title: "Sunset Horizon",
-        subtitle: "Golden hour over peaks"
+    // Toggle mobile menu
+    function toggleMenu() {
+      document.getElementById("mobileMenu").classList.toggle("hidden");
+    }
+
+    // Open dropdown on hover (desktop), click for mobile
+    function setupDropdown(id, buttonId) {
+      const dropdown = document.getElementById(id);
+      const button = document.getElementById(buttonId);
+
+      // Desktop hover
+      button.addEventListener("mouseenter", () => {
+        if (window.innerWidth >= 768) dropdown.classList.remove("hidden");
+      });
+      button.addEventListener("mouseleave", () => {
+        setTimeout(() => {
+          if (!dropdown.matches(":hover")) dropdown.classList.add("hidden");
+        }, 200);
+      });
+      dropdown.addEventListener("mouseleave", () => {
+        if (window.innerWidth >= 768) dropdown.classList.add("hidden");
+      });
+
+      // Mobile click
+      button.addEventListener("click", (e) => {
+        if (window.innerWidth < 768) { // only mobile
+          e.preventDefault();
+          dropdown.classList.toggle("hidden");
+        }
+      });
+    }
+
+    // Setup all dropdowns after page loads
+    window.onload = function () {
+      setupDropdown("examDropdown", "examBtn");
+      setupDropdown("resultsDropdown", "resultsBtn");
+      setupDropdown("servicesDropdown", "servicesBtn");
+      setupDropdown("pubsDropdown", "pubsBtn");
+    };
+
+    // Close dropdowns if clicking outside
+    window.addEventListener("click", function(e) {
+      if (!e.target.closest(".relative")) {
+        document.querySelectorAll("[id$='Dropdown']").forEach(d => d.classList.add("hidden"));
       }
-    ];
-
-    let currentIndex = 0;
-
-    const background = document.getElementById("background");
-    const title = document.getElementById("title");
-    const subtitle = document.getElementById("subtitle");
-    const dots = document.getElementById("dots");
-
-    function showSlide(index) {
-      currentIndex = index;
-      background.style.backgroundImage = `url(${slides[index].image})`;
-      title.textContent = slides[index].title;
-      subtitle.textContent = slides[index].subtitle;
-
-      document.querySelectorAll(".dots span").forEach((dot, i) => {
-        dot.classList.toggle("active", i === index);
-      });
-    }
-
-    function initDots() {
-      slides.forEach((_, i) => {
-        const dot = document.createElement("span");
-        dot.addEventListener("click", () => showSlide(i));
-        dots.appendChild(dot);
-      });
-    }
-
-    function toggleSidebar(side) {
-      const sidebar = document.getElementById(side + "Sidebar");
-      sidebar.classList.toggle("open");
-    }
-
-    initDots();
-    showSlide(0);
+    });
   </script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+  <!-- TOP HEADER -->
+  <header class="bg-white border-b">
+    <div class="max-w-7xl mx-auto flex justify-between items-center px-4 py-3">
+      <!-- Logo -->
+      <div class="flex items-center gap-3">
+        <img src="https://www.necta.go.tz/images/logo.png" alt="NECTA Logo" class="h-12">
+        <div>
+          <h1 class="font-bold text-lg text-gray-900">NECTA</h1>
+          <p class="text-sm text-gray-600">National Examinations Council of Tanzania</p>
+        </div>
+      </div>
+
+      <!-- Right Section -->
+      <div class="flex items-center gap-4">
+        <!-- Language Switcher -->
+        <div class="hidden md:flex gap-2 text-sm">
+          <button class="px-2 py-1 rounded hover:bg-blue-100">English</button>
+          <button class="px-2 py-1 rounded hover:bg-blue-100">Kiswahili</button>
+        </div>
+
+        <!-- Search -->
+        <div class="hidden md:flex items-center gap-2">
+          <input type="text" placeholder="Search..." class="border rounded px-3 py-1 text-sm w-64 focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <button class="bg-blue-700 text-white px-3 py-1 rounded">Search</button>
+        </div>
+
+        <!-- Mobile menu button -->
+        <button class="md:hidden text-blue-800" onclick="toggleMenu()">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN NAVBAR -->
+  <nav class="bg-blue-800 text-white">
+    <div class="max-w-7xl mx-auto flex justify-between px-4">
+      <div class="hidden md:flex space-x-2">
+        <a href="#" class="px-3 py-3 hover:bg-blue-700">Home</a>
+
+        <!-- Examinations Dropdown -->
+        <div class="relative">
+          <button id="examBtn" class="px-3 py-3 hover:bg-blue-700">Examinations ▾</button>
+          <div id="examDropdown" class="absolute hidden bg-white text-gray-800 rounded shadow mt-1 w-48">
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Primary Exams</a>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Secondary Exams</a>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Teachers Exams</a>
+          </div>
+        </div>
+
+        <!-- Results Dropdown -->
+        <div class="relative">
+          <button id="resultsBtn" class="px-3 py-3 hover:bg-blue-700">Results ▾</button>
+          <div id="resultsDropdown" class="absolute hidden bg-white text-gray-800 rounded shadow mt-1 w-48">
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100">SFNA</a>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100">PSLE</a>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100">CSEE</a>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100">ACSEE</a>
+          </div>
+        </div>
+
+        <!-- Services Dropdown -->
+        <div class="relative">
+          <button id="servicesBtn" class="px-3 py-3 hover:bg-blue-700">Services ▾</button>
+          <div id="servicesDropdown" class="absolute hidden bg-white text-gray-800 rounded shadow mt-1 w-48">
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Online Registration</a>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Certificates</a>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Verification</a>
+          </div>
+        </div>
+
+        <!-- Publications Dropdown -->
+        <div class="relative">
+          <button id="pubsBtn" class="px-3 py-3 hover:bg-blue-700">Publications ▾</button>
+          <div id="pubsDropdown" class="absolute hidden bg-white text-gray-800 rounded shadow mt-1 w-48">
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Reports</a>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Statistics</a>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Guidelines</a>
+          </div>
+        </div>
+
+        <a href="#" class="px-3 py-3 hover:bg-blue-700">About Us</a>
+        <a href="#" class="px-3 py-3 hover:bg-blue-700">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div id="mobileMenu" class="md:hidden hidden bg-blue-700 text-white px-4 py-2 space-y-2">
+    <a href="#" class="block">Home</a>
+    <a href="#" class="block">Examinations</a>
+    <a href="#" class="block">Results</a>
+    <a href="#" class="block">Services</a>
+    <a href="#" class="block">Publications</a>
+    <a href="#" class="block">About Us</a>
+    <a href="#" class="block">Contact</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="bg-gray-200 py-10 text-center">
+    <h2 class="text-2xl font-bold mb-2">Welcome to NECTA</h2>
+    <p class="text-gray-600">Providing reliable examination and results services across Tanzania</p>
+  </section>
+
+  <!-- QUICK LINKS GRID -->
+  <section class="max-w-7xl mx-auto px-4 py-8">
+    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <a href="#" class="bg-white shadow rounded p-4 text-center hover:bg-blue-50">
+        <div class="font-bold">Results</div>
+      </a>
+      <a href="#" class="bg-white shadow rounded p-4 text-center hover:bg-blue-50">
+        <div class="font-bold">Past Papers</div>
+      </a>
+      <a href="#" class="bg-white shadow rounded p-4 text-center hover:bg-blue-50">
+        <div class="font-bold">Online Services</div>
+      </a>
+      <a href="#" class="bg-white shadow rounded p-4 text-center hover:bg-blue-50">
+        <div class="font-bold">Announcements</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- NEWS -->
+  <section class="max-w-7xl mx-auto px-4 py-8">
+    <h3 class="text-xl font-bold mb-4">News & Announcements</h3>
+    <div class="space-y-4">
+      <div class="bg-white shadow rounded p-4">
+        <h4 class="font-semibold">Exam Timetable Released</h4>
+        <p class="text-sm text-gray-600">The timetable for the upcoming exams has been released. Click here to view.</p>
+      </div>
+      <div class="bg-white shadow rounded p-4">
+        <h4 class="font-semibold">Results Out</h4>
+        <p class="text-sm text-gray-600">NECTA has released results for the Standard Four Examinations.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-blue-900 text-white mt-10">
+    <div class="max-w-7xl mx-auto px-4 py-6 grid md:grid-cols-2 gap-4">
+      <div>
+        <h4 class="font-bold mb-2">Contact Us</h4>
+        <p>UBSS, Ludewa, Tanzania</p>
+        <p>Email: pmwasyika@gmail.com</p>
+        <p>Phone: +255 765883980</p>
+      </div>
+      <div class="text-sm flex items-end justify-end">
+        <p>&copy; 2025 UBSS. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
 </body>
 </html>
