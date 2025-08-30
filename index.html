@@ -16,7 +16,7 @@
       const dropdown = document.getElementById(id);
       const button = document.getElementById(buttonId);
 
-      // Desktop hover (instant open)
+      // Desktop hover
       button.addEventListener("mouseenter", () => {
         if (window.innerWidth >= 768) dropdown.classList.remove("hidden");
       });
@@ -24,14 +24,14 @@
         if (window.innerWidth >= 768) {
           setTimeout(() => {
             if (!dropdown.matches(":hover")) dropdown.classList.add("hidden");
-          }, 100); // faster than before
+          }, 150);
         }
       });
       dropdown.addEventListener("mouseleave", () => {
         if (window.innerWidth >= 768) dropdown.classList.add("hidden");
       });
 
-      // Mobile click
+      // Mobile click (toggle open/close)
       button.addEventListener("click", (e) => {
         if (window.innerWidth < 768) {
           e.preventDefault();
@@ -48,9 +48,9 @@
       setupDropdown("pubsDropdown", "pubsBtn");
     };
 
-    // Close dropdowns if clicking outside
+    // Close dropdowns if clicking outside (desktop only)
     window.addEventListener("click", function(e) {
-      if (!e.target.closest(".relative")) {
+      if (!e.target.closest(".relative") && window.innerWidth >= 768) {
         document.querySelectorAll("[id$='Dropdown']").forEach(d => d.classList.add("hidden"));
       }
     });
