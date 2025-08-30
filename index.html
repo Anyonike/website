@@ -11,7 +11,12 @@
       document.getElementById("mobileMenu").classList.toggle("hidden");
     }
 
-    // Open dropdown on hover (desktop), click for mobile
+    // Toggle mobile submenus
+    function toggleSubmenu(id) {
+      document.getElementById(id).classList.toggle("hidden");
+    }
+
+    // Dropdown setup for desktop
     function setupDropdown(id, buttonId) {
       const dropdown = document.getElementById(id);
       const button = document.getElementById(buttonId);
@@ -31,16 +36,15 @@
         if (window.innerWidth >= 768) dropdown.classList.add("hidden");
       });
 
-      // Mobile click (toggle open/close)
+      // Mobile click = normal toggle
       button.addEventListener("click", (e) => {
         if (window.innerWidth < 768) {
           e.preventDefault();
-          dropdown.classList.toggle("hidden");
+          toggleSubmenu(id);
         }
       });
     }
 
-    // Setup all dropdowns after page loads
     window.onload = function () {
       setupDropdown("examDropdown", "examBtn");
       setupDropdown("resultsDropdown", "resultsBtn");
@@ -48,7 +52,7 @@
       setupDropdown("pubsDropdown", "pubsBtn");
     };
 
-    // Close dropdowns if clicking outside (desktop only)
+    // Close desktop dropdowns if click outside
     window.addEventListener("click", function(e) {
       if (!e.target.closest(".relative") && window.innerWidth >= 768) {
         document.querySelectorAll("[id$='Dropdown']").forEach(d => d.classList.add("hidden"));
@@ -58,10 +62,9 @@
 </head>
 <body class="bg-gray-100 text-gray-800 font-sans">
 
-  <!-- TOP HEADER -->
+  <!-- HEADER -->
   <header class="bg-white border-b shadow-sm">
     <div class="max-w-7xl mx-auto flex justify-between items-center px-4 py-3">
-      <!-- Logo -->
       <div class="flex items-center gap-3">
         <img src="https://www.necta.go.tz/images/logo.png" alt="NECTA Logo" class="h-12">
         <div>
@@ -69,44 +72,37 @@
           <p class="text-sm text-gray-600">National Examinations Council of Tanzania</p>
         </div>
       </div>
-
-      <!-- Right Section -->
       <div class="flex items-center gap-4">
-        <!-- Language Switcher -->
         <div class="hidden md:flex gap-2 text-sm">
           <button class="px-2 py-1 rounded hover:bg-blue-100">English</button>
           <button class="px-2 py-1 rounded hover:bg-blue-100">Kiswahili</button>
         </div>
-
-        <!-- Search -->
         <div class="hidden md:flex items-center gap-2">
           <input type="text" placeholder="Search..." class="border rounded px-3 py-1 text-sm w-64 focus:outline-none focus:ring-2 focus:ring-blue-500">
           <button class="bg-blue-700 text-white px-3 py-1 rounded">Search</button>
         </div>
-
-        <!-- Mobile menu button -->
         <button class="md:hidden text-blue-800" onclick="toggleMenu()">☰</button>
       </div>
     </div>
   </header>
 
-  <!-- MAIN NAVBAR -->
+  <!-- NAVBAR DESKTOP -->
   <nav class="bg-blue-900 text-white shadow-md">
     <div class="max-w-7xl mx-auto flex justify-between px-4">
       <div class="hidden md:flex space-x-2">
         <a href="#" class="px-3 py-3 hover:bg-blue-700">Home</a>
 
-        <!-- Examinations Dropdown -->
+        <!-- Examinations -->
         <div class="relative">
           <button id="examBtn" class="px-3 py-3 hover:bg-blue-700">Examinations ▾</button>
           <div id="examDropdown" class="absolute hidden bg-white text-gray-800 rounded shadow mt-1 w-48">
-            <a href="Business/index.html" class="block px-4 py-2 hover:bg-gray-100">Primary Exams</a>
-            <a href="Businessu/Advanced.html" class="block px-4 py-2 hover:bg-gray-100">Secondary Exams</a>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Primary Exams</a>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Secondary Exams</a>
             <a href="#" class="block px-4 py-2 hover:bg-gray-100">Teachers Exams</a>
           </div>
         </div>
 
-        <!-- Results Dropdown -->
+        <!-- Results -->
         <div class="relative">
           <button id="resultsBtn" class="px-3 py-3 hover:bg-blue-700">Results ▾</button>
           <div id="resultsDropdown" class="absolute hidden bg-white text-gray-800 rounded shadow mt-1 w-48">
@@ -117,7 +113,7 @@
           </div>
         </div>
 
-        <!-- Services Dropdown -->
+        <!-- Services -->
         <div class="relative">
           <button id="servicesBtn" class="px-3 py-3 hover:bg-blue-700">Services ▾</button>
           <div id="servicesDropdown" class="absolute hidden bg-white text-gray-800 rounded shadow mt-1 w-48">
@@ -127,7 +123,7 @@
           </div>
         </div>
 
-        <!-- Publications Dropdown -->
+        <!-- Publications -->
         <div class="relative">
           <button id="pubsBtn" class="px-3 py-3 hover:bg-blue-700">Publications ▾</button>
           <div id="pubsDropdown" class="absolute hidden bg-white text-gray-800 rounded shadow mt-1 w-48">
@@ -138,20 +134,50 @@
         </div>
 
         <a href="#" class="px-3 py-3 hover:bg-blue-700">About Us</a>
-        <a href="Businessu/Ludewap.html" class="px-3 py-3 hover:bg-blue-700">Ludewa</a>
+        <a href="#" class="px-3 py-3 hover:bg-blue-700">Contact</a>
       </div>
     </div>
   </nav>
 
-  <!-- MOBILE MENU -->
+  <!-- NAVBAR MOBILE -->
   <div id="mobileMenu" class="md:hidden hidden bg-blue-800 text-white px-4 py-2 space-y-2">
-    <a href="https://anyonike.github.io/website/" class="block">Home</a>
-    <a href="#" class="block">Examinations</a>
-    <a href="#" class="block">Results</a>
-    <a href="#" class="block">Services</a>
-    <a href="#" class="block">Publications</a>
-    <a href="#" class="block">About Us</a>
-    <a href="#" class="block">Contact</a>
+    <a href="#" class="block py-2">Home</a>
+
+    <!-- Mobile Examinations -->
+    <button onclick="toggleSubmenu('mobileExams')" class="w-full text-left py-2">Examinations ▾</button>
+    <div id="mobileExams" class="hidden pl-4 space-y-1">
+      <a href="#" class="block py-1">Primary Exams</a>
+      <a href="#" class="block py-1">Secondary Exams</a>
+      <a href="#" class="block py-1">Teachers Exams</a>
+    </div>
+
+    <!-- Mobile Results -->
+    <button onclick="toggleSubmenu('mobileResults')" class="w-full text-left py-2">Results ▾</button>
+    <div id="mobileResults" class="hidden pl-4 space-y-1">
+      <a href="#" class="block py-1">SFNA</a>
+      <a href="#" class="block py-1">PSLE</a>
+      <a href="#" class="block py-1">CSEE</a>
+      <a href="#" class="block py-1">ACSEE</a>
+    </div>
+
+    <!-- Mobile Services -->
+    <button onclick="toggleSubmenu('mobileServices')" class="w-full text-left py-2">Services ▾</button>
+    <div id="mobileServices" class="hidden pl-4 space-y-1">
+      <a href="#" class="block py-1">Online Registration</a>
+      <a href="#" class="block py-1">Certificates</a>
+      <a href="#" class="block py-1">Verification</a>
+    </div>
+
+    <!-- Mobile Publications -->
+    <button onclick="toggleSubmenu('mobilePubs')" class="w-full text-left py-2">Publications ▾</button>
+    <div id="mobilePubs" class="hidden pl-4 space-y-1">
+      <a href="#" class="block py-1">Reports</a>
+      <a href="#" class="block py-1">Statistics</a>
+      <a href="#" class="block py-1">Guidelines</a>
+    </div>
+
+    <a href="#" class="block py-2">About Us</a>
+    <a href="#" class="block py-2">Contact</a>
   </div>
 
   <!-- HERO -->
@@ -160,22 +186,14 @@
     <p class="text-gray-600">Providing reliable examination and results services across Tanzania</p>
   </section>
 
-  <!-- QUICK LINKS GRID -->
+  <!-- QUICK LINKS -->
   <section class="max-w-7xl mx-auto px-4 py-8">
     <h3 class="text-xl font-bold mb-4">Quick Links</h3>
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-      <a href="#" class="bg-white shadow rounded p-4 text-center hover:bg-blue-50">
-        <div class="font-bold">Results</div>
-      </a>
-      <a href="#" class="bg-white shadow rounded p-4 text-center hover:bg-blue-50">
-        <div class="font-bold">Past Papers</div>
-      </a>
-      <a href="#" class="bg-white shadow rounded p-4 text-center hover:bg-blue-50">
-        <div class="font-bold">Online Services</div>
-      </a>
-      <a href="#" class="bg-white shadow rounded p-4 text-center hover:bg-blue-50">
-        <div class="font-bold">Announcements</div>
-      </a>
+      <a href="#" class="bg-white shadow rounded p-4 text-center hover:bg-blue-50">Results</a>
+      <a href="#" class="bg-white shadow rounded p-4 text-center hover:bg-blue-50">Past Papers</a>
+      <a href="#" class="bg-white shadow rounded p-4 text-center hover:bg-blue-50">Online Services</a>
+      <a href="#" class="bg-white shadow rounded p-4 text-center hover:bg-blue-50">Announcements</a>
     </div>
   </section>
 
@@ -201,13 +219,12 @@
         <h4 class="font-bold mb-2">Contact Us</h4>
         <p>UBSS, Ludewa, Tanzania</p>
         <p>Email: pmwasyika@gmail.com</p>
-        <p>Phone: +255-765-883-980</p>
+        <p>Phone: +255 765883980</p>
       </div>
       <div class="text-sm flex items-end justify-end">
         <p>&copy; 2025 UBSS. All rights reserved.</p>
       </div>
     </div>
-    <!-- Green branding strip -->
     <div class="bg-green-600 text-center text-white py-2 text-sm">
       Powered by UBSS | Inspired by NECTA Design
     </div>
