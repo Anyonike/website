@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Marks Entry</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+    th, td { border: 1px solid #555; padding: 8px; text-align: center; }
+    th { background: #eee; }
+    input[type="number"] { width: 70px; }
+    input[type="text"] { width: 150px; }
+    button { padding: 6px 12px; margin: 5px; }
+  </style>
+</head>
+<body>
+  <h2>Student Marks Entry</h2>
+  <form id="marksForm" action="save.php" method="POST">
+    <table id="marksTable">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>STUDENT NAME</th>
+          <th>SEX</th>
+          <th>CIVICS</th>
+          <th>HISTORY</th>
+          <th>GEOGRAPHY</th>
+          <th>KISWAHILI</th>
+          <th>BIBLE</th>
+          <th>LITERATURE</th>
+          <th>ENGLISH</th>
+          <th>PHYSICS</th>
+          <th>CHEMISTRY</th>
+          <th>BIOLOGY</th>
+          <th>MATHEMATICS</th>
+          <th>ACTION</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Rows will be added here -->
+      </tbody>
+    </table>
+    <button type="button" onclick="addRow()">Add Row</button>
+    <button type="submit">Save to Database</button>
+  </form>
+
+  <script>
+    let rowCount = 0;
+
+    function addRow() {
+      rowCount++;
+      const table = document.getElementById("marksTable").getElementsByTagName("tbody")[0];
+      const newRow = table.insertRow();
+
+      newRow.innerHTML = `
+        <td>${rowCount}</td>
+        <td><input type="text" name="student_name[]" required></td>
+        <td>
+          <select name="sex[]">
+            <option value="M">M</option>
+            <option value="F">F</option>
+          </select>
+        </td>
+        <td><input type="number" name="civics[]" min="0" max="100" required></td>
+        <td><input type="number" name="history[]" min="0" max="100" required></td>
+        <td><input type="number" name="geography[]" min="0" max="100" required></td>
+        <td><input type="number" name="kiswahili[]" min="0" max="100" required></td>
+        <td><input type="number" name="bible[]" min="0" max="100" required></td>
+        <td><input type="number" name="literature[]" min="0" max="100" required></td>
+        <td><input type="number" name="english[]" min="0" max="100" required></td>
+        <td><input type="number" name="physics[]" min="0" max="100" required></td>
+        <td><input type="number" name="chemistry[]" min="0" max="100" required></td>
+        <td><input type="number" name="biology[]" min="0" max="100" required></td>
+        <td><input type="number" name="mathematics[]" min="0" max="100" required></td>
+        <td><button type="button" onclick="deleteRow(this)">Delete</button></td>
+      `;
+    }
+
+    function deleteRow(btn) {
+      const row = btn.parentNode.parentNode;
+      row.parentNode.removeChild(row);
+    }
+  </script>
+</body>
+</html>
