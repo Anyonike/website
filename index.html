@@ -143,13 +143,15 @@
   <div id="mobileMenu" class="md:hidden hidden bg-blue-800 text-white px-4 py-2 space-y-2">
     <a href="#" class="block py-2">Home</a>
 
-    <!-- Mobile Examinations -->
-    <button onclick="toggleSubmenu('mobileExams')" class="w-full text-left py-2">Examinations ▾</button>
-    <div id="mobileExams" class="hidden pl-4 space-y-1">
-      <a href="#" class="block py-1">Primary Exams</a>
-      <a href="#" class="block py-1">Secondary Exams</a>
-      <a href="#" class="block py-1">Teachers Exams</a>
-    </div>
+    <!-- Examinations -->
+<div class="relative">
+  <button id="examBtn" class="px-3 py-3 hover:bg-blue-700">Examinations ▾</button>
+  <div id="examDropdown" class="absolute hidden bg-white text-gray-800 rounded shadow mt-1 w-48">
+    <a href="Businessu/FM.html" class="block px-4 py-2 hover:bg-gray-100">Primary Exams</a>
+    <a href="#" class="block px-4 py-2 hover:bg-gray-100">Secondary Exams</a>
+    <a href="#" class="block px-4 py-2 hover:bg-gray-100">Teachers Exams</a>
+  </div>
+</div>
 
     <!-- Mobile Results -->
     <button onclick="toggleSubmenu('mobileResults')" class="w-full text-left py-2">Results ▾</button>
