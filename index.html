@@ -12,53 +12,67 @@
     }
 
     // Toggle mobile submenus
-    function toggleSubmenu(id) {
-      document.getElementById(id).classList.toggle("hidden");
+    function toggleSubmenu(id, arrowId) {
+      const submenu = document.getElementById(id);
+      const arrow = document.getElementById(arrowId);
+      submenu.classList.toggle("hidden");
+      arrow.classList.toggle("rotate-180");
     }
 
     // Dropdown setup for desktop & mobile
-    function setupDropdown(id, buttonId) {
+    function setupDropdown(id, buttonId, arrowId) {
       const dropdown = document.getElementById(id);
       const button = document.getElementById(buttonId);
+      const arrow = document.getElementById(arrowId);
 
       // Desktop hover
       button.addEventListener("mouseenter", () => {
-        if (window.innerWidth >= 768) dropdown.classList.remove("hidden");
+        if (window.innerWidth >= 768) {
+          dropdown.classList.remove("hidden");
+          arrow.classList.add("rotate-180");
+        }
       });
       button.addEventListener("mouseleave", () => {
         if (window.innerWidth >= 768) {
           setTimeout(() => {
-            if (!dropdown.matches(":hover")) dropdown.classList.add("hidden");
+            if (!dropdown.matches(":hover")) {
+              dropdown.classList.add("hidden");
+              arrow.classList.remove("rotate-180");
+            }
           }, 150);
         }
       });
       dropdown.addEventListener("mouseleave", () => {
-        if (window.innerWidth >= 768) dropdown.classList.add("hidden");
+        if (window.innerWidth >= 768) {
+          dropdown.classList.add("hidden");
+          arrow.classList.remove("rotate-180");
+        }
       });
 
-      // Mobile click = normal toggle
+      // Mobile click
       button.addEventListener("click", (e) => {
         if (window.innerWidth < 768) {
-          // ✅ fix: block click only for parent button, not for <a>
           if (button.tagName === "BUTTON") {
             e.preventDefault();
-            toggleSubmenu(id);
+            dropdown.classList.toggle("hidden");
+            arrow.classList.toggle("rotate-180");
           }
         }
       });
     }
 
     window.onload = function () {
-      setupDropdown("examDropdown", "examBtn");
-      setupDropdown("resultsDropdown", "resultsBtn");
-      setupDropdown("servicesDropdown", "servicesBtn");
-      setupDropdown("pubsDropdown", "pubsBtn");
+      setupDropdown("examDropdown", "examBtn", "examArrow");
+      setupDropdown("resultsDropdown", "resultsBtn", "resultsArrow");
+      setupDropdown("servicesDropdown", "servicesBtn", "servicesArrow");
+      setupDropdown("pubsDropdown", "pubsBtn", "pubsArrow");
     };
 
     // Close desktop dropdowns if click outside
     window.addEventListener("click", function(e) {
       if (!e.target.closest(".relative") && window.innerWidth >= 768) {
         document.querySelectorAll("[id$='Dropdown']").forEach(d => d.classList.add("hidden"));
+        document.querySelectorAll(".arrow").forEach(a => a.classList.remove("rotate-180"));
       }
     });
   </script>
@@ -97,7 +111,9 @@
 
         <!-- Examinations -->
         <div class="relative">
-          <button id="examBtn" class="px-3 py-3 hover:bg-blue-700">Examinations ▾</button>
+          <button id="examBtn" class="px-3 py-3 hover:bg-blue-700 flex items-center gap-1">
+            Examinations <span id="examArrow" class="arrow transition-transform">▾</span>
+          </button>
           <div id="examDropdown" class="absolute hidden bg-white text-gray-800 rounded shadow mt-1 w-48">
             <a href="Businessu/FM.html" class="block px-4 py-2 hover:bg-gray-100">Primary Exams</a>
             <a href="#" class="block px-4 py-2 hover:bg-gray-100">Secondary Exams</a>
@@ -107,7 +123,9 @@
 
         <!-- Results -->
         <div class="relative">
-          <button id="resultsBtn" class="px-3 py-3 hover:bg-blue-700">Results ▾</button>
+          <button id="resultsBtn" class="px-3 py-3 hover:bg-blue-700 flex items-center gap-1">
+            Results <span id="resultsArrow" class="arrow transition-transform">▾</span>
+          </button>
           <div id="resultsDropdown" class="absolute hidden bg-white text-gray-800 rounded shadow mt-1 w-48">
             <a href="#" class="block px-4 py-2 hover:bg-gray-100">SFNA</a>
             <a href="#" class="block px-4 py-2 hover:bg-gray-100">PSLE</a>
@@ -118,7 +136,9 @@
 
         <!-- Services -->
         <div class="relative">
-          <button id="servicesBtn" class="px-3 py-3 hover:bg-blue-700">Services ▾</button>
+          <button id="servicesBtn" class="px-3 py-3 hover:bg-blue-700 flex items-center gap-1">
+            Services <span id="servicesArrow" class="arrow transition-transform">▾</span>
+          </button>
           <div id="servicesDropdown" class="absolute hidden bg-white text-gray-800 rounded shadow mt-1 w-48">
             <a href="#" class="block px-4 py-2 hover:bg-gray-100">Online Registration</a>
             <a href="#" class="block px-4 py-2 hover:bg-gray-100">Certificates</a>
@@ -128,7 +148,9 @@
 
         <!-- Publications -->
         <div class="relative">
-          <button id="pubsBtn" class="px-3 py-3 hover:bg-blue-700">Publications ▾</button>
+          <button id="pubsBtn" class="px-3 py-3 hover:bg-blue-700 flex items-center gap-1">
+            Publications <span id="pubsArrow" class="arrow transition-transform">▾</span>
+          </button>
           <div id="pubsDropdown" class="absolute hidden bg-white text-gray-800 rounded shadow mt-1 w-48">
             <a href="#" class="block px-4 py-2 hover:bg-gray-100">Reports</a>
             <a href="#" class="block px-4 py-2 hover:bg-gray-100">Statistics</a>
@@ -147,7 +169,9 @@
     <a href="#" class="block py-2">Home</a>
 
     <!-- Mobile Examinations -->
-    <button onclick="toggleSubmenu('mobileExams')" class="w-full text-left py-2">Examinations ▾</button>
+    <button onclick="toggleSubmenu('mobileExams','mobileExamArrow')" class="w-full text-left py-2 flex items-center justify-between">
+      Examinations <span id="mobileExamArrow" class="arrow transition-transform">▾</span>
+    </button>
     <div id="mobileExams" class="hidden pl-4 space-y-1">
       <a href="Businessu/FM.html" class="block py-1">Primary Exams</a>
       <a href="#" class="block py-1">Secondary Exams</a>
@@ -155,7 +179,9 @@
     </div>
 
     <!-- Mobile Results -->
-    <button onclick="toggleSubmenu('mobileResults')" class="w-full text-left py-2">Results ▾</button>
+    <button onclick="toggleSubmenu('mobileResults','mobileResultsArrow')" class="w-full text-left py-2 flex items-center justify-between">
+      Results <span id="mobileResultsArrow" class="arrow transition-transform">▾</span>
+    </button>
     <div id="mobileResults" class="hidden pl-4 space-y-1">
       <a href="#" class="block py-1">SFNA</a>
       <a href="#" class="block py-1">PSLE</a>
@@ -164,7 +190,9 @@
     </div>
 
     <!-- Mobile Services -->
-    <button onclick="toggleSubmenu('mobileServices')" class="w-full text-left py-2">Services ▾</button>
+    <button onclick="toggleSubmenu('mobileServices','mobileServicesArrow')" class="w-full text-left py-2 flex items-center justify-between">
+      Services <span id="mobileServicesArrow" class="arrow transition-transform">▾</span>
+    </button>
     <div id="mobileServices" class="hidden pl-4 space-y-1">
       <a href="#" class="block py-1">Online Registration</a>
       <a href="#" class="block py-1">Certificates</a>
@@ -172,7 +200,9 @@
     </div>
 
     <!-- Mobile Publications -->
-    <button onclick="toggleSubmenu('mobilePubs')" class="w-full text-left py-2">Publications ▾</button>
+    <button onclick="toggleSubmenu('mobilePubs','mobilePubsArrow')" class="w-full text-left py-2 flex items-center justify-between">
+      Publications <span id="mobilePubsArrow" class="arrow transition-transform">▾</span>
+    </button>
     <div id="mobilePubs" class="hidden pl-4 space-y-1">
       <a href="#" class="block py-1">Reports</a>
       <a href="#" class="block py-1">Statistics</a>
