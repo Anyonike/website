@@ -200,38 +200,25 @@
       if (e.key === "Enter") {
         e.preventDefault();
         const table = document.getElementById("scoresTable");
+        const rows = table.querySelectorAll("tbody tr");
+        const currentRowIndex = Array.prototype.indexOf.call(rows, e.target.parentNode);
+        const currentCellIndex = Array.prototype.indexOf.call(e.target.parentNode.cells, e.target);
 
-        // collect only subject cells (CIVICS - NUTRITION: index 3-16)
-        const allCells = [];
-        table.querySelectorAll("tbody tr").forEach(row => {
-          for (let i = 3; i <= 16; i++) {
-            allCells.push(row.cells[i]);
-          }
-        });
+        let nextRowIndex = currentRowIndex;
+        let nextCellIndex = 3; // Move to the first subject cell in the next row
 
-        const currentCell = e.target;
-        const currentIndex = allCells.indexOf(currentCell);
-
-        if (currentIndex === -1) return;
-
-        let nextIndex;
-        if (e.shiftKey) {
-          nextIndex = currentIndex - 1;
-          if (nextIndex < 0) nextIndex = 0;
-        } else {
-          nextIndex = currentIndex + 1;
-          if (nextIndex >= allCells.length) {
-            addRow();
-            const newCells = [];
-            table.querySelectorAll("tbody tr").forEach(row => {
-              for (let i = 3; i <= 16; i++) {
-                newCells.push(row.cells[i]);
-              }
-            });
-            nextIndex = newCells.length - (16 - 3);
-          }
+        if (currentCellIndex >= 3 && currentCellIndex <= 16) {
+          nextRowIndex++;
         }
-        allCells[nextIndex].focus();
+
+        if (nextRowIndex >= rows.length) {
+          addRow();
+        }
+
+        const newRow = table.querySelectorAll("tbody tr")[nextRowIndex];
+        if (newRow) {
+          newRow.cells[nextCellIndex].focus();
+        }
       }
     }
 
