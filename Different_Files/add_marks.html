@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form One Scores</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; background: #f8f8f8; }
+    table { width: 100%; border-collapse: collapse; background: white; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+    th { background: #215C98; color: white; }
+    tr:nth-child(even) { background: #f9f9f9; }
+    tr.selected { background: #ffe0b2 !important; }
+    caption { font-size: 1.5em; margin: 10px; font-weight: bold; color: #002060; }
+    td[contenteditable="true"] { background: #fff8dc; outline: none; }
+    td.locked { background: #e0e0e0; font-weight: bold; }
+    button {
+      background: #215C98;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      margin: 10px 5px 15px 0;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1em;
+    }
+    button:hover { background: #1a4570; }
+    #uploadInput { margin: 10px 0; }
+  </style>
+</head>
+<body>
+
+  <h2>📊 FORM ONE SCORES</h2>
+  
+  <!-- Upload Excel -->
+  <input type="file" id="uploadInput" accept=".xlsx, .xls" />
+  <br><br>
+
+  <table id="scoresTable">
+    <caption>FORM ONE SCORES</caption>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>STUDENT NAME</th>
+        <th>SEX</th>
+        <th>CIVICS</th>
+        <th>HISTORY</th>
+        <th>GEOGRAPHY</th>
+        <th>KISWAHILI</th>
+        <th>BIBLE</th>
+        <th>ENGLISH LANGUAGE</th>
+        <th>LITERATURE IN ENGLISH</th>
+        <th>PHYSICS</th>
+        <th>BIOLOGY</th>
+        <th>MATHEMATICS</th>
+        <th>COMPUTER</th>
+        <th>FRENCH</th>
+        <th>CHINESE</th>
+        <th>NUTRITION</th>
+        <th>AVERAGE</th>
+        <th>GRADE</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <button onclick="addRow()">➕ Ongeza Mwanafunzi</button>
+  <button onclick="deleteRow()">🗑️ Futa Mwanafunzi</button>
+  <button onclick="downloadExcel()">📥 Pakua Excel</button>
+  <button onclick="downloadPDF()">📄 Pakua PDF</button>
+
+  <!-- Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.29/jspdf.plugin.autotable.min.js"></script>
+
+  <script>
+    let selectedRow = null;
+
+    // Upload Excel and load data
+    document.getElementById("uploadInput").addEventListener("change", function(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(event) {
+        const data = new Uint8Array(event.target.result);
+        const workbook = XLSX.read(data, { type: "array" });
+        const sheetName = workbook.SheetNames[0];
+        const sheet = workbook.Sheets[sheetName];
+        const rows = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+
+        const tbody = document.querySelector("#scoresTable tbody");
+        tbody.innerHTML = ""; // clear old data
+
+        rows.slice(1).forEach((row, index) => {
+          const newRow = tbody.insertRow();
+          for (let i = 0; i < 19; i++) {
+            const cell = newRow.insertCell();
+            if (i === 0) { cell.innerText = row[0] || index + 1; } // ID
+            else if (i === 1) { cell.innerText = row[1] || ""; }   // Name
+            else if (i === 2) { cell.innerText = row[2] || ""; }   // Sex
+            else if (i >= 3 && i <= 16) {
+              cell.contentEditable = "true";
+              cell.addEventListener("input", updateRowAverage);
+              cell.addEventListener("keydown", handleEnterNavigation);
+            } else {
+              cell.classList.add("locked");
+            }
+          }
+          attachRowClick(newRow);
+        });
+      };
+      reader.readAsArrayBuffer(file);
+    });
+
+    function addRow() {
+      const table = document.getElementById("scoresTable").getElementsByTagName("tbody")[0];
+      const rowCount = table.rows.length + 1;
+      const newRow = table.insertRow();
+
+      for (let i = 0; i < 19; i++) {
+        const cell = newRow.insertCell();
+        if (i < 17) {
+          cell.contentEditable = (i >= 3 && i <= 16) ? "true" : "false";
+          cell.innerHTML = (i === 0) ? rowCount : "";
+          if (i >= 3 && i <= 16) {
+            cell.addEventListener("input", updateRowAverage);
+            cell.addEventListener("keydown", handleEnterNavigation);
+          }
+        } else {
+          cell.classList.add("locked");
+        }
+      }
+      attachRowClick(newRow);
+    }
+
+    function deleteRow() {
+      if (selectedRow) {
+        selectedRow.remove();
+        selectedRow = null;
+        updateIDs();
+      } else {
+        alert("⚠️ Tafadhali bofya row unayotaka kufuta kwanza.");
+      }
+    }
+
+    function attachRowClick(row) {
+      row.addEventListener("click", function () {
+        if (selectedRow) selectedRow.classList.remove("selected");
+        selectedRow = this;
+        this.classList.add("selected");
+      });
+      row.querySelectorAll("td[contenteditable='true']").forEach(cell => {
+        cell.addEventListener("input", updateRowAverage);
+        cell.addEventListener("keydown", handleEnterNavigation);
+      });
+    }
+
+    function updateIDs() {
+      const rows = document.querySelectorAll("#scoresTable tbody tr");
+      rows.forEach((row, index) => {
+        row.cells[0].innerText = index + 1;
+      });
+    }
+
+    function updateRowAverage() {
+      const row = this.parentElement;
+      let total = 0, count = 0;
+      for (let i = 3; i <= 16; i++) {
+        let val = parseFloat(row.cells[i].innerText);
+        if (!isNaN(val)) {
+          total += val;
+          count++;
+        }
+      }
+      const avgCell = row.cells[17];
+      const gradeCell = row.cells[18];
+      if (count > 0) {
+        const average = (total / count).toFixed(1);
+        avgCell.innerText = average;
+        gradeCell.innerText = getGrade(average);
+      } else {
+        avgCell.innerText = "";
+        gradeCell.innerText = "";
+      }
+    }
+
+    function getGrade(avg) {
+      avg = parseFloat(avg);
+      if (avg >= 75) return "A";
+      if (avg >= 60) return "B";
+      if (avg >= 45) return "C";
+      if (avg >= 30) return "D";
+      return "F";
+    }
+
+    // Navigation using Enter
+    function handleEnterNavigation(e) {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        const table = document.getElementById("scoresTable");
+
+        // collect only subject cells (CIVICS - NUTRITION: index 3-16)
+        const allCells = [];
+        table.querySelectorAll("tbody tr").forEach(row => {
+          for (let i = 3; i <= 16; i++) {
+            allCells.push(row.cells[i]);
+          }
+        });
+
+        const currentCell = e.target;
+        const currentIndex = allCells.indexOf(currentCell);
+
+        if (currentIndex === -1) return;
+
+        let nextIndex;
+        if (e.shiftKey) {
+          nextIndex = currentIndex - 1;
+          if (nextIndex < 0) nextIndex = 0;
+        } else {
+          nextIndex = currentIndex + 1;
+          if (nextIndex >= allCells.length) {
+            addRow();
+            const newCells = [];
+            table.querySelectorAll("tbody tr").forEach(row => {
+              for (let i = 3; i <= 16; i++) {
+                newCells.push(row.cells[i]);
+              }
+            });
+            nextIndex = newCells.length - (16 - 3);
+          }
+        }
+        allCells[nextIndex].focus();
+      }
+    }
+
+    function downloadExcel() {
+      const table = document.getElementById("scoresTable");
+      const wb = XLSX.utils.table_to_book(table, { sheet: "Scores" });
+      XLSX.writeFile(wb, "Form_One_Scores.xlsx");
+    }
+
+    async function downloadPDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF('l', 'pt', 'a4');
+      doc.text("FORM ONE SCORES", 40, 30);
+      doc.autoTable({ html: "#scoresTable", startY: 50 });
+      doc.save("Form_One_Scores.pdf");
+    }
+  </script>
+
+</body>
+</html>
