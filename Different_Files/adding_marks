@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Registration Form</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.29/jspdf.plugin.autotable.min.js"></script>
+  <style>
+    body {
+      font-family: Cambria, serif;
+      margin: 20px;
+      background: #fff;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 150px; /* nafasi kwa toolbar + search */
+    }
+    th, td {
+      border: 1px solid #333;
+      padding: 6px 8px;
+      text-align: center;
+      font-size: 12pt;
+    }
+    th {
+      background: #c0e6f5;
+    }
+    tr:nth-child(even) td {
+      background: #f9f9f9;
+    }
+    td.name input { width: 95%; }
+    td.code input { width: 60px; text-align: center; }
+    input.subject-cell {
+      width: 60px;
+      text-align: center;
+    }
+
+    /* Floating toolbar */
+    .controls {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #f1f1f1;
+      padding: 10px;
+      border-bottom: 2px solid #0078d7;
+      text-align: center;
+      z-index: 1000;
+    }
+    button {
+      margin: 5px;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 5px;
+      background: #0078d7;
+      color: white;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    button:hover { background: #005a9e; }
+    .delete-btn { background: #d9534f; }
+    .delete-btn:hover { background: #b52b27; }
+    input[type="file"] { display: none; }
+    label.upload-btn {
+      background: #28a745;
+      padding: 8px 12px;
+      border-radius: 5px;
+      color: white;
+      cursor: pointer;
+      margin: 5px;
+      display: inline-block;
+    }
+    label.upload-btn:hover { background: #1e7e34; }
+    /* Search box */
+    #searchBox {
+      margin-top: 50px;
+      width: 250px;
+      padding: 6px 10px;
+      border: 1px solid #333;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="controls">
+    <button type="button" onclick="addRow()">➕ Add Row</button>
+    <button type="button" class="delete-btn" onclick="deleteRow()">🗑 Delete Selected Row</button>
+    <button type="button" onclick="exportExcel()">💾 Save as Excel</button>
+    <button type="button" onclick="exportPDF()">📄 Export to PDF</button>
+    <label for="excelFile" class="upload-btn">📂 Import Excel</label>
+    <input type="file" id="excelFile" accept=".xlsx" onchange="importExcel(event)">
+    <br>
+    <input type="text" id="searchBox" placeholder="🔍 Search by CNO or Name" onkeyup="searchTable()">
+  </div>
+
+  <h2 align="center">Registration Form</h2>
+
+  <table id="regTable">
+    <thead>
+      <tr>
+        <th>Select</th>
+        <th class="code">CNO</th>
+        <th class="name">NAME</th>
+        <th>SEX</th>
+        <th>PHYSICS</th>
+        <th>CHEMISTRY</th>
+        <th>LITERATURE</th>
+        <th>ICS</th>
+        <th>COMMERCE</th>
+        <th>BOOKKEEPING</th>
+        <th>BIBLE</th>
+        <th>FRENCH</th>
+        <th>PHY EDUC</th>
+        <th>AGRICULTURE</th>
+        <th>FOOD</th>
+        <th>MUSIC</th>
+        <th>ADD. MATHS</th>
+        <th>BIOLOGY</th>
+        <th>CIVICS</th>
+        <th>HISTORY</th>
+        <th>GEOGRAPHY</th>
+        <th>KISWAHILI</th>
+        <th>ENGLISH</th>
+        <th>MATHEMATICS</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody"></tbody>
+  </table>
+
+  <!-- Hidden Template Row -->
+  <table style="display:none">
+    <tbody>
+      <tr id="rowTemplate">
+        <td><input type="radio" name="selectRow"></td>
+        <td class="code"><input type="text" readonly></td>
+        <td class="name"><input type="text" placeholder="Student Name"></td>
+        <td>
+          <select>
+            <option value="">--Select--</option>
+            <option value="M">M</option>
+            <option value="F">F</option>
+          </select>
+        </td>
+        <!-- Subject cells -->
+        <td><input type="text" class="subject-cell"></td>
+        <td><input type="text" class="subject-cell"></td>
+        <td><input type="text" class="subject-cell"></td>
+        <td><input type="text" class="subject-cell"></td>
+        <td><input type="text" class="subject-cell"></td>
+        <td><input type="text" class="subject-cell"></td>
+        <td><input type="text" class="subject-cell"></td>
+        <td><input type="text" class="subject-cell"></td>
+        <td><input type="text" class="subject-cell"></td>
+        <td><input type="text" class="subject-cell"></td>
+        <td><input type="text" class="subject-cell"></td>
+        <td><input type="text" class="subject-cell"></td>
+        <td><input type="text" class="subject-cell"></td>
+        <td><input type="text" class="subject-cell"></td>
+        <td><input type="text" class="subject-cell"></td>
+        <td><input type="text" class="subject-cell"></td>
+        <td><input type="text" class="subject-cell"></td>
+        <td><input type="text" class="subject-cell"></td>
+        <td><input type="text" class="subject-cell"></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script>
+    function getNextCNO() {
+      let rows = document.querySelectorAll("#tableBody tr");
+      return String(rows.length + 1).padStart(3, "0");
+    }
+
+    function addRow() {
+      let tbody = document.getElementById("tableBody");
+      let template = document.getElementById("rowTemplate");
+      let newRow = template.cloneNode(true);
+      newRow.removeAttribute("id");
+      newRow.style.display = "";
+
+      // clear values
+      newRow.querySelectorAll("input, select").forEach(el => {
+        if (el.type === "text" || el.tagName === "SELECT") el.value = "";
+        if (el.type === "radio") el.checked = false;
+      });
+
+      let cno = getNextCNO();
+      newRow.querySelector(".code input").value = cno;
+
+      // apply placeholder with student CNO
+      newRow.querySelectorAll("input.subject-cell").forEach(input => {
+        input.value = "";
+        input.placeholder = "ID " + cno;
+        input.addEventListener("input", function() {
+          this.value = this.value.replace(/[^0-9]/g, "");
+          if (this.value > 100) this.value = "100";
+        });
+      });
+
+      tbody.appendChild(newRow);
+      enableEnterNavigation();
+    }
+
+    function deleteRow() {
+      let tbody = document.getElementById("tableBody");
+      let rows = tbody.querySelectorAll("tr");
+      for (let i = 0; i < rows.length; i++) {
+        let radio = rows[i].querySelector('input[type="radio"]');
+        if (radio && radio.checked) {
+          tbody.removeChild(rows[i]);
+          return;
+        }
+      }
+      alert("Select a row to delete!");
+    }
+
+    function enableEnterNavigation() {
+      let tbody = document.getElementById("tableBody");
+      tbody.querySelectorAll("input.subject-cell").forEach(input => {
+        input.onkeydown = function(e) {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            let td = this.closest("td");
+            let colIndex = td.cellIndex;
+            let row = this.closest("tr");
+            let nextRow = row.nextElementSibling;
+            if (nextRow) {
+              let nextInput = nextRow.cells[colIndex].querySelector("input.subject-cell");
+              if (nextInput) nextInput.focus();
+            }
+          }
+        };
+      });
+    }
+
+    /* Export Excel */
+    function exportExcel() {
+      let table = document.getElementById("regTable");
+      let rows = table.rows;
+      let data = [];
+
+      for (let i = 0; i < rows.length; i++) {
+        let cells = rows[i].cells;
+        let rowData = [];
+        for (let j = 0; j < cells.length; j++) {
+          let input = cells[j].querySelector("input, select");
+          if (input) {
+            rowData.push(input.value);
+          } else {
+            rowData.push(cells[j].innerText);
+          }
+        }
+        data.push(rowData);
+      }
+
+      let wb = XLSX.utils.book_new();
+      let ws = XLSX.utils.aoa_to_sheet(data);
+      XLSX.utils.book_append_sheet(wb, ws, "Registration");
+      XLSX.writeFile(wb, "Registration.xlsx");
+    }
+
+    /* Export PDF */
+    function exportPDF() {
+      const { jsPDF } = window.jspdf;
+      let doc = new jsPDF('l', 'pt', 'a4');
+      doc.text("Registration Form", 40, 30);
+
+      let table = document.getElementById("regTable");
+      let rows = table.rows;
+      let head = [];
+      let body = [];
+
+      for (let th of rows[0].cells) {
+        head.push(th.innerText);
+      }
+
+      for (let i = 1; i < rows.length; i++) {
+        let rowData = [];
+        let cells = rows[i].cells;
+        for (let j = 0; j < cells.length; j++) {
+          let input = cells[j].querySelector("input, select");
+          if (input) {
+            rowData.push(input.value);
+          } else {
+            rowData.push(cells[j].innerText);
+          }
+        }
+        body.push(rowData);
+      }
+
+      doc.autoTable({
+        head: [head],
+        body: body,
+        startY: 50
+      });
+
+      doc.save("Registration.pdf");
+    }
+
+    /* Import Excel */
+    function importExcel(event) {
+      let file = event.target.files[0];
+      if (!file) return;
+
+      let reader = new FileReader();
+      reader.onload = function(e) {
+        let data = new Uint8Array(e.target.result);
+        let workbook = XLSX.read(data, { type: "array" });
+        let sheet = workbook.Sheets[workbook.SheetNames[0]];
+        let rows = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+
+        let tbody = document.getElementById("tableBody");
+        tbody.innerHTML = "";
+        let template = document.getElementById("rowTemplate");
+
+        for (let i = 1; i < rows.length; i++) {
+          let row = rows[i];
+          if (row.length === 0) continue;
+
+          let newRow = template.cloneNode(true);
+          newRow.removeAttribute("id");
+          newRow.style.display = "";
+
+          let cells = newRow.cells;
+          for (let j = 0; j < row.length; j++) {
+            let val = row[j];
+            let input = cells[j].querySelector("input, select");
+            if (input) {
+              input.value = val;
+            }
+          }
+
+          // ensure placeholders updated with CNO
+          let cno = cells[1].querySelector("input").value;
+          newRow.querySelectorAll("input.subject-cell").forEach(input => {
+            if (!input.value) input.placeholder = "ID " + cno;
+          });
+
+          tbody.appendChild(newRow);
+        }
+        enableEnterNavigation();
+      };
+      reader.readAsArrayBuffer(file);
+    }
+
+    /* Search */
+    function searchTable() {
+      let filter = document.getElementById("searchBox").value.toLowerCase();
+      let rows = document.querySelectorAll("#tableBody tr");
+
+      rows.forEach(row => {
+        let cno = row.querySelector(".code input")?.value.toLowerCase() || "";
+        let name = row.querySelector(".name input")?.value.toLowerCase() || "";
+        row.style.display = (cno.includes(filter) || name.includes(filter)) ? "" : "none";
+      });
+    }
+  </script>
+</body>
+</html>
