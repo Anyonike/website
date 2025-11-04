@@ -15,14 +15,15 @@
 <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
 <style>
-/* GENERAL */
+/* ===== GENERAL ===== */
 body {
   font-family: "Open Sans", sans-serif;
-  color: #444;
+  color: #333;
   background-color: #f5f6fa;
+  overflow-x: hidden;
 }
 
-/* HEADER */
+/* ===== HEADER ===== */
 #top-header {
   background: #007a33;
   padding: 10px 0;
@@ -30,16 +31,22 @@ body {
 }
 #top-header h4 {
   text-align: center;
-  font-weight: 700;
+  font-weight: 800;
   color: #ffcc00;
   text-transform: uppercase;
   margin: 0;
+}
+#top-header h5 {
+  text-align: center;
+  font-weight: 600;
+  color: #fff;
+  margin-top: 5px;
 }
 #top-header img {
   height: 70px;
 }
 
-/* NAVBAR */
+/* ===== NAVBAR ===== */
 #main-nav {
   background: #006633;
 }
@@ -51,7 +58,9 @@ body {
   justify-content: center;
   flex-wrap: wrap;
 }
-#main-nav li { position: relative; }
+#main-nav li {
+  position: relative;
+}
 #main-nav a {
   color: white;
   text-decoration: none;
@@ -60,98 +69,168 @@ body {
   font-weight: 500;
   transition: 0.3s;
 }
-#main-nav a:hover, #main-nav .active {
+#main-nav a:hover,
+#main-nav .active {
   background: #004d26;
   color: #ffcc00;
 }
 #main-nav .dropdown ul {
-  position: absolute; top: 100%; left: 0;
-  background: #fff; color: #333;
-  min-width: 200px; opacity: 0; visibility: hidden;
-  box-shadow: 0 0 30px rgba(0,0,0,0.15);
-  transition: 0.3s; border-radius: 5px; z-index: 99;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  color: #333;
+  min-width: 200px;
+  opacity: 0;
+  visibility: hidden;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
+  transition: 0.3s;
+  border-radius: 5px;
+  z-index: 99;
 }
-#main-nav .dropdown:hover ul { opacity: 1; visibility: visible; }
+#main-nav .dropdown:hover ul {
+  opacity: 1;
+  visibility: visible;
+}
 #main-nav .dropdown ul li a {
-  padding: 10px 15px; color: #333;
+  padding: 10px 15px;
+  color: #333;
 }
 #main-nav .dropdown ul li a:hover {
-  background: #f1f1f1; color: #007a33;
+  background: #f1f1f1;
+  color: #007a33;
 }
 
-/* HERO */
+/* ===== HERO ===== */
 #hero {
-  width: 100%; height: 70vh;
-  position: relative; overflow: hidden;
+  width: 100%;
+  height: 70vh;
+  position: relative;
+  overflow: hidden;
 }
 #hero .carousel-item {
-  height: 70vh; background-size: cover; background-position: center;
+  height: 70vh;
+  background-size: cover;
+  background-position: center;
 }
 #hero .carousel-content {
-  position: absolute; bottom: 20%; left: 10%;
-  background: rgba(0,0,0,0.5); padding: 30px;
-  border-radius: 10px; color: #fff;
+  position: absolute;
+  bottom: 20%;
+  left: 10%;
+  background: rgba(0, 0, 0, 0.55);
+  padding: 30px;
+  border-radius: 10px;
+  color: #fff;
+  max-width: 550px;
 }
 .btn-get-started {
-  background: #ffcc00; color: #004d26;
-  padding: 10px 25px; border-radius: 5px;
-  text-decoration: none; font-weight: bold;
+  background: #ffcc00;
+  color: #004d26;
+  padding: 10px 25px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
 }
-.btn-get-started:hover { background: #004d26; color: #fff; }
+.btn-get-started:hover {
+  background: #004d26;
+  color: #fff;
+}
 
-/* SIDE BARS + MAIN CONTENT */
+/* ===== CONTENT + STICKY SIDEBARS ===== */
 #content-area {
   padding: 60px 0;
 }
 .sidebar {
   background: #fff;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  margin-bottom: 20px;
+  position: sticky;
+  top: 100px;
 }
 .sidebar h5 {
   color: #007a33;
   font-weight: bold;
   margin-bottom: 15px;
+  border-bottom: 2px solid #ffcc00;
+  padding-bottom: 5px;
 }
 .sidebar ul {
   list-style: none;
   padding-left: 0;
+  margin: 0;
 }
 .sidebar ul li {
-  padding: 5px 0;
+  padding: 8px 0;
   border-bottom: 1px solid #eee;
+}
+.sidebar ul li:last-child {
+  border: none;
 }
 .sidebar ul li a {
   text-decoration: none;
   color: #004d26;
   transition: 0.3s;
 }
-.sidebar ul li a:hover { color: #ffcc00; }
+.sidebar ul li a:hover {
+  color: #ffcc00;
+}
+.card {
+  border-radius: 10px;
+}
+.card-title {
+  color: #007a33;
+  font-weight: bold;
+}
 
-/* FOOTER */
+/* ===== FOOTER ===== */
 #footer {
-  background: #004d26; color: #fff; font-size: 14px;
+  background: #004d26;
+  color: #fff;
+  font-size: 14px;
 }
 #footer .footer-top {
-  background: #006633; padding: 40px 0;
+  background: #006633;
+  padding: 40px 0;
 }
-#footer a { color: #ffcc00; text-decoration: none; }
-#footer a:hover { text-decoration: underline; }
+#footer a {
+  color: #ffcc00;
+  text-decoration: none;
+}
+#footer a:hover {
+  text-decoration: underline;
+}
 .copyright {
-  text-align: center; padding: 15px;
-  background: #003319; color: #ddd;
+  text-align: center;
+  padding: 15px;
+  background: #003319;
+  color: #ddd;
 }
 
-/* RESPONSIVE */
+/* ===== RESPONSIVE ===== */
 @media (max-width: 992px) {
-  #hero { height: 50vh; }
-  #hero .carousel-item { height: 50vh; }
+  #hero {
+    height: 50vh;
+  }
+  #hero .carousel-item {
+    height: 50vh;
+  }
+  .sidebar {
+    position: relative;
+    top: auto;
+    margin-top: 20px;
+  }
 }
 @media (max-width: 768px) {
-  #top-header img { height: 50px; }
-  #top-header h4 { font-size: 14px; }
+  #top-header img {
+    height: 50px;
+  }
+  #top-header h4 {
+    font-size: 14px;
+  }
+  #top-header h5 {
+    font-size: 13px;
+  }
 }
 </style>
 </head>
@@ -166,8 +245,8 @@ body {
         <img src="https://www.necta.go.tz/img/emblem.png" alt="Left Logo">
       </div>
       <div class="col-6 col-sm-6">
-        <h4>THE ROMANI CATHOLIC DIOCESE OF NJOME</h4><BR>
-        <h5>UMAWANJO BOYS' SECONDARY SCHOOL PORTAL</h5><BR>
+        <h4>THE ROMAN CATHOLIC DIOCESE OF NJOMBE</h4>
+        <h5>UMAWANJO BOYS' SECONDARY SCHOOL PORTAL</h5>
       </div>
       <div class="col-3 text-end d-none d-sm-block">
         <img src="https://www.necta.go.tz/images/logo.png" alt="Right Logo">
@@ -184,25 +263,25 @@ body {
       <li class="dropdown">
         <a href="#"><span>Examinations</span> <i class="bi bi-chevron-down"></i></a>
         <ul>
-          <li><a href="Different_Files/Add_marks.html">Add Marks</a></li><br>
-          <li><a href="Different_Files/adding_marks.html">Adding Marks</a></li><br>
-          <li><a href="https://igunda.infinityfree.me/myapp/scores.php">Scores</a></li><br>
+          <li><a href="Different_Files/Add_marks.html">Add Marks</a></li>
+          <li><a href="Different_Files/adding_marks.html">Adding Marks</a></li>
+          <li><a href="https://igunda.infinityfree.me/myapp/scores.php">Scores</a></li>
         </ul>
       </li>
       <li class="dropdown">
         <a href="#"><span>Results</span> <i class="bi bi-chevron-down"></i></a>
         <ul>
-          <li><a href="#">Form One Opening</a></li><br>
-          <li><a href="#">PSLE</a></li><br>
-          <li><a href="#">CSEE</a></li><br>
-          <li><a href="#">ACSEE</a></li><br>
+          <li><a href="#">Form One Opening</a></li>
+          <li><a href="#">PSLE</a></li>
+          <li><a href="#">CSEE</a></li>
+          <li><a href="#">ACSEE</a></li>
         </ul>
       </li>
-      <li><a href="#">Services</a></li><br>
-      <li><a href="#">Publications</a></li><br>
-      <li><a href="#">FAQ</a></li><br>
-      <li><a href="#">E-Mrejesho</a></li><br>
-      <li><a href="#">Contacts</a></li><br>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Publications</a></li>
+      <li><a href="#">FAQ</a></li>
+      <li><a href="#">E-Mrejesho</a></li>
+      <li><a href="#">Contacts</a></li>
     </ul>
   </div>
 </nav>
@@ -214,14 +293,14 @@ body {
       <div class="carousel-item active" style="background-image: url('ludewa_banner1.jpg');">
         <div class="carousel-content">
           <h2>Welcome to UBSS Website</h2>
-          <p>Official site of Umawanjo Examinations Council.</p>
+          <p>Official site of Umawanjo Boys' Secondary School Examination Portal.</p>
           <a href="#" class="btn-get-started">Read More</a>
         </div>
       </div>
       <div class="carousel-item" style="background-image: url('ludewa_banner2.jpg');">
         <div class="carousel-content">
-          <h2>Committed to Fair Assessment</h2>
-          <p>Providing transparent and reliable exam services.</p>
+          <h2>Committed to Academic Excellence</h2>
+          <p>Providing transparent and reliable results under the Diocese of Njombe.</p>
           <a href="#" class="btn-get-started">Learn More</a>
         </div>
       </div>
@@ -235,7 +314,7 @@ body {
   </div>
 </section>
 
-<!-- ======= Content with Sidebars ======= -->
+<!-- ======= Main Content + Sticky Sidebars ======= -->
 <section id="content-area">
   <div class="container">
     <div class="row">
@@ -254,17 +333,17 @@ body {
 
       <!-- MAIN CONTENT -->
       <main class="col-lg-6 order-1 order-lg-2">
-        <div class="section-title"><h2>News & Announcements</h2></div>
+        <div class="section-title text-center mb-4"><h2>News & Announcements</h2></div>
         <div class="card shadow-sm border-0 mb-4">
           <div class="card-body">
             <h5 class="card-title">Exam Timetable Released</h5>
-            <p class="card-text text-muted">The timetable for the upcoming district exams has been released. View details in the school portal.</p>
+            <p class="card-text text-muted">The timetable for the upcoming school examinations has been released. View details in the portal.</p>
           </div>
         </div>
         <div class="card shadow-sm border-0 mb-4">
           <div class="card-body">
-            <h5 class="card-title">Results Out</h5>
-            <p class="card-text text-muted">LDEC has released results for the October Monthly Test.</p>
+            <h5 class="card-title">Results Published</h5>
+            <p class="card-text text-muted">The October test results have been released. Check your performance on your student account.</p>
           </div>
         </div>
       </main>
@@ -275,8 +354,8 @@ body {
           <h5>Upcoming Events</h5>
           <ul>
             <li><a href="#">Teachers’ Workshop - Nov 15</a></li>
-            <li><a href="#">District Mock Exams - Dec 2</a></li>
-            <li><a href="#">Form 4 Results Publication - Jan</a></li>
+            <li><a href="#">Mock Exams - Dec 2</a></li>
+            <li><a href="#">End-Year Mass - Dec 10</a></li>
           </ul>
         </div>
       </aside>
@@ -290,10 +369,10 @@ body {
     <div class="container">
       <div class="row gy-4">
         <div class="col-lg-3 col-md-6 footer-contact">
-          <h4>LDEC</h4>
+          <h4>UBSS PORTAL</h4>
           <p>
-            Ludewa District Council<br>
-            Ludewa, Njombe, Tanzania<br><br>
+            Umawanjo Boys’ Secondary School<br>
+            Njombe Catholic Diocese, Tanzania<br><br>
             <strong>Phone:</strong> +255 765 883 980<br>
             <strong>Email:</strong> pmwasyika@gmail.com<br>
           </p>
@@ -311,7 +390,7 @@ body {
           <h4>Systems</h4>
           <ul>
             <li><i class="bx bx-chevron-right"></i> <a href="#">School Portal</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">LDEC eServices</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Diocese eServices</a></li>
           </ul>
         </div>
         <div class="col-lg-3 col-md-6 footer-links">
@@ -322,7 +401,7 @@ body {
     </div>
   </div>
   <div class="copyright">
-    &copy; 2025 <strong><span>LDEC</span></strong>. All Rights Reserved. Powered by UBSS | Inspired by NECTA Design.
+    &copy; 2025 <strong><span>UBSS</span></strong>. All Rights Reserved. Powered by UBSS | Inspired by NECTA Design.
   </div>
 </footer>
 
