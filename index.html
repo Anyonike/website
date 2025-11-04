@@ -1,272 +1,378 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Ludewa</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    // Toggle mobile menu
-    function toggleMenu() {
-      document.getElementById("mobileMenu").classList.toggle("hidden");
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Ludewa District Examinations Council (LDEC)</title>
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/x-icon" href="https://www.necta.go.tz/img/favicon.ico">
+
+  <!-- Vendor CSS Files -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <style>
+    /* --- LDEC Styling --- */
+    body {
+      font-family: "Open Sans", sans-serif;
+      color: #444;
+      background-color: #f5f6fa;
     }
 
-    // Toggle mobile submenus
-    function toggleSubmenu(id, arrowId) {
-      const submenu = document.getElementById(id);
-      const arrow = document.getElementById(arrowId);
-      submenu.classList.toggle("hidden");
-      arrow.classList.toggle("rotate-180");
+    #header {
+      background: #002060;
+      padding: 10px 0;
+      transition: all 0.5s;
+      z-index: 997;
     }
 
-    // Dropdown setup for desktop & mobile
-    function setupDropdown(id, buttonId, arrowId) {
-      const dropdown = document.getElementById(id);
-      const button = document.getElementById(buttonId);
-      const arrow = document.getElementById(arrowId);
-
-      // Desktop hover
-      button.addEventListener("mouseenter", () => {
-        if (window.innerWidth >= 768) {
-          dropdown.classList.remove("hidden");
-          arrow.classList.add("rotate-180");
-        }
-      });
-      button.addEventListener("mouseleave", () => {
-        if (window.innerWidth >= 768) {
-          setTimeout(() => {
-            if (!dropdown.matches(":hover")) {
-              dropdown.classList.add("hidden");
-              arrow.classList.remove("rotate-180");
-            }
-          }, 150);
-        }
-      });
-      dropdown.addEventListener("mouseleave", () => {
-        if (window.innerWidth >= 768) {
-          dropdown.classList.add("hidden");
-          arrow.classList.remove("rotate-180");
-        }
-      });
-
-      // Mobile click
-      button.addEventListener("click", (e) => {
-        if (window.innerWidth < 768) {
-          if (button.tagName === "BUTTON") {
-            e.preventDefault();
-            dropdown.classList.toggle("hidden");
-            arrow.classList.toggle("rotate-180");
-          }
-        }
-      });
+    #header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
-    window.onload = function () {
-      setupDropdown("examDropdown", "examBtn", "examArrow");
-      setupDropdown("resultsDropdown", "resultsBtn", "resultsArrow");
-      setupDropdown("servicesDropdown", "servicesBtn", "servicesArrow");
-      setupDropdown("pubsDropdown", "pubsBtn", "pubsArrow");
-    };
+    #header h1 {
+      color: #fff;
+      font-size: 20px;
+      margin: 0;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
 
-    // Close desktop dropdowns if click outside
-    window.addEventListener("click", function(e) {
-      if (!e.target.closest(".relative") && window.innerWidth >= 768) {
-        document.querySelectorAll("[id$='Dropdown']").forEach(d => d.classList.add("hidden"));
-        document.querySelectorAll(".arrow").forEach(a => a.classList.remove("rotate-180"));
-      }
-    });
-  </script>
+    #header p {
+      color: #ddd;
+      font-size: 13px;
+      margin: 0;
+    }
+
+    /* Navbar */
+    .navbar {
+      padding: 0;
+    }
+    .navbar ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      align-items: center;
+    }
+    .navbar li {
+      position: relative;
+    }
+    .navbar a, .navbar a:focus {
+      padding: 12px 20px;
+      text-decoration: none;
+      color: #fff;
+      transition: 0.3s;
+      font-size: 15px;
+    }
+    .navbar a:hover, .navbar .active {
+      color: #f1c40f;
+    }
+    .navbar .dropdown ul {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      z-index: 99;
+      opacity: 0;
+      visibility: hidden;
+      padding: 10px 0;
+      background: #fff;
+      box-shadow: 0 0 30px rgba(127,137,161,0.25);
+      border-radius: 4px;
+      transition: 0.3s;
+    }
+    .navbar .dropdown:hover ul {
+      opacity: 1;
+      visibility: visible;
+    }
+    .navbar .dropdown ul li a {
+      color: #333;
+      padding: 10px 20px;
+      display: block;
+    }
+    .navbar .dropdown ul li a:hover {
+      background: #f8f9fa;
+      color: #002060;
+    }
+
+    /* Hero Section */
+    #hero {
+      width: 100%;
+      height: 70vh;
+      background-color: #002060;
+      color: #fff;
+      text-align: center;
+      position: relative;
+    }
+
+    #hero .carousel-item {
+      height: 70vh;
+      background-size: cover;
+      background-position: center;
+    }
+
+    #hero .carousel-content {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 30px;
+      border-radius: 10px;
+      display: inline-block;
+    }
+
+    .btn-get-started {
+      background: #f1c40f;
+      color: #002060;
+      padding: 10px 25px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    /* Sections */
+    section {
+      padding: 60px 0;
+    }
+    .section-title {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .icon-box {
+      text-align: center;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      background: #fff;
+    }
+    .icon-box i {
+      font-size: 40px;
+      color: #002060;
+      margin-bottom: 15px;
+    }
+
+    /* Footer */
+    #footer {
+      background: #001b45;
+      color: #fff;
+      font-size: 14px;
+    }
+    #footer .footer-top {
+      background: #012055;
+      padding: 40px 0;
+    }
+    #footer a {
+      color: #f1c40f;
+      text-decoration: none;
+    }
+    #footer a:hover {
+      text-decoration: underline;
+    }
+    .copyright {
+      text-align: center;
+      padding: 15px;
+      background: #001b45;
+      color: #ddd;
+    }
+  </style>
 </head>
-<body class="bg-gray-100 text-gray-800 font-sans">
 
-  <!-- HEADER -->
-  <header class="bg-white border-b shadow-sm">
-    <div class="max-w-7xl mx-auto flex justify-between items-center px-4 py-3">
-      <div class="flex items-center gap-3">
-        <img src="https://www.necta.go.tz/images/logo.png" alt="LTAHOSA Logo" class="h-12">
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top">
+    <div class="container">
+      <div class="d-flex align-items-center gap-3">
+        <img src="https://www.necta.go.tz/images/logo.png" height="60" alt="LDEC Logo">
         <div>
-          <h1 class="font-bold text-lg text-gray-900">LUDEWA</h1>
-          <p class="text-sm text-gray-600">Baraza la mitihani Ludewa</p>
+          <h1>LUDEWA DISTRICT EXAMINATIONS COUNCIL (LDEC)</h1>
+          <p>Baraza la Mitihani Wilaya ya Ludewa</p>
         </div>
       </div>
-      <div class="flex items-center gap-4">
-        <div class="hidden md:flex gap-2 text-sm">
-          <button class="px-2 py-1 rounded hover:bg-blue-100">English</button>
-          <button class="px-2 py-1 rounded hover:bg-blue-100">Kiswahili</button>
-        </div>
-        <div class="hidden md:flex items-center gap-2">
-          <input type="text" placeholder="Search..." class="border rounded px-3 py-1 text-sm w-64 focus:outline-none focus:ring-2 focus:ring-blue-500">
-          <button class="bg-blue-700 text-white px-3 py-1 rounded">Search</button>
-        </div>
-        <button class="md:hidden text-blue-800" onclick="toggleMenu()">☰</button>
-      </div>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="active" href="#">Home</a></li>
+          <li class="dropdown"><a href="#"><span>Examinations</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="Different_Files/Add_marks.html">Add Marks</a></li>
+              <li><a href="Different_Files/adding_marks.html">Adding Marks</a></li>
+              <li><a href="https://igunda.infinityfree.me/myapp/scores.php">Scores</a></li>
+            </ul>
+          </li>
+          <li class="dropdown"><a href="#"><span>Results</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="#">Form One Opening</a></li>
+              <li><a href="#">PSLE</a></li>
+              <li><a href="#">CSEE</a></li>
+              <li><a href="#">ACSEE</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Publications</a></li>
+          <li><a href="#">Contacts</a></li>
+        </ul>
+      </nav>
     </div>
   </header>
 
-  <!-- NAVBAR DESKTOP -->
-  <nav class="bg-blue-900 text-white shadow-md">
-    <div class="max-w-7xl mx-auto flex justify-between px-4">
-      <div class="hidden md:flex space-x-2">
-        <a href="https://ubss.byethost11.com/umawanjo/html.html" class="px-3 py-3 hover:bg-blue-700">Umawanjo</a>
+  <!-- ======= Hero Section ======= -->
+  <section id="hero">
+    <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+      <div class="carousel-inner">
 
-        <!-- Examinations -->
-        <div class="relative">
-          <button id="examBtn" class="px-3 py-3 hover:bg-blue-700 flex items-center gap-1">
-            Examinations <span id="examArrow" class="arrow transition-transform">▾</span>
-          </button>
-          <div id="examDropdown" class="absolute hidden bg-white text-gray-800 rounded shadow mt-1 w-48">
-            <a href="Businessu/Advanced.html" class="block px-4 py-2 hover:bg-gray-100">Primary Exams</a>
-            <a href="Different_Files/Add_marks.html" class="block px-4 py-2 hover:bg-gray-100">Add Marks</a>
-            <a href="Different_Files/adding_marks" class="block px-4 py-2 hover:bg-gray-100">Adding Marks</a>
-            
-            <a href="https://igunda.infinityfree.me/myapp/scores.php" class="block px-4 py-2 hover:bg-gray-100">Scores</a>
+        <div class="carousel-item active" style="background-image: url('ludewa_banner1.jpg');">
+          <div class="carousel-container d-flex justify-content-center align-items-center h-100">
+            <div class="carousel-content">
+              <h2>Welcome to Ludewa District Examinations Council</h2>
+              <p>Providing reliable examination and results services across the district.</p>
+              <a href="#" class="btn-get-started">Read More</a>
+            </div>
           </div>
         </div>
 
-        <!-- Results -->
-        <div class="relative">
-          <button id="resultsBtn" class="px-3 py-3 hover:bg-blue-700 flex items-center gap-1">
-            Results <span id="resultsArrow" class="arrow transition-transform">▾</span>
-          </button>
-          <div id="resultsDropdown" class="absolute hidden bg-white text-gray-800 rounded shadow mt-1 w-48">
-            <a href="https://igunda.infinityfree.me/mfumo/logout.php" class="block px-4 py-2 hover:bg-gray-100">Form One Opening</a>
-            <a href="Businessu/FM.html" class="block px-4 py-2 hover:bg-gray-100">PSLE</a>
-            <a href="Businessu/FM.html" class="block px-4 py-2 hover:bg-gray-100">CSEE</a>
-            <a href="Businessu/FM.html" class="block px-4 py-2 hover:bg-gray-100">ACSEE</a>
+        <div class="carousel-item" style="background-image: url('ludewa_banner2.jpg');">
+          <div class="carousel-container d-flex justify-content-center align-items-center h-100">
+            <div class="carousel-content">
+              <h2>Transparency and Quality</h2>
+              <p>Ensuring accurate and fair results for all schools under Ludewa District.</p>
+              <a href="#" class="btn-get-started">Learn More</a>
+            </div>
           </div>
         </div>
 
-        <!-- Services -->
-        <div class="relative">
-          <button id="servicesBtn" class="px-3 py-3 hover:bg-blue-700 flex items-center gap-1">
-            Services <span id="servicesArrow" class="arrow transition-transform">▾</span>
-          </button>
-          <div id="servicesDropdown" class="absolute hidden bg-white text-gray-800 rounded shadow mt-1 w-48">
-            <a href="https://igunda.infinityfree.me/" class="block px-4 py-2 hover:bg-gray-100">Igunda</a>
-            <a href="Businessu/FM.html" class="block px-4 py-2 hover:bg-gray-100">Certificates</a>
-            <a href="Businessu/FM.html" class="block px-4 py-2 hover:bg-gray-100">Verification</a>
-          </div>
-        </div>
-
-        <!-- Publications -->
-        <div class="relative">
-          <button id="pubsBtn" class="px-3 py-3 hover:bg-blue-700 flex items-center gap-1">
-            Publications <span id="pubsArrow" class="arrow transition-transform">▾</span>
-          </button>
-          <div id="pubsDropdown" class="absolute hidden bg-white text-gray-800 rounded shadow mt-1 w-48">
-            <a href="Businessu/FM.html" class="block px-4 py-2 hover:bg-gray-100">Reports</a>
-            <a href="https://igunda.infinityfree.me/register.php" class="block py-1">Jiandikishe</a>
-      <a href="https://igunda.infinityfree.me/login.php" class="block py-1">Ingia</a>
-            <a href="Different_Files/adding_marks.html" class="block px-4 py-2 hover:bg-gray-100">Statistics</a>
-            <a href="Business/index.html" class="block px-4 py-2 hover:bg-gray-100">First Page</a>
-          </div>
-        </div>
-
-        <a href="Businessu/Ludewap.html" class="px-3 py-3 hover:bg-blue-700">Ludewa</a>
-        <a href="forms.html" class="px-3 py-3 hover:bg-blue-700">Forms</a>
       </div>
-    </div>
-  </nav>
 
-  <!-- NAVBAR MOBILE -->
-  <div id="mobileMenu" class="md:hidden hidden bg-blue-800 text-white px-4 py-2 space-y-2">
-    <a href="https://ubss.byethost11.com/umawanjo/html.html" class="block py-2">umawanjo</a>
-
-    <!-- Mobile Examinations -->
-    <button onclick="toggleSubmenu('mobileExams','mobileExamArrow')" class="w-full text-left py-2 flex items-center justify-between">
-      Examinations <span id="mobileExamArrow" class="arrow transition-transform">▾</span>
-    </button>
-    <div id="mobileExams" class="hidden pl-4 space-y-1">
-      <a href="https://igunda.infinityfree.me/myapp/scores.php" class="block py-1">Add Marks</a>
-      <a href="Different_Files/adding_marks.html" class="block py-1">Adding Marks</a>
-      <a href="Businessu/FM.html" class="block py-1">Teachers Exams</a>
-    </div>
-
-    <!-- Mobile Results -->
-    <button onclick="toggleSubmenu('mobileResults','mobileResultsArrow')" class="w-full text-left py-2 flex items-center justify-between">
-      Results <span id="mobileResultsArrow" class="arrow transition-transform">▾</span>
-    </button>
-    <div id="mobileResults" class="hidden pl-4 space-y-1">
-      <a href="https://igunda.infinityfree.me/mfumo/logout.php" class="block px-4 py-2 hover:bg-gray-100">Form One Opening</a>
-      <a href="https://igunda.infinityfree.me/register.php" class="block py-1">Jiandikishe</a>
-      <a href="https://igunda.infinityfree.me/login.php" class="block py-1">Ingia</a>
-      <a href="Businessu/FM.html" class="block py-1">ACSEE</a>
-    </div>
-
-    <!-- Mobile Services -->
-    <button onclick="toggleSubmenu('mobileServices','mobileServicesArrow')" class="w-full text-left py-2 flex items-center justify-between">
-      Services <span id="mobileServicesArrow" class="arrow transition-transform">▾</span>
-    </button>
-    <div id="mobileServices" class="hidden pl-4 space-y-1">
-      <a href="Businessu/FM.html" class="block py-1">Online Registration</a>
-      <a href="Businessu/FM.html" class="block py-1">Certificates</a>
-      <a href="Businessu/FM.html" class="block py-1">Verification</a>
-    </div>
-
-    <!-- Mobile Publications -->
-    <button onclick="toggleSubmenu('mobilePubs','mobilePubsArrow')" class="w-full text-left py-2 flex items-center justify-between">
-      Publications <span id="mobilePubsArrow" class="arrow transition-transform">▾</span>
-    </button>
-    <div id="mobilePubs" class="hidden pl-4 space-y-1">
-      <a href="Different_Files/Add_marks.html" class="block py-1">Add Marks</a>
-      <a href="Businessu/FM.html" class="block py-1">Statistics</a>
-      <a href="Businessu/FM.html" class="block py-1">Guidelines</a>
-    </div>
-
-    <a href="Businessu/Ludewap.html" class="block py-2">Ludewa</a>
-    <a href="https://igunda.infinityfree.me/myapp/register.php" class="block py-2">🔑Login</a>
-    <a href="forms.html" class="px-3 py-3 hover:bg-blue-700">Forms</a>
-  </div>
-
-  <!-- HERO -->
-  <section class="bg-gray-200 py-10 text-center">
-    <h2 class="text-2xl font-bold mb-2">Welcome to Ludewa</h2>
-    <p class="text-gray-600">Providing reliable examination and results services across Tanzania</p>
-  </section>
-
-  <!-- QUICK LINKS -->
-  <section class="max-w-7xl mx-auto px-4 py-8">
-    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-      <a href="Businessu/FM.html" class="bg-white shadow rounded p-4 text-center hover:bg-blue-50">Results</a>
-      <a href="Businessu/FM.html" class="bg-white shadow rounded p-4 text-center hover:bg-blue-50">Past Papers</a>
-      <a href="Businessu/FM.html" class="bg-white shadow rounded p-4 text-center hover:bg-blue-50">Online Services</a>
-      <a href="Businessu/FM.html" class="bg-white shadow rounded p-4 text-center hover:bg-blue-50">Announcements</a>
+      <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      </a>
+      <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      </a>
     </div>
   </section>
 
-  <!-- NEWS -->
-  <section class="max-w-7xl mx-auto px-4 py-8">
-    <h3 class="text-xl font-bold mb-4">News & Announcements</h3>
-    <div class="space-y-4">
-      <div class="bg-white shadow rounded p-4">
-        <h4 class="font-semibold">Exam Timetable Released</h4>
-        <p class="text-sm text-gray-600">The timetable for the upcoming exams has been released. Click here to view.</p>
+  <!-- ======= Quick Links Section ======= -->
+  <section id="quick-links">
+    <div class="container">
+      <div class="section-title">
+        <h2>Quick Links</h2>
       </div>
-      <div class="bg-white shadow rounded p-4">
-        <h4 class="font-semibold">Results Out</h4>
-        <p class="text-sm text-gray-600">LTAHOSA has released results for the Standard Four Examinations.</p>
+      <div class="row gy-4">
+        <div class="col-md-3">
+          <div class="icon-box">
+            <i class="bx bx-bar-chart"></i>
+            <h4><a href="#">Results</a></h4>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="icon-box">
+            <i class="bx bx-book-open"></i>
+            <h4><a href="#">Past Papers</a></h4>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="icon-box">
+            <i class="bx bx-laptop"></i>
+            <h4><a href="#">Online Services</a></h4>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="icon-box">
+            <i class="bx bx-news"></i>
+            <h4><a href="#">Announcements</a></h4>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer class="bg-blue-900 text-white mt-10">
-    <div class="max-w-7xl mx-auto px-4 py-6 grid md:grid-cols-2 gap-4">
-      <div>
-        <h4 class="font-bold mb-2">Contact Us</h4>
-        <p>Ubss, Ludewa, Tanzania</p>
-        <p>Email: pmwasyika@gmail.com</p>
-        <p>Phone: +255 765883980</p>
+  <!-- ======= News Section ======= -->
+  <section id="news">
+    <div class="container">
+      <div class="section-title">
+        <h2>News & Announcements</h2>
       </div>
-      <div class="text-sm flex items-end justify-end">
-        <p>&copy; 2025 UBSS. All rights reserved.</p>
+
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="card shadow-sm border-0">
+            <div class="card-body">
+              <h5 class="card-title">Exam Timetable Released</h5>
+              <p class="card-text text-muted">The timetable for the upcoming district exams has been released. Click here to view.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card shadow-sm border-0">
+            <div class="card-body">
+              <h5 class="card-title">Results Out</h5>
+              <p class="card-text text-muted">LDEC has released results for the October Monthly Test.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row gy-4">
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h4>LDEC</h4>
+            <p>
+              Ludewa District Council<br>
+              Ludewa, Njombe, Tanzania<br><br>
+              <strong>Phone:</strong> +255 765 883 980<br>
+              <strong>Email:</strong> pmwasyika@gmail.com<br>
+            </p>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Results</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Examinations</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Contacts</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Systems</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">School Portal</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">LDEC eServices</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Working Hours</h4>
+            <p>Monday–Friday: 07:30 - 16:30<br>Saturday–Sunday: Closed</p>
+          </div>
+
+        </div>
       </div>
     </div>
-    <div class="bg-green-600 text-center text-white py-2 text-sm">
-      Powered by UBSS | Inspired by LTAHOSA Design
+
+    <div class="copyright">
+      &copy; 2025 <strong><span>LDEC</span></strong>. All Rights Reserved. Powered by UBSS | Inspired by NECTA Design.
     </div>
   </footer>
+
+  <!-- Vendor JS Files -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
 
 </body>
 </html>
