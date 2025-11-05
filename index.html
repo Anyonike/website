@@ -21,13 +21,20 @@ body {
   color: #333;
   background-color: #f5f6fa;
   overflow-x: hidden;
+  padding-top: 160px; /* increased for better top spacing */
 }
 
-/* ===== HEADER ===== */
+/* ===== TOP HEADER ===== */
 #top-header {
   background: #007a33;
   padding: 10px 0;
   color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 #top-header h4 {
   text-align: center;
@@ -46,9 +53,15 @@ body {
   height: 70px;
 }
 
-/* ===== NAVBAR ===== */
+/* ===== MAIN NAVBAR ===== */
 #main-nav {
   background: #006633;
+  position: fixed;
+  top: 95px; /* was 90px → slightly lower to fix text hiding */
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
 }
 #main-nav ul {
   margin: 0;
@@ -64,10 +77,12 @@ body {
 #main-nav a {
   color: white;
   text-decoration: none;
-  padding: 15px 18px;
+  padding: 18px 22px; /* increased padding for better visibility */
   display: block;
   font-weight: 500;
+  font-size: 16px;
   transition: 0.3s;
+  line-height: 1.4; /* makes text vertically centered */
 }
 #main-nav a:hover,
 #main-nav .active {
@@ -75,11 +90,11 @@ body {
   color: #ffcc00;
 }
 
-/* === DROPDOWN LEFT-ALIGNED === */
+/* === DROPDOWN (LEFT ALIGNED) === */
 #main-nav .dropdown ul {
   position: absolute;
   top: 100%;
-  left: 0; /* Aligned left */
+  left: 0;
   background: #fff;
   color: #333;
   min-width: 200px;
@@ -89,8 +104,8 @@ body {
   transition: all 0.25s ease;
   border-radius: 6px;
   padding: 8px 0;
-  z-index: 99;
-  text-align: left; /* Text aligned left */
+  z-index: 999;
+  text-align: left;
 }
 #main-nav .dropdown.show ul {
   opacity: 1;
@@ -116,6 +131,7 @@ body {
   height: 70vh;
   position: relative;
   overflow: hidden;
+  margin-top: 160px; /* to prevent overlap with fixed nav */
 }
 #hero .carousel-item {
   height: 70vh;
@@ -155,7 +171,7 @@ body {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   padding: 20px;
   position: sticky;
-  top: 100px;
+  top: 130px;
 }
 .sidebar h5 {
   color: #007a33;
