@@ -16,7 +16,7 @@
       document.getElementById(id).classList.toggle("hidden");
     }
 
-    // === Close dropdowns if clicking outside ===
+    // === Close dropdowns when clicking outside ===
     window.addEventListener("click", function(e) {
       document.querySelectorAll(".dropdown").forEach(drop => {
         if (!drop.contains(e.target)) {
@@ -28,8 +28,8 @@
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans">
 
-  <!-- TOP HEADER -->
-  <header class="bg-white border-b">
+  <!-- ======= STICKY HEADER ======= -->
+  <header class="bg-white border-b sticky top-0 z-50 shadow-sm">
     <div class="max-w-7xl mx-auto flex justify-between items-center px-4 py-3">
       <!-- Logo -->
       <div class="flex items-center gap-3">
@@ -58,60 +58,60 @@
         <button class="md:hidden text-blue-800 text-2xl" onclick="toggleMenu()">☰</button>
       </div>
     </div>
+
+    <!-- ======= STICKY NAVBAR ======= -->
+    <nav class="bg-blue-800 text-white">
+      <div class="max-w-7xl mx-auto hidden md:flex justify-between px-4">
+        <div class="flex space-x-2">
+          <a href="#" class="px-3 py-3 hover:bg-blue-700">Home</a>
+
+          <!-- Dropdowns -->
+          <div class="relative dropdown">
+            <button onclick="toggleDropdown('examDropdown')" class="px-3 py-3 hover:bg-blue-700">Examinations ▾</button>
+            <div id="examDropdown" class="dropdown-menu absolute hidden bg-white text-gray-800 rounded shadow mt-1 w-48">
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100">Primary Exams</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100">Secondary Exams</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100">Teachers Exams</a>
+            </div>
+          </div>
+
+          <div class="relative dropdown">
+            <button onclick="toggleDropdown('resultsDropdown')" class="px-3 py-3 hover:bg-blue-700">Results ▾</button>
+            <div id="resultsDropdown" class="dropdown-menu absolute hidden bg-white text-gray-800 rounded shadow mt-1 w-48">
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100">SFNA</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100">PSLE</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100">CSEE</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100">ACSEE</a>
+            </div>
+          </div>
+
+          <div class="relative dropdown">
+            <button onclick="toggleDropdown('servicesDropdown')" class="px-3 py-3 hover:bg-blue-700">Services ▾</button>
+            <div id="servicesDropdown" class="dropdown-menu absolute hidden bg-white text-gray-800 rounded shadow mt-1 w-48">
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100">Online Registration</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100">Certificates</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100">Verification</a>
+            </div>
+          </div>
+
+          <div class="relative dropdown">
+            <button onclick="toggleDropdown('pubsDropdown')" class="px-3 py-3 hover:bg-blue-700">Publications ▾</button>
+            <div id="pubsDropdown" class="dropdown-menu absolute hidden bg-white text-gray-800 rounded shadow mt-1 w-48">
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100">Reports</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100">Statistics</a>
+              <a href="#" class="block px-4 py-2 hover:bg-gray-100">Guidelines</a>
+            </div>
+          </div>
+
+          <a href="#" class="px-3 py-3 hover:bg-blue-700">About Us</a>
+          <a href="#" class="px-3 py-3 hover:bg-blue-700">Contact</a>
+        </div>
+      </div>
+    </nav>
   </header>
 
-  <!-- MAIN NAVBAR -->
-  <nav class="bg-blue-800 text-white">
-    <div class="max-w-7xl mx-auto hidden md:flex justify-between px-4">
-      <div class="flex space-x-2">
-        <a href="#" class="px-3 py-3 hover:bg-blue-700">Home</a>
-
-        <!-- Dropdowns -->
-        <div class="relative dropdown">
-          <button onclick="toggleDropdown('examDropdown')" class="px-3 py-3 hover:bg-blue-700">Examinations ▾</button>
-          <div id="examDropdown" class="dropdown-menu absolute hidden bg-white text-gray-800 rounded shadow mt-1 w-48">
-            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Primary Exams</a>
-            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Secondary Exams</a>
-            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Teachers Exams</a>
-          </div>
-        </div>
-
-        <div class="relative dropdown">
-          <button onclick="toggleDropdown('resultsDropdown')" class="px-3 py-3 hover:bg-blue-700">Results ▾</button>
-          <div id="resultsDropdown" class="dropdown-menu absolute hidden bg-white text-gray-800 rounded shadow mt-1 w-48">
-            <a href="#" class="block px-4 py-2 hover:bg-gray-100">SFNA</a>
-            <a href="#" class="block px-4 py-2 hover:bg-gray-100">PSLE</a>
-            <a href="#" class="block px-4 py-2 hover:bg-gray-100">CSEE</a>
-            <a href="#" class="block px-4 py-2 hover:bg-gray-100">ACSEE</a>
-          </div>
-        </div>
-
-        <div class="relative dropdown">
-          <button onclick="toggleDropdown('servicesDropdown')" class="px-3 py-3 hover:bg-blue-700">Services ▾</button>
-          <div id="servicesDropdown" class="dropdown-menu absolute hidden bg-white text-gray-800 rounded shadow mt-1 w-48">
-            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Online Registration</a>
-            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Certificates</a>
-            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Verification</a>
-          </div>
-        </div>
-
-        <div class="relative dropdown">
-          <button onclick="toggleDropdown('pubsDropdown')" class="px-3 py-3 hover:bg-blue-700">Publications ▾</button>
-          <div id="pubsDropdown" class="dropdown-menu absolute hidden bg-white text-gray-800 rounded shadow mt-1 w-48">
-            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Reports</a>
-            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Statistics</a>
-            <a href="#" class="block px-4 py-2 hover:bg-gray-100">Guidelines</a>
-          </div>
-        </div>
-
-        <a href="#" class="px-3 py-3 hover:bg-blue-700">About Us</a>
-        <a href="#" class="px-3 py-3 hover:bg-blue-700">Contact</a>
-      </div>
-    </div>
-  </nav>
-
   <!-- MOBILE MENU -->
-  <div id="mobileMenu" class="md:hidden hidden bg-blue-700 text-white px-4 py-3 space-y-2">
+  <div id="mobileMenu" class="md:hidden hidden bg-blue-700 text-white px-4 py-3 space-y-2 shadow-lg">
     <a href="#" class="block py-1 border-b border-blue-600">Home</a>
     <details class="border-b border-blue-600">
       <summary class="cursor-pointer py-1 font-semibold">Examinations</summary>
@@ -161,7 +161,7 @@
   </div>
 
   <!-- HERO -->
-  <section class="bg-gray-200 py-10 text-center">
+  <section class="bg-gray-200 py-10 text-center mt-0">
     <h2 class="text-2xl font-bold mb-2">Welcome to NECTA</h2>
     <p class="text-gray-600">Providing reliable examination and results services across Tanzania</p>
   </section>
@@ -170,18 +170,10 @@
   <section class="max-w-7xl mx-auto px-4 py-8">
     <h3 class="text-xl font-bold mb-4">Quick Links</h3>
     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-      <a href="#" class="bg-white shadow rounded p-4 text-center hover:bg-blue-50">
-        <div class="font-bold">Results</div>
-      </a>
-      <a href="#" class="bg-white shadow rounded p-4 text-center hover:bg-blue-50">
-        <div class="font-bold">Past Papers</div>
-      </a>
-      <a href="#" class="bg-white shadow rounded p-4 text-center hover:bg-blue-50">
-        <div class="font-bold">Online Services</div>
-      </a>
-      <a href="#" class="bg-white shadow rounded p-4 text-center hover:bg-blue-50">
-        <div class="font-bold">Announcements</div>
-      </a>
+      <a href="#" class="bg-white shadow rounded p-4 text-center hover:bg-blue-50 font-semibold">Results</a>
+      <a href="#" class="bg-white shadow rounded p-4 text-center hover:bg-blue-50 font-semibold">Past Papers</a>
+      <a href="#" class="bg-white shadow rounded p-4 text-center hover:bg-blue-50 font-semibold">Online Services</a>
+      <a href="#" class="bg-white shadow rounded p-4 text-center hover:bg-blue-50 font-semibold">Announcements</a>
     </div>
   </section>
 
