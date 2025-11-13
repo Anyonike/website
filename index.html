@@ -21,7 +21,7 @@ body {
   color: #333;
   background-color: #f5f6fa;
   overflow-x: hidden;
-  padding-top: 160px; /* increased for better top spacing */
+  padding-top: 160px;
 }
 
 /* ===== TOP HEADER ===== */
@@ -33,7 +33,7 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1000;
+  z-index: 1100;
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 #top-header h4 {
@@ -53,75 +53,33 @@ body {
   height: 70px;
 }
 
-/* ===== MAIN NAVBAR ===== */
-#main-nav {
+/* ===== NAVBAR ===== */
+.navbar {
   background: #006633;
   position: fixed;
-  top: 95px; /* was 90px → slightly lower to fix text hiding */
-  left: 0;
+  top: 95px;
   width: 100%;
-  z-index: 999;
+  z-index: 1000;
   box-shadow: 0 2px 5px rgba(0,0,0,0.15);
 }
-#main-nav ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-#main-nav li {
-  position: relative;
-}
-#main-nav a {
-  color: white;
-  text-decoration: none;
-  padding: 18px 22px; /* increased padding for better visibility */
-  display: block;
+.navbar-nav .nav-link {
+  color: #fff;
   font-weight: 500;
+  padding: 12px 18px;
   font-size: 16px;
-  transition: 0.3s;
-  line-height: 1.4; /* makes text vertically centered */
 }
-#main-nav a:hover,
-#main-nav .active {
-  background: #004d26;
-  color: #ffcc00;
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+  background-color: #004d26;
+  color: #ffcc00 !important;
 }
-
-/* === DROPDOWN (LEFT ALIGNED) === */
-#main-nav .dropdown ul {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: #fff;
-  color: #333;
-  min-width: 200px;
-  opacity: 0;
-  visibility: hidden;
-  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.15);
-  transition: all 0.25s ease;
+.dropdown-menu {
   border-radius: 6px;
-  padding: 8px 0;
-  z-index: 999;
-  text-align: left;
+  border: none;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.15);
 }
-#main-nav .dropdown.show ul {
-  opacity: 1;
-  visibility: visible;
-}
-#main-nav .dropdown ul li {
-  width: 100%;
-}
-#main-nav .dropdown ul li a {
-  padding: 10px 15px;
-  color: #333;
-  display: block;
-  text-align: left;
-}
-#main-nav .dropdown ul li a:hover {
-  background: #f1f1f1;
+.dropdown-item:hover {
+  background-color: #f1f1f1;
   color: #007a33;
 }
 
@@ -129,9 +87,7 @@ body {
 #hero {
   width: 100%;
   height: 70vh;
-  position: relative;
-  overflow: hidden;
-  margin-top: 160px; /* to prevent overlap with fixed nav */
+  margin-top: 160px;
 }
 #hero .carousel-item {
   height: 70vh;
@@ -143,7 +99,7 @@ body {
   bottom: 20%;
   left: 10%;
   background: rgba(0, 0, 0, 0.55);
-  padding: 30px;
+  padding: 25px;
   border-radius: 10px;
   color: #fff;
   max-width: 550px;
@@ -161,7 +117,7 @@ body {
   color: #fff;
 }
 
-/* ===== CONTENT + STICKY SIDEBARS ===== */
+/* ===== CONTENT AREA ===== */
 #content-area {
   padding: 60px 0;
 }
@@ -200,9 +156,6 @@ body {
 .sidebar ul li a:hover {
   color: #ffcc00;
 }
-.card {
-  border-radius: 10px;
-}
 .card-title {
   color: #007a33;
   font-weight: bold;
@@ -234,6 +187,15 @@ body {
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 992px) {
+  body {
+    padding-top: 120px;
+  }
+  #top-header img {
+    height: 50px;
+  }
+  .navbar {
+    top: 75px;
+  }
   #hero {
     height: 50vh;
   }
@@ -245,27 +207,23 @@ body {
     top: auto;
     margin-top: 20px;
   }
-  #main-nav ul {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  #main-nav li {
-    width: 100%;
-  }
-  #main-nav .dropdown ul {
-    position: relative;
-    box-shadow: none;
-  }
 }
-@media (max-width: 768px) {
-  #top-header img {
-    height: 50px;
-  }
+@media (max-width: 576px) {
   #top-header h4 {
-    font-size: 14px;
+    font-size: 13px;
   }
   #top-header h5 {
-    font-size: 13px;
+    font-size: 12px;
+  }
+  .carousel-content {
+    left: 5%;
+    bottom: 10%;
+    max-width: 90%;
+    padding: 15px;
+  }
+  .btn-get-started {
+    padding: 8px 18px;
+    font-size: 14px;
   }
 }
 </style>
@@ -277,14 +235,14 @@ body {
 <section id="top-header">
   <div class="container">
     <div class="row text-center align-items-center">
-      <div class="col-3 text-start d-none d-sm-block">
+      <div class="col-3 text-start d-none d-md-block">
         <img src="https://www.necta.go.tz/img/emblem.png" alt="Left Logo">
       </div>
-      <div class="col-6 col-sm-6">
+      <div class="col-12 col-md-6">
         <h4>THE ROMAN CATHOLIC DIOCESE OF NJOMBE</h4>
         <h5>UMAWANJO BOYS' SECONDARY SCHOOL PORTAL</h5>
       </div>
-      <div class="col-3 text-end d-none d-sm-block">
+      <div class="col-3 text-end d-none d-md-block">
         <img src="https://www.necta.go.tz/images/logo.png" alt="Right Logo">
       </div>
     </div>
@@ -292,41 +250,39 @@ body {
 </section>
 
 <!-- ======= Navbar ======= -->
-<nav id="main-nav">
+<nav class="navbar navbar-expand-lg navbar-dark">
   <div class="container">
-    <ul>
-      <li><a class="active" href="https://ubss.byethost11.com/umawanjo/html.html">Dashboard</a></li>
-
-      <li class="dropdown">
-        <a href="#"><span>Examinations</span> <i class="bi bi-chevron-down"></i></a>
-        <ul>
-          <li><a href="Different_Files/Add_marks.html">Add Marks</a></li>
-          <li><a href="Different_Files/adding_marks.html">Adding Marks</a></li>
-          <li><a href="https://igunda.infinityfree.me/myapp/scores.php">Scores</a></li>
-        </ul>
-      </li>
-
-      <li class="dropdown">
-        <a href="#"><span>Results</span> <i class="bi bi-chevron-down"></i></a>
-        <ul>
-          <li><a href="#">Form </a></li>
-          <li><a href="#">PSLE</a></li>
-          <li><a href="#">CSEE</a></li>
-          <li><a href="#">CSEE</a></li>
-          <li><a href="#">CSEE</a></li>
-          <li><a href="#">CSEE</a></li>
-          <li><a href="#">CSEE</a></li>
-          <li><a href="#">CSEE</a></li>
-          <li><a href="https://anyonike.github.io/website/Businessu/Advanced.html">Whatsapp</a></li>
-        </ul>
-      </li>
-
-      <li><a href="#">Services</a></li>
-      <li><a href="#">Publications</a></li>
-      <li><a href="#">FAQ</a></li>
-      <li><a href="#">E-Mrejesho</a></li>
-      <li><a href="#">Contacts</a></li>
-    </ul>
+    <a class="navbar-brand d-lg-none fw-bold text-warning" href="#">UBSS</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link active" href="#">Dashboard</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Examinations</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Add Marks</a></li>
+            <li><a class="dropdown-item" href="#">Adding Marks</a></li>
+            <li><a class="dropdown-item" href="#">Scores</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Results</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Form</a></li>
+            <li><a class="dropdown-item" href="#">PSLE</a></li>
+            <li><a class="dropdown-item" href="#">CSEE</a></li>
+            <li><a class="dropdown-item" href="#">Whatsapp</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Publications</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">FAQ</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">E-Mrejesho</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Contacts</a></li>
+      </ul>
+    </div>
   </div>
 </nav>
 
@@ -349,16 +305,16 @@ body {
         </div>
       </div>
     </div>
-    <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
       <span class="carousel-control-prev-icon"></span>
-    </a>
-    <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
       <span class="carousel-control-next-icon"></span>
-    </a>
+    </button>
   </div>
 </section>
 
-<!-- ======= Main Content + Sticky Sidebars ======= -->
+<!-- ======= Main Content ======= -->
 <section id="content-area">
   <div class="container">
     <div class="row">
@@ -369,7 +325,6 @@ body {
           <ul>
             <li><a href="#">School Portal</a></li>
             <li><a href="#">Upload Results</a></li>
-            <li><a href="#">View Reports</a></li>
             <li><a href="#">View Reports</a></li>
             <li><a href="https://web.whatsapp.com/">Whatsapp</a></li>
           </ul>
@@ -455,18 +410,6 @@ body {
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 <script>
 AOS.init();
-
-// Smart dropdown hover (fast open/close)
-document.querySelectorAll('#main-nav .dropdown').forEach(drop => {
-  let timer;
-  drop.addEventListener('mouseenter', () => {
-    clearTimeout(timer);
-    drop.classList.add('show');
-  });
-  drop.addEventListener('mouseleave', () => {
-    timer = setTimeout(() => drop.classList.remove('show'), 200);
-  });
-});
 </script>
 </body>
 </html>
